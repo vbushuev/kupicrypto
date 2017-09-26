@@ -1,0 +1,11 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: Имя
+        type: text
+    phone:
+        label: Телефон
+        type: text

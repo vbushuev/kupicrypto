@@ -1,0 +1,10 @@
+plugin:
+    name: 'vsb.pne::lang.plugin.name'
+    description: 'vsb.pne::lang.plugin.description'
+    author: vsb
+    icon: oc-icon-leaf
+    homepage: ''
+permissions:
+    manager:
+        tab: 'vsb.pne::lang.plugin.manager'
+        label: 'vsb.pne::lang.plugin.manager'

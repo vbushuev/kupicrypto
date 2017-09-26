@@ -1,0 +1,396 @@
+title = "main"
+url = "/"
+layout = "default"
+is_hidden = 0
+
+[Feedbacks]
+==
+
+
+<div class="content">
+    <div class="tabBox-wrap">
+        <div class="row">
+            {% partial 'forms' %}
+
+            <a class="offerTb" href="#"><span class="offerTb__icon"></span> <span
+                    class="offerTb__text">Оферта сервиса</span></a>
+        </div>
+    </div>
+    <div class="operations">
+        <div class="row">
+            <div class="operations-wrap">
+                <p class="subTitle">{{settings.warranty[0].title}}</p>
+                <div class="title"><p>{{settings.warranty[0].pretitle}}</p>
+                    <span class="hidenTitle">{{settings.warranty[0].pretitle}}</span>
+                </div>
+
+
+                <div class="textOpt-wrap">
+                    <div class="textOpt">
+
+                        {{settings.warranty[0].text|raw}}
+                    </div>
+                    <button class="button getAdvice">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+                </div>
+                <img class="bitOpt" src="{{'assets/img/bitOpt.png'|theme}}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="works">
+        <div class="row">
+
+            <p class="subTitle">{{settings.howitwork[0].title}}</p>
+            <div class="title"><p>{{settings.howitwork[0].pretitle}}</p>
+                <span class="hidenTitle">{{str_words(settings.howitwork[0].pretitle,1)}}</span>
+            </div>
+
+            <div class="works-item-wrap">
+                {% for key,item in settings.howitwork[0].items %}
+                <div class="works-item">
+                    <div class="imgWi-wrap">
+                        <div class="numberWi">{{key+1}}</div>
+                        <img src="{{item.img|media}}" alt="">
+                    </div>
+
+                    <p class="textWi">
+                        <span>{{item.title}}</span>
+                        {{item.text}}
+                    </p>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <!--            <div class="separatorWi">-->
+            <!--                <div class="sep-item"><span></span><i></i></div>-->
+            <!--                <div class="sep-item"><span></span><i></i></div>-->
+            <!--                <div class="sep-item"><span></span><i></i></div>-->
+            <!--                <div class="sep-item"><span></span><i></i></div>-->
+            <!--            </div>-->
+
+
+        </div>
+    </div>
+    <div class="crypto">
+        <div class="row">
+            <p class="subTitle">{{settings.credit[0].title}}</p>
+            <div class="title"><p>{{settings.credit[0].pretitle}}</p>
+                <span class="hidenTitle">{{str_words(settings.credit[0].pretitle,1)}}</span>
+            </div>
+            <div class="crypto-wrap">
+                <p class="crypto__title">{{settings.credit[0].text[0].title}}</p>
+
+
+                <div class="textOpt">
+                   <span> {{settings.credit[0].text[0].pretitle}}</span>
+
+                </div>
+
+                <div class="crypto-step-wrap">
+                    {{settings.credit[0].text[0].text|raw}}
+                </div>
+
+                <div class="crypto-item-wrap">
+                    {% for key,item in settings.credit[0].items %}
+
+                    <div class="crypto-item cri{{key+1}}">
+                        <img class="crypto__img" src="{{item.img|media}}" alt="">
+                        <p class="textWi center">
+                            <span>{{item.title}}</span>
+                            {{item.text}}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="cryptoLetter"><p>{{settings.credit[0].quote|raw}}</p>
+                    <span class="quoteCl"></span></div>
+
+            </div>
+        </div>
+    </div>
+    <div class="reviews">
+        <div class="reviewsFon"></div>
+        <div class="row">
+
+            <div class="title red center">отзывы</div>
+            <div class="slider-wrap">
+                <div class="slider1">
+                    {% for key,feedback in Feedbacks.getFeedbacks %}
+                    <div class="slide">
+                        <p class="slide__number">{{key+1 <9? '0' : ''}}{{key+1}}</p>
+
+                        <div class="reviewSl">
+                            <p class="textSl"><span>{{feedback.subject}}</span>
+                                {{feedback.text}}</p>
+                            <p class="nameSl">{{feedback.name}}, {{feedback.created_at|date('d.m.Y в H:i')}}</p>
+                            <div class="quoteSl"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            <button class="button">Оставить отзыв</button>
+        </div>
+    </div>
+    <div class="transaction">
+        <div class="row">
+            <p class="subTitle">прямо сейчас совершаются</p>
+            <div class="title"><p>транзакции</p>
+                <span class="hidenTitle">транзакции</span>
+            </div>
+
+            <div class="tablet-wrap">
+
+                <table class="tableTs">
+                    <thead>
+                    <tr>
+                        <td><p class="blueTs">Время</p></td>
+                        <td></td>
+                        <td><p class="blueTs">Цена</p></td>
+                        <td><p class="blueTs">ВТС</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="dataRed">Сегодня</p></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="tableTs">
+                    <thead>
+                    <tr>
+                        <td><p class="blueTs">Время</p></td>
+                        <td></td>
+                        <td><p class="blueTs">Цена</p></td>
+                        <td><p class="blueTs">ВТС</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="dataRed">09.08.2017</p></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="purchaseTs">Покупка</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:54:56</p></td>
+                        <td><p class="sellingTs">Продажа</p></td>
+                        <td><p>207500.00</p></td>
+                        <td><p>0.00181452</p></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="courseTs-wrap">
+                <div class="courseTs">
+                    <div class="roundTsr"></div>
+                    <div class="roundTsr"></div>
+                    <div class="roundTsr"></div>
+
+                    <div class="courseTs-box">
+                        <p>Курс на 11.08.2017 16:24</p>
+                        <p class="courseTs__text"><span class="red">1 BTC</span> = <span>154 934 Р</span></p>
+                        <p class="courseTs__text"><span class="blue">1 ETH</span> = <span>12 562 Р</span></p>
+
+                        <img src="{{'assets/img/scale.png'|theme}}" alt="">
+                    </div>
+                </div>
+
+                <button class="button blue">ПОКАЗАТЬ МОИ ОПЕРАЦИИ</button>
+            </div>
+
+            <div class="bandTs">
+                <div class="roundTs top"></div>
+                <div class="roundTs bottom"></div>
+                <div class="arrTs"></div>
+            </div>
+        </div>
+
+        <div class="rashLeft"></div>
+        <div class="rashRight"></div>
+
+        <div class="row">
+            <div class="actionWi">
+                {% for item in settings.transaction %}
+                <div class="actionWi-item">
+                    <div class="iconAwi"><img src="{{item.img|media}}"></div>
+                    <p class="textWi">
+                        <span>{{item.title}}</span>
+                        {{item.text}}
+                    </p>
+                </div>
+                {% endfor %}
+                <!--<div class="actionWi-item">-->
+                    <!--<div class="iconAwi bar"></div>-->
+                    <!--<p class="textWi">-->
+                        <!--<span>ТОРГУЙ НА БИРЖЕ</span>-->
+                        <!--www.www.ru-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="actionWi-item">-->
+                    <!--<div class="iconAwi store"></div>-->
+                    <!--<p class="textWi">-->
+                        <!--<span>ХРАНИ</span>-->
+                        <!--и жди повышения курса-->
+                    <!--</p>-->
+                <!--</div>-->
+                <!--<div class="actionWi-item">-->
+                    <!--<div class="iconAwi pay"></div>-->
+                    <!--<p class="textWi">-->
+                        <!--<span>РАСПЛАЧИВАЙСЯ</span>-->
+                        <!--в магазинах-->
+                    <!--</p>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+
+</div>
+

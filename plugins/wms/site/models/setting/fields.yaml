@@ -1,0 +1,129 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    terms:
+        label: Условия использования сервиса
+        type: mediafinder
+        mode: file
+    offer:
+        label: Оферта сервиса
+        type: mediafinder
+        mode: file
+    politics:
+        label: Политика конфиденциальности
+        type: mediafinder
+        mode: file
+    email:
+        label: Почта для уведомлений
+        type: text
+    phone:
+        label: Телефон
+        type: text
+    contacts:
+        label: Контакты
+        type: richeditor
+    warranty:
+        label: Раздел 1
+        type: repeater
+        maxItems: 1
+        form:
+              fields:
+                  title:
+                      label: Заголовок
+                      type: text
+                  pretitle:
+                      label: Подзаголовок
+                      type: text
+                  text:
+                      label: Текст
+                      type: textarea
+    howitwork:
+        label: Раздел 2
+        type: repeater
+        maxItems: 1
+        form:
+              fields:
+                  title:
+                      label: Заголовок
+                      type: text
+                  pretitle:
+                      label: Подзаголовок
+                      type: text
+                  items:
+                      type: repeater
+                      maxItems: 4
+                      form:
+                          fields:
+                              img:
+                                  label: Изображения
+                                  type: mediafinder
+                                  mode: image
+                              title:
+                                  label: Заголовок
+                                  type: text
+                              text:
+                                  label: Текст
+                                  type: textarea
+    credit:
+            label: Раздел 3
+            type: repeater
+            maxItems: 1
+            form:
+                  fields:
+                      title:
+                          label: Заголовок
+                          type: text
+                      pretitle:
+                          label: Подзаголовок
+                          type: text
+                      text:
+                          label: Основное
+                          type: repeater
+                          maxItems: 1
+                          form:
+                              fields:
+                                  title:
+                                      label: Заголовок
+                                      type: text
+                                  pretitle:
+                                      label: Подзаголовок
+                                      type: text
+                                  text:
+                                      label: Текст
+                                      type: richeditor
+                      items:
+                          type: repeater
+                          maxItems: 4
+                          form:
+                              fields:
+                                  img:
+                                      label: Изображения
+                                      type: mediafinder
+                                      mode: image
+                                  title:
+                                      label: Заголовок
+                                      type: text
+                                  text:
+                                      label: Текст
+                                      type: textarea
+                      quote:
+                          label: Цитата
+                          type: textarea
+    transaction:
+                label: Транзакции
+                type: repeater
+                maxItems: 4
+                form:
+                      fields:
+#                          img:
+#                              label: Изображения
+#                              type: mediafinder
+#                              mode: image
+                          title:
+                              label: Заголовок
+                              type: text
+                          text:
+                              label: Текст
+                              type: textarea

@@ -1,0 +1,738 @@
+@media (max-width: 1400px) {
+    .bitOpt {
+        right: -50px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .bitOpt {
+        right: 50px;
+        width: 300px;
+    }
+
+    .tabBox-wrap {
+        background-size: cover;
+    }
+    .cryptoLetter:before {
+
+        left: auto;
+        right: 14px;
+    }
+    .hidenTitle {
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .closePopup {
+        right: 0;
+    }
+    .logo-h {
+        width: 190px;
+        height: 53px;
+        background-size: 100%;
+    }
+
+    .phone {
+        font-size: 27px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .course-item {
+        margin-right: 30px;
+    }
+
+    .course-item:last-child {
+        margin: 0;
+    }
+
+    .courseTs {
+        width: 100%;
+        padding: 16px 0 30px 20px;
+    }
+
+    .tablet-wrap {
+        width: calc(100% - 360px);
+    }
+
+    .courseTs-wrap {
+        width: 355px;
+    }
+
+    .roundTsr {
+        width: 10px;
+        height: 10px;
+        margin: 0 3px 15px;
+    }
+}
+
+@media (max-width: 980px) {
+    .logo-h {
+        width: 160px;
+        height: 45px;
+    }
+
+    .course-item {
+        margin-right: 0;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .phone {
+        font-size: 21px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .bit-icon {
+        width: 21px;
+        height: 21px;
+        background-size: 100%;
+    }
+
+    .eth-icon {
+        width: 18px;
+        height: 30px;
+        background-size: 100%;
+        margin: 0 2px;
+    }
+
+    header {
+        padding: 10px 0;
+    }
+
+    .bandTs {
+        display: none;
+    }
+
+    .subTitle {
+        font-size: 20px;
+    }
+
+    .hidenTitle {
+        font-size: 70px;
+    }
+
+    .works-item {
+        width: 49%;
+    }
+
+    .works-item-wrap .textWi {
+        max-width: 100%;
+        padding-right: 20px;
+        padding-left: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .imgWi-wrap {
+        margin-bottom: 20px;
+        width: 150px;
+    }
+
+    .numberWi {
+        font-size: 30px;
+        line-height: 50px;
+        height: 50px;
+        width: 50px;
+        top: -10px;
+    }
+
+    .actionWi-item {
+        width: 50%;
+        margin-bottom: 30px;
+    }
+
+    .iconAwi {
+        margin: 0 auto 20px;
+    }
+
+    .textWi {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .separatorWi {
+        padding: 20px 0;
+        margin: 20px 0 30px;
+    }
+
+    .works-item-wrap {
+        margin-top: 100px;
+    }
+
+    .works {
+        padding-bottom: 40px;
+    }
+
+    .transaction {
+        padding: 0 0 20px;
+    }
+
+    .transaction .row {
+        padding-top: 50px;
+    }
+
+    .tablet-wrap {
+        margin-top: 0px;
+        width: 100%;
+        padding-right: 15px;
+    }
+
+    .tableTs {
+        margin: 0 auto;
+    }
+
+    .tableTs {
+        margin-top: 70px;
+    }
+
+    .courseTs-wrap {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+    .courseTs {
+        margin-bottom: 50px;
+    }
+
+    .transaction .button.blue {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .slide__number {
+        font-size: 90px;
+        bottom: calc(100% + 50px);
+    }
+
+    .title.red {
+        font-size: 30px;
+    }
+
+    .slider-wrap {
+        padding: 50px 0;
+    }
+
+    .reviewSl {
+        padding-right: 40px;
+    }
+
+    .bitOpt {
+        right: 0px;
+        width: 200px;
+    }
+
+    .textOpt-wrap {
+        width: 67%;
+    }
+
+    .operations .button {
+        margin: 40px auto 0;
+        display: block;
+    }
+
+    .operations .title {
+        margin-bottom: 70px;
+    }
+
+    .textOpt {
+        padding-left: 30px;
+    }
+
+    footer .flexBox {
+        display: block;
+    }
+
+    .text-f.tablenNone {
+        display: none;
+    }
+
+    .text-f.webNone {
+        display: inline-block;
+        vertical-align: middle;
+        width: 49%;
+        line-height: 1.3;
+    }
+
+    .text-f.right {
+        display: inline-block;
+        vertical-align: middle;
+        width: 49%;
+        line-height: 1.3;
+    }
+
+    .number-wrap-f {
+        margin-bottom: 15px;
+    }
+
+    .number-f {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .text-f.indent {
+        margin-top: 30px;
+        max-width: 80%;
+    }
+
+    .text-f.indent.float {
+        margin-top: 52px;
+    }
+
+    .text-f .conf {
+        display: block;
+    }
+
+    footer {
+        padding: 40px 0 30px;
+        display: block;
+    }
+
+    .reviews {
+        padding-top: 90px;
+    }
+
+    .tabBox > label {
+        font-size: 15px;
+        width: 23%;
+        padding: 14px 0 10px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        line-height: 1;
+    }
+
+    .rightTb {
+        margin-left: 0;
+    }
+
+    .noticeTb {
+        padding: 10px 10px 30px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .noticeTb__text {
+        font-size: 16px;
+    }
+    .noticeTb p.grey {
+        margin-bottom: 10px;
+        font-size: 12px;
+        line-height: 1.2;
+    }
+    .rightTb .grey.italic {
+        font-size: 12px;
+        width: 101px;
+        line-height: 1.3;
+        margin: 0 auto 10px;
+    }
+    .noticeTb:before {
+        border-top: 20px solid #fff;
+        border-right: 20px solid transparent;
+    }
+    .itemTb {
+        width: calc(100% - 130px);
+    }
+    .checkboxTb {
+        position: relative;
+        bottom: 0;
+        right: 0;
+        margin: 20px auto 0;
+    }
+    .tabBox-wrap {
+        padding: 50px 0 0 0;
+        background-image: url(../img/fonTablet.jpg);
+    }
+    .offerTb {
+        margin: 50px auto 60px;
+    }
+    .operations {
+        padding: 40px 0 80px 0;
+    }
+
+    .crypto-wrap {
+        margin-top: 50px;
+    }
+    .crypto__title {
+        margin-bottom: 30px;
+    }
+    .crypto-item {
+        width: 50% !important;
+        margin-bottom: 30px;
+    }
+    .crypto__img {
+        margin: 0 auto 20px;
+    }
+    .cryptoLetter {
+        padding: 40px ;
+        margin: 50px auto 0;
+
+    }
+    .quoteCl {
+        right: 30px;
+    }
+    .crypto {
+        padding: 50px 0 50px;
+    }
+    .crypto__title {
+        font-size: 25px;
+    }
+}
+
+@media (max-width: 800px){
+    .itemTb {
+        width: 100%;
+    }
+    .rightTb {
+        margin-top: 40px;
+    }
+
+}
+
+@media (max-width: 640px) {
+    header .flexBox {
+        display: block;
+    }
+
+    .logo-h {
+        display: block;
+        margin: 10px auto;
+    }
+
+    .course-h {
+        display: block;
+        width: 100%;
+    }
+
+    .course-h.desNone {
+        display: block;
+    }
+
+    .course-h.mobileNone {
+        display: none;
+    }
+
+    .course-h.desNone {
+        display: block;
+        background: #5aa0f6;
+        width: calc(100% + 30px);
+        margin-left: -15px;
+        padding: 0 15px;
+    }
+
+    header {
+        padding: 0 0 10px;
+    }
+
+    .course-wrap {
+        margin-top: 0;
+    }
+
+    .course-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 0;
+        font-size: 13px;
+        color: #fff;
+        padding: 5px 0;
+
+    }
+
+    header .desNone .flexBox {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .contact-h {
+        display: block;
+        text-align: center;
+    }
+
+    .checkboxTb {
+        width: 100%;
+    }
+    .works-item {
+        width: 100%;
+    }
+    .actionWi-item{
+        width: 100%;
+    }
+    .tableTs {
+        width: 400px;
+        max-width: 100%;
+    }
+    .title p {
+        font-size: 30px;
+    }
+    .tablet-wrap {
+        overflow: scroll;
+    }
+    .text-f.webNone {
+        width: 100%;
+    }
+    .text-f.right {
+        width: 100%;
+        text-align: left;
+        margin-top: 15px;
+    }
+    .text-f.indent {
+        margin-top: 15px;
+        max-width: 100%;
+    }
+    .text-f.indent.float {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .subTitle {
+        font-size: 17px;
+    }
+    .slide__number {
+        font-size: 50px;
+    }
+    .title.red {
+        font-size: 25px;
+    }
+    .reviewSl {
+        padding-right: 20px;
+        padding-left: 10px;
+    }
+    .slider-wrap .bx-controls{
+        right: 0;
+    }
+    .slider-wrap {
+        padding: 40px 0;
+    }
+    .reviews .button {
+        width: 290px;
+    }
+    .tableTs {
+        margin-top: 50px;
+    }
+    .textWi span {
+        font-size: 18px;
+    }
+    .imgWi-wrap {
+        width: 100px;
+    }
+    .works-item-wrap {
+        margin-top: 50px;
+    }
+    .textOpt-wrap {
+        width: 100%;
+    }
+    .bitOpt{
+        display: none;
+    }
+    .textOpt {
+        padding-left: 10px;
+        font-size: 14px;
+    }
+    .textOpt .vividText {
+        font-size: 19px;
+    }
+    .operations .button {
+        width: 290px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .operations .title {
+        margin-bottom: 30px;
+    }
+    .works {
+        padding-bottom: 20px;
+    }
+    .contentTb {
+        padding: 20px 10px 20px;
+    }
+    .offerTb {
+        margin: 30px auto 30px;
+    }
+    .tabBox__italick {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .itemTb {
+        width: calc(100% + 20px);
+        margin-left: -10px;
+    }
+    .formTb .column, .formTb .columns {
+        margin-bottom: 15px;
+    }
+    .formTb .indentTop {
+        margin-top: 5px;
+    }
+    .formTb .btn {
+        width: 260px;
+    }
+    .checkboxTb__text {
+        width: calc(100% - 33px);
+        text-align: left;
+    }
+    .checkboxTb label{
+        margin: 0 5px 0 0;
+    }
+    .tabBox > label {
+        font-size: 13px;
+        width: 25%;
+        padding: 12px 0 8px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin: 0;
+
+    }
+
+    .hidenTitle {
+       display: none;
+    }
+    .operations {
+        padding: 40px 0 50px 0;
+    }
+    .formTb .button {
+        width: 260px;
+    }
+    .formTb-wrap {
+        min-height: auto;
+    }
+    .loanLink {
+        padding: 10px 4px 0;
+        font-size: 13px;
+    }
+    .tabBox-wrap {
+        padding: 30px 0 0 0;
+    }
+    .btn, button, .button {
+        font-size: 15px;
+    }
+    .popup {
+        width: 98%;
+        padding: 20px 20px 20px;
+    }
+    .popup-right {
+        width: 100%;
+        padding-right: 0;
+    }
+    .popup-left {
+        width: 100%;
+        padding: 0;
+        margin-bottom: 10px;
+    }
+    .contactsPu-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .contactsPu {
+        padding: 15px 0 5px;
+        margin: 20px 0 20px;
+    }
+    .popup-wrpa .btn.min {
+        margin-top: 20px;
+    }
+    img.cureCode {
+        display: block;
+        margin: 0 auto;
+    }
+    .allocatePu {
+        font-size: 14px;
+        margin: 20px 0;
+    }
+    .coursePu {
+        font-size: 25px;
+    }
+    .formPopup-wrap {
+        width: 100%;
+    }
+    .popup-img {
+        display: none;
+    }
+    .popup-wrpa.feedback .popup {
+        padding: 20px;
+    }
+    .formPopup .italic {
+        margin-bottom: 20px;
+    }
+    .formPopup .columns {
+        margin-bottom: 15px;
+    }
+    .popup .btn {
+        margin-top: 20px;
+    }
+
+    .crypto-item {
+        width: 100% !important;
+    }
+    .crypto-step-wrap {
+        padding-left: 0;
+    }
+    .crypto__title {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+    .crypto-wrap {
+        margin-top: 30px;
+    }
+    .crypto-item-wrap {
+        margin-top: 40px;
+    }
+    .crypto__img {
+        width: 100px;
+    }
+    .cryptoLetter:before {
+        right: -10px;
+        top: -10px;
+    }
+    .quoteCl {
+        right: 10px;
+    }
+    .cryptoLetter {
+        padding: 30px;
+        margin: 20px auto 0;
+    }
+    .crypto {
+        padding: 30px 0;
+    }
+    .tableTs td:first-child{
+        width: 40% !important;
+    }
+    .dataRed{
+        border-radius: 5px;
+    }
+
+    .checkboxTb.desNone {
+        padding: 0 15px;
+        margin-top: 0;
+        display: block !important;
+    }
+    .checkboxTb__text {
+        font-size: 13px;
+    }
+    .checkboxTb.mobileNone{
+        display: none !important;
+    }
+    .loan-c {
+        position: relative;
+    }
+    .loan-wrap {
+        margin-bottom: 25px;
+    }
+
+}

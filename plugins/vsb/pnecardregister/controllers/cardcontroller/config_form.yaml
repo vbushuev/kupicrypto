@@ -1,0 +1,10 @@
+name: CardController
+modelClass: Vsb\Pnecardregister\Models\Card
+form: $/vsb/pnecardregister/models/card/fields.yaml
+defaultRedirect: vsb/pnecardregister/cardcontroller
+create:
+    redirect: 'vsb/pnecardregister/cardcontroller/update/:id'
+    redirectClose: vsb/pnecardregister/cardcontroller
+update:
+    redirect: vsb/pnecardregister/cardcontroller
+    redirectClose: vsb/pnecardregister/cardcontroller

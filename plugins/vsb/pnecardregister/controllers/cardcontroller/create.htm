@@ -1,0 +1,79 @@
+<?php Block::put('breadcrumb') ?>
+    <ul>
+        <li><a href="<?= Backend::url('vsb/pnecardregister/cardcontroller') ?>">CardController</a></li>
+        <li><?= e($this->pageTitle) ?></li>
+    </ul>
+<?php Block::endPut() ?>
+
+<?php if (!$this->fatalError): ?>
+
+    <?= Form::open(['class' => 'layout']) ?>
+
+        <div class="layout-row">
+            <?= $this->formRender() ?>
+        </div>
+        <script>
+            console.debug('<?= isset($cardref)?$cardref:"nocardref" ?>')
+            var cardref = '<?= $this->cardref ?>';
+            var pan = '<?= $this->pan ?>';
+            $(document).ready(function(){
+                if(cardref!=='false' && cardref.length){
+                    console.debug(cardref,pan);
+                    $('#Form-field-Card-pan').val(pan);
+                    $('#Form-field-Card-card_ref').val(cardref);
+                }
+                else $.ajax({
+                    url:'',
+                    type:'post',
+                    headers:{
+                        "X-OCTOBER-REQUEST-HANDLER":"onGetCardRef"
+                    },
+                    dataType:'json',
+                    success:function(d,x,s){
+                        var response = JSON.parse(d.result);
+                        console.debug('create form ajax loaded',response);
+                        if(response["redirect-url"])document.location.href=response["redirect-url"];
+                    }
+                });
+            });
+        </script>
+        <div class="form-buttons">
+            <div class="loading-indicator-container">
+                <!-- <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-success="console.debug(data);"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    class="btn btn-primary"> -->
+                <button
+                    type="submit"
+                    data-request="onSave"
+                    data-request-success="console.debug(data);"
+                    data-hotkey="ctrl+s, cmd+s"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    class="btn btn-primary">
+                    <?= e(trans('backend::lang.form.create')) ?>
+                </button>
+                <button
+                    type="button"
+                    data-request="onSave"
+                    data-request-data="close:1"
+
+                    data-hotkey="ctrl+enter, cmd+enter"
+                    data-load-indicator="<?= e(trans('backend::lang.form.saving')) ?>"
+                    class="btn btn-default">
+                    <?= e(trans('backend::lang.form.create_and_close')) ?>
+                </button>
+                <span class="btn-text">
+                    <?= e(trans('backend::lang.form.or')) ?> <a href="<?= Backend::url('vsb/pnecardregister/cardcontroller') ?>"><?= e(trans('backend::lang.form.cancel')) ?></a>
+                </span>
+            </div>
+        </div>
+
+    <?= Form::close() ?>
+
+<?php else: ?>
+    <p class="flash-message static error"><?= e(trans($this->fatalError)) ?></p>
+    <p><a href="<?= Backend::url('vsb/pnecardregister/cardcontroller') ?>" class="btn btn-default"><?= e(trans('backend::lang.form.return_to_list')) ?></a></p>
+<?php endif ?>

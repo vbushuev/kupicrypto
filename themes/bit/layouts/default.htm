@@ -1,0 +1,106 @@
+[Site]
+[Calls]
+==
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>wms</title>
+    <link rel="stylesheet" href="{{'assets/css/foundation.min.css'|theme}}"/>
+    <link rel="stylesheet" href="{{'assets/css/style.css'|theme}}"/>
+    <link rel="stylesheet" href="{{'assets/css/media.css'|theme}}"/>
+</head>
+<body>
+<div class="btn-group">
+    <button class="btnG btn1">вернуть</button>
+    <button class="btnG btn2">занять 2</button>
+    <button class="btnG btn3">занять</button>
+    <button class="btnG btn4">продать 2</button>
+    <button class="btnG btn5">продать</button>
+    <button class="btnG btn6">купить</button>
+</div>
+
+<header>
+    <div class="header-wrap">
+        <div class="flexBox">
+            <div class="course-h desNone">
+                <!--                <p>Курс:</p>-->
+                <div class="course-wrap">
+                    <div class="flexBox">
+                        <div class="course-item">
+                            <div class="bit-icon"></div>
+                            1 BTC <span class="bold">=</span> <span class="courseBit heavy">154 934 Р</span></div>
+                        <div class="course-item">
+                            <div class="eth-icon"></div>
+                            1 ETH <span class="bold">=</span> <span class="courseEth heavy">12 562 Р</span></div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="logo-h"></a>
+            <div class="course-h mobileNone">
+                <p>Курс:</p>
+                <div class="course-wrap">
+                    <div class="course-item">
+                        <div class="bit-icon"></div>
+                        1 BTC <span class="bold">=</span> <span class="courseBit heavy">154 934 Р</span></div>
+                    <div class="course-item">
+                        <div class="eth-icon"></div>
+                        1 ETH <span class="bold">=</span> <span class="courseEth heavy">12 562 Р</span></div>
+                </div>
+            </div>
+            <div class="contact-h">
+                <p>Техподдержка:</p>
+                <p class="phone">{{settings.phone}}</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+{% partial 'popup' %}
+
+{% page %}
+
+{% flash success %}
+<p data-control="flash-message" data-interval="5" class="success">
+    {{ message }}
+</p>
+{% endflash %}
+<footer>
+    <div class="row">
+        <div class="flexBox">
+            <span class="text-f tablenNone">
+                {{settings.contacts|raw}}
+            </span>
+
+            <div class="number-wrap-f center">
+                <p class="number-f">{{settings.phone}}</p>
+                <a class="link-f getAdvice"><span></span> Заказать звонок</a>
+            </div>
+            <span class="text-f webNone">
+                {{settings.contacts|raw}}
+            </span>
+
+            <p class="text-f right">
+                Разработка
+                <a href="wmstudio.su" target="_blank"> Агентство креативных<br>
+                    интернет-решений WMStudio</a>
+            </p>
+        </div>
+        <p class="text-f indent">{{''|date('Y')}}. Копирование информации без разрешения запрещено. Действует
+            <a class="conf" href="#">политика конфиденциальности.</a>
+        </p>
+        <p class="text-f indent float"><a href="#" class="conf">Оферта сервиса</a></p>
+    </div>
+</footer>
+
+<script src="{{'assets/js/jquery-2.2.4.min.js'|theme}}"></script>
+<script src="{{'assets/js/jquery.maskedinput.min.js'|theme}}"></script>
+<script src="{{'assets/js/foundation.min.js'|theme}}"></script>
+<script src="{{'assets/js/jquery.bxslider.min.js'|theme}}"></script>
+<script src="{{'assets/js/script.js'|theme}}"></script>
+{% framework extras %}
+{% scripts %}
+</body>
+</html>

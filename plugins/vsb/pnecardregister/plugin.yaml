@@ -1,0 +1,16 @@
+plugin:
+    name: 'vsb.pnecardregister::lang.plugin.name'
+    description: 'vsb.pnecardregister::lang.plugin.description'
+    author: vsb
+    icon: oc-icon-credit-card
+    homepage: ''
+navigation:
+    card-register-item:
+        label: 'Регистрация карт'
+        url: vsb/pnecardregister/cardcontroller
+        icon: icon-list-ol
+        sideMenu:
+            pne:
+                label: 'Настройки PNE'
+                icon: icon-list-alt'
+                url: vsb/pnecardregister/cardcontroller

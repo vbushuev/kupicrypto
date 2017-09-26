@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Call
+
+# Model Form Field configuration
+form: $/wms/site/models/call/fields.yaml
+
+# Model Class name
+modelClass: Wms\Site\Models\Call
+
+# Default redirect location
+defaultRedirect: wms/site/calls
+
+# Create page
+create:
+    title: Create Call
+    redirect: wms/site/calls/update/:id
+    redirectClose: wms/site/calls
+
+# Update page
+update:
+    title: Edit Call
+    redirect: wms/site/calls
+    redirectClose: wms/site/calls
+
+# Preview page
+preview:
+    title: Preview Call

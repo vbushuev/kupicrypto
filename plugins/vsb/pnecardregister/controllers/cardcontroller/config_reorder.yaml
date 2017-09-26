@@ -1,0 +1,4 @@
+title: CardController
+modelClass: Vsb\Pnecardregister\Models\Card
+toolbar:
+    buttons: reorder_toolbar

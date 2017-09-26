@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Feedback
+
+# Model Form Field configuration
+form: $/wms/site/models/feedback/fields.yaml
+
+# Model Class name
+modelClass: Wms\Site\Models\Feedback
+
+# Default redirect location
+defaultRedirect: wms/site/feedbacks
+
+# Create page
+create:
+    title: Create Feedback
+    redirect: wms/site/feedbacks/update/:id
+    redirectClose: wms/site/feedbacks
+
+# Update page
+update:
+    title: Edit Feedback
+    redirect: wms/site/feedbacks
+    redirectClose: wms/site/feedbacks
+
+# Preview page
+preview:
+    title: Preview Feedback

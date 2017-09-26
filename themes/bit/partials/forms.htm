@@ -1,0 +1,329 @@
+==
+<div class="tabBox">
+    <input checked="checked" id="check1" type="radio" name="tabCheck">
+    <label for="check1">купить</label>
+
+    <input id="check2" type="radio" name="tabCheck">
+    <label for="check2">продать</label>
+
+    <input id="check3" type="radio" name="tabCheck">
+    <label for="check3">занять</label>
+
+    <input id="check4" type="radio" name="tabCheck">
+    <label for="check4">ВЕРНУТЬ</label>
+
+    <div class="contentTb">
+        <p class="tabBox__italick grey">Для того чтобы провести операцию просто заполните форму.
+            Поля со знаком «...» заполняются автоматически.</p>
+        <div class="itemTb buy">
+            <form class="formTb" action="#">
+                <div class="formTb-wrap">
+                    <div class="columns-wrap">
+                        <div class="large-6 medium-6 columns">
+                            <div class="input-wrap">
+                                <p class="bold">Отдаете</p>
+                                <input class="dark" type="number" placeholder="Введите сумму">
+                            </div>
+                            <div class="select-wrap">
+                                <select class="selectTb dark" name="" id="">
+                                    <option>Руб.</option>
+                                    <option>EUR</option>
+                                    <option>USD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="large-6 medium-6 columns">
+                            <div class="input-wrap">
+                                <p class="bold">Получаете</p>
+                                <input class="center" type="text" placeholder="...">
+                            </div>
+                            <div class="select-wrap">
+                                <select class="selectTb dark" name="" id="">
+                                    <option>BTC</option>
+                                    <option>EUR</option>
+                                    <option>USD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Адрес кошелька</p>
+                            <input type="text" class="center" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Номер банковской карты</p>
+                            <input type="number" class="dark" placeholder="Введите номер карты">
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">Срок</p>
+                            <input type="number" class="center" placeholder="...">
+                        </div>
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">CVV</p>
+                            <input type="number" class="center" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="checkboxTb">
+                    <input id="make1" type="checkbox" name="make">
+                    <label for="make1 "></label>
+                    <p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>
+                </div>
+
+                <button type="submit" class="btn">Купить</button>
+            </form>
+        </div>
+
+        <div class="itemTb sell">
+            <form class="formTb" action="#">
+                <div class="formTb-wrap">
+                    <div class="columns-wrap">
+                        <div class="large-12 columns">
+                            <div class="input-wrap">
+                                <p class="bold">Продаете</p>
+                                <input class="dark" type="number" placeholder="Введите сумму">
+                            </div>
+                            <div class="select-wrap">
+                                <select class="selectTb dark" name="" id="">
+                                    <option>Руб.</option>
+                                    <option>EUR</option>
+                                    <option>USD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Получаете</p>
+                            <input type="text" class="center" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Номер банковской карты</p>
+                            <input type="number" class="dark" placeholder="Введите номер карты">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="checkboxTb">
+                    <input id="make1" type="checkbox" name="make">
+                    <label for="make1"></label>
+                    <p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>
+                </div>
+                <button type="submit" class="btn">Продать</button>
+            </form>
+        </div>
+
+        <div class="itemTb lay">
+
+            <form class="formTb" action="#">
+                <div class="formTb-wrap">
+                    <div class="columns-wrap">
+                        <div class="large-6 medium-6 columns">
+                            <div class="input-wrap">
+                                <p class="bold">Закладываете</p>
+                                <input class="dark" type="number" placeholder="Введите сумму">
+                            </div>
+                            <div class="select-wrap">
+                                <select class="selectTb dark" name="" id="">
+                                    <option>BTC</option>
+                                    <option>EUR</option>
+                                    <option>USD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="large-6 medium-6 columns">
+                            <div class="input-wrap">
+                                <p class="bold">Получаете</p>
+                                <input class="center" type="text" placeholder="...">
+                            </div>
+                            <div class="select-wrap">
+                                <select class="selectTb dark" name="" id="">
+                                    <option>Руб.</option>
+                                    <option>EUR</option>
+                                    <option>USD</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Номер банковской карты</p>
+                            <input type="number" class="dark" placeholder="Введите номер карты">
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">E-mail</p>
+                            <input type="number" class="dark" placeholder="Введите e-mail">
+                        </div>
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">Телефон</p>
+                            <input id="phoneTb" class="dark" placeholder="+7 (___) ___ - __ - __">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="checkboxTb">
+                    <input id="make1 " type="checkbox" name="make">
+                    <label for="make1 "></label>
+                    <p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>
+                </div>
+                <button type="submit" class="btn">заложить</button>
+            </form>
+
+        </div>
+        <div class="itemTb return">
+
+            <form class="formTb" action="#">
+                <div class="formTb-wrap">
+                    <div class="loan-wrap">
+                        <div class="loan-h">
+                            <div class="loanLink clickL1 active">Займ 1</div>
+                            <div class="loanLink clickL2">Займ 2</div>
+                            <div class="loanLink clickL3">Займ 3</div>
+                            <div class="loanLink clickL4">Займ 4</div>
+                            <div class="loanLink clickL5 float">Все</div>
+                        </div>
+                        <div class="loan-c loan1 active">
+                            <div class="loanRadio">
+                                <input id="loan1" type="radio" name="loanRadio">
+                                <label for="loan1"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 98 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan2" type="radio" name="loanRadio">
+                                <label for="loan2"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 124 руб.</span></label>
+                            </div>
+                        </div>
+                        <div class="loan-c loan2">
+                            <div class="loanRadio">
+                                <input id="loan3" type="radio" name="loanRadio">
+                                <label for="loan3"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 981 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan4" type="radio" name="loanRadio">
+                                <label for="loan4"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 1124 руб.</span></label>
+                            </div>
+                        </div>
+                        <div class="loan-c loan3">
+                            <div class="loanRadio">
+                                <input id="loan5" type="radio" name="loanRadio">
+                                <label for="loan5"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 2298 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan6" type="radio" name="loanRadio">
+                                <label for="loan6"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 22124 руб.</span></label>
+                            </div>
+                        </div>
+                        <div class="loan-c loan4">
+                            <div class="loanRadio">
+                                <input id="loan15" type="radio" name="loanRadio">
+                                <label for="loan15"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 8998 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan16" type="radio" name="loanRadio">
+                                <label for="loan16"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 8124 руб.</span></label>
+                            </div>
+                        </div>
+                        <div class="loan-c loan5">
+                            <div class="loanRadio">
+                                <input id="loan7" type="radio" name="loanRadio">
+                                <label for="loan7"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 8998 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan8" type="radio" name="loanRadio">
+                                <label for="loan8"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 8124 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan9" type="radio" name="loanRadio">
+                                <label for="loan9"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 8998 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan10" type="radio" name="loanRadio">
+                                <label for="loan10"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 8124 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan11" type="radio" name="loanRadio">
+                                <label for="loan11"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 8998 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan12" type="radio" name="loanRadio">
+                                <label for="loan12"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 8124 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan13" type="radio" name="loanRadio">
+                                <label for="loan13"><span class="radioBtn"></span> Оплатить только %. <span
+                                        class="grey">Сумма: 8998 руб.</span></label>
+                            </div>
+                            <div class="loanRadio">
+                                <input id="loan14" type="radio" name="loanRadio">
+                                <label for="loan14"><span class="radioBtn"></span> Вернуть сумму + %. <span
+                                        class="grey">Общая сумма: 8124 руб.</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="columns">
+                            <p class="bold">Номер банковской карты</p>
+                            <input type="number" class="dark" placeholder="Введите номер карты">
+                        </div>
+                    </div>
+                    <div class="columns-wrap">
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">Срок</p>
+                            <input type="number" class="center" placeholder="...">
+                        </div>
+                        <div class="large-6 medium-6 columns">
+                            <p class="bold">CVV</p>
+                            <input class="center" placeholder="...">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <button type="submit" class="button">оплатить</button>
+
+            </form>
+
+        </div>
+
+        <div class="rightTb">
+
+            <div class="noticeTb">
+                <p class="grey italic">Хотите купить<br> или продать?</p>
+                <p class="noticeTb__text"><span>0.0005</span> BTC</p>
+                <p class="noticeTb__text"><span>0.0025</span> ETH</p>
+            </div>
+            <p class="grey italic">Резерв обменного ресурса</p>
+        </div>
+
+        <!--<div class="checkboxTb mobileNone">-->
+            <!--<input id="make " type="checkbox" name="make">-->
+            <!--<label for="make "></label>-->
+            <!--<p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>-->
+        <!--</div>-->
+
+    </div>
+</div>
