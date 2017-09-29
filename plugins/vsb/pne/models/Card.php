@@ -22,13 +22,8 @@ class Card extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'vsb_pnecardregister_cards';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public $table = 'vsb_pne_cards';
     protected $fillable = [
-        'card_ref','pan','expire','cvv2'
+        'card_ref','pan','expire','cvv2','daily_balance','monthly_balance'
     ];
 }

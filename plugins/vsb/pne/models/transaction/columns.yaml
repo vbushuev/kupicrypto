@@ -1,0 +1,7 @@
+columns:
+    id:
+        label: 'vsb.pne::lang.transaction.id'
+        type: number
+    created_at:
+        label: 'vsb.pne::lang.transaction.created_at'
+        type: datetime

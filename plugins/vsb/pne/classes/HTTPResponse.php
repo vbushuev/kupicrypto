@@ -1,4 +1,4 @@
-<?php namespace Vsb\Pnecardregister\Classes;
+<?php namespace Vsb\Pne\Classes;
 class HTTPResponse extends Parameters{
     protected $_request;
     protected $_url;

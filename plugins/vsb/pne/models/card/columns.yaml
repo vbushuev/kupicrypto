@@ -1,20 +1,8 @@
 columns:
     pan:
-        label: 'Card number'
+        label: 'vsb.pne::lang.cardpool.cardname'
         type: text
-        searchable: true
         sortable: true
-    expire:
-        label: 'Expire Date'
-        type: text
-    cvv2:
-        label: CVV2
-        type: text
     card_ref:
-        label: 'Card Reference'
+        label: 'vsb.pne::lang.cardpool.cardref'
         type: text
-    status:
-        label: Status
-        type: text
-        searchable: true
-        sortable: true

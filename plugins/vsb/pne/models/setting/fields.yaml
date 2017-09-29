@@ -1,0 +1,59 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+tabs:
+    fields:
+        current_endpoint:
+            label: Active endpoint
+            type: dropdown
+            dependsOn: endpoint
+            tab: vsb.pne::lang.settings.endpoint_tab
+        endpoint:
+            label: PaynetEasy endpoints
+            type: repeater
+            tab: vsb.pne::lang.settings.endpoint_tab
+            form:
+                fields:
+                    endpoint:
+                        label: Endpoint
+                        type: text
+                    key:
+                        label: Merchant Key
+                        type: text
+                    login:
+                        label: Merchant Login
+                        type: text
+                    url:
+                        label: Payment Url
+                        type: text
+        cardregister:
+            label: Card register settings
+            type: repeater
+            maxItems: 1
+            tab: vsb.pne::lang.settings.cardregister_tab
+            form:
+                fields:
+                    currency:
+                        label: Auth transaction currency
+                        type: dropdown
+                        options:
+                            RUB: RUB
+                            EUR: EUR
+                            USD: USD
+                    amount:
+                        label: Auth transaction amount
+                        type: text
+                        default: 1
+                    response:
+                        label: Response page
+                        type: dropdown
+                    callback:
+                        label: Callback page
+                        type: dropdown
+                    maxDaily:
+                        label: Max daily amount
+                        type: text
+                    maxMonthly:
+                        label: Max monthly amount
+                        type: text

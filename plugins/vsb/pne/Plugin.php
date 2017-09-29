@@ -3,41 +3,27 @@
 use Backend;
 use System\Classes\PluginBase;
 
-class Plugin extends PluginBase
-{
-    /**
-     * Returns information about this plugin.
-     *
-     * @return array
-     */
-    // public function pluginDetails()
-    // {
-    //     return [
-    //         'name'        => 'pnecardregister',
-    //         'description' => 'No description provided yet...',
-    //         'author'      => 'vsb',
-    //         'icon'        => 'icon-leaf'
-    //     ];
-    // }
+class Plugin extends PluginBase{
     public function registerComponents()
     {
         return [
-            '\Vsb\Pne\Components\CardRegister' => 'cardRegister'
+            '\Vsb\Pne\Components\CardPool' => 'cardPool',
+            '\Vsb\Pne\Components\CardPoolRegisterResponse' => 'CardPoolRegisterResponse'
         ];
     }
 
     public function registerSettings()
     {
-        // return [
-        //     'location' => [
-        //         'label'       => 'Payment module',
-        //         'description' => '',
-        //         'category'    => 'Settings',
-        //         'icon'        => 'icon-leaf',
-        //         'class'       => 'vsb\pnecardregister\models\Setting',
-        //         'order'       => 500,
-        //     ]
-        // ];
+        return [
+            'location' => [
+                'label'       => 'Payneteasy module',
+                'description' => '',
+                'category'    => 'Settings',
+                'icon'        => 'icon-leaf',
+                'class'       => 'Vsb\Pne\Models\Setting',
+                'order'       => 500,
+            ]
+        ];
     }
 
     // /**

@@ -1,11 +1,11 @@
-<?php namespace Vsb\Pnecardregister\Models;
+<?php namespace Vsb\Pne\Models;
 
 use Model;
 
 /**
  * Model
  */
-class Settings extends Model
+class Transaction extends Model
 {
     use \October\Rain\Database\Traits\Validation;
     
@@ -22,5 +22,5 @@ class Settings extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'vsb_pnecardregister_settings';
+    public $table = 'vsb_pne_transactions';
 }

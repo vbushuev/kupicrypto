@@ -8,3 +8,8 @@ permissions:
     manager:
         tab: 'vsb.pne::lang.plugin.manager'
         label: 'vsb.pne::lang.plugin.manager'
+navigation:
+    main-menu-item:
+        label: 'vsb.pne::lang.cardpool.title'
+        url: vsb/pne/cardpoolcontroller
+        icon: icon-life-ring

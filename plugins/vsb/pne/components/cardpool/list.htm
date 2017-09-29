@@ -1,8 +1,9 @@
-{% for card in cards %}
-    <li class="list-group-item">
-        <input type="hidden" name="items[]" value="{{ item }}" />
 
-        {{ item }}
+{% for card in cardPool.getCards %}
+    <li class="list-group-item">
+        <input type="hidden" name="items[]" value="{{ card.pan }}" />
+
+        {{ card.pan }}
 
         <button type="button"
             class="close pull-right"

@@ -1,0 +1,4 @@
+title: CardPoolController
+modelClass: Vsb\Pne\Models\Card
+toolbar:
+    buttons: reorder_toolbar

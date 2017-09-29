@@ -1,0 +1,11 @@
+title: CardPoolController
+modelClass: Vsb\Pne\Models\Card
+list: $/vsb/pne/models/card/columns.yaml
+recordUrl: 'vsb/pne/cardpoolcontroller/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
+showSetup: true
+showCheckboxes: true
+toolbar:
+    buttons: list_toolbar
+    search:
+        prompt: 'backend::lang.list.search_prompt'
