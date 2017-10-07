@@ -42,6 +42,7 @@ class Response extends HTTPResponse{
     protected $_url;
     protected $_operation;
     protected $_control_fields;
+    protected $_protocol_version = PNE::PROTOCOL_VERSION_2;
     public function __construct($d=[
             "url" => "https://sandbox.ariuspay.ru/paynet/api/v2/",
             "request" => "",
@@ -56,7 +57,7 @@ class Response extends HTTPResponse{
             ],
             "control" => ["endpoint","client_orderid","amount","email","merchant_control"],
             "data" => []
-        ]){
+        ],$v = PNE::PROTOCOL_VERSION_2){
 
         $constructData = [
             "url"=>$d["url"],
@@ -70,6 +71,7 @@ class Response extends HTTPResponse{
         $this->_merchant_login = isset($d["merchant_login"])?$d["merchant_login"]:"GARAN24";
         $this->_merchant_key = isset($d["merchant_key"])?$d["merchant_key"]:"99347351-273F-4D88-84B4-89793AE62D94";
         $this->_control_fields = $d["control"];
+        $this->_protocol_version = $v;
     }
     public function check(){
         if(!isset($this->_params["type"])){

@@ -1,0 +1,57 @@
+<table class="ui selectable table">
+    <thead>
+        <th><div class="ui checkbox"><input type="checkbox" class="checkall" data-rel="cardpool-list"/><label>&nbsp;</label></div></th>
+        <th>#</th>
+        <th>Enabled</th>
+        <th>Name</th>
+        <th>Card reference</th>
+        <th>Daily limit</th>
+        <th>Monthly limit</th>
+        <th>&nbsp;</th>
+    </thead>
+    <tbody data-name="cardpool-list">
+        {% for card in cardpool %}
+            <tr>
+                <td><div class="ui checkbox"><input type="checkbox" class="checkable" data-name="id" data-value="{{card.id}}"/><label>&nbsp;</label></div></td>
+                <td>{{card.id}}</td>
+                <td>
+                    <div class="ui slider checkbox">
+                        <input type="checkbox" {% if card.enabled %} checked="checked" {% endif %} id="check_enabled_{{card.id}}"
+                            data-request="{{ __SELF__ }}::onUpdateCard"
+                            data-request-data="card_id:{{card.id}}, enabled:$('#check_enabled_{{card.id}}').is(':checked')?1:0"
+                        >
+                        <label>&nbsp;</label>
+                    </div>
+                </td>
+                <td>{{card.pan}}</td>
+                <td>{{card.card_ref}}</td>
+                <td>{{card.daily_limit}}</td>
+                <td>{{card.monthly_limit}}</td>
+                <td>
+                    <button class="ui vertical animated button remove" data-id="{{card.id}}" tabindex="0"
+                        data-request="{{ __SELF__ }}::onDeleteCard"
+                        data-request-success="pne.init();"
+                        data-request-data="card_id:{{card.id}}"
+                        data-request-update="'@_list': '#list'"
+                        data-request-confirm="Are you sure?"
+                        data-attach-loading>
+                        <div class="hidden content">{{'Remove'|_}}</div>
+                        <div class="visible content">
+                            <i class="trash icon"></i>
+                        </div>
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <th colspan=7 class="ui center aligned">
+            <div class="ui icon direction buttons">
+                <div class="ui button" data-animation="flip" data-direction="left" title="Flip Left"><i class="left long arrow icon"></i></div>
+                <div class="ui button" data-animation="flip" data-direction="up" title="Flip Up">1</div>
+                <div class="ui button" data-animation="flip" data-direction="right" title="Flip Right"><i class="right long arrow icon"></i></div>
+            </div>
+        </th>
+        <th> <?= echo e(trans('vsb.pne::lang.message.total')) ?>  Total: {{ cardpool_count }}</th>
+    </tfoot>
+</table>

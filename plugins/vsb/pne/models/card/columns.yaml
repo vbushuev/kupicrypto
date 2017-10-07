@@ -6,3 +6,15 @@ columns:
     card_ref:
         label: 'vsb.pne::lang.cardpool.cardref'
         type: text
+    daily_limit:
+        label: 'vsb.pne::lang.cardpool.daily'
+        type: number
+    monthly_limit:
+        label: 'vsb.pne::lang.cardpool.monthly'
+        type: number
+    enabled:
+        label: 'vsb.pne::lang.cardpool.enabled'
+        type: switch
+    id:
+        label: 'vsb.pne::lang.transaction.card_id'
+        type: text

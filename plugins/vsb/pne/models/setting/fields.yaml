@@ -1,59 +1,80 @@
-# ===================================
-#  Form Field Definitions
-# ===================================
-
 tabs:
     fields:
-        current_endpoint:
-            label: Active endpoint
-            type: dropdown
-            dependsOn: endpoint
-            tab: vsb.pne::lang.settings.endpoint_tab
         endpoint:
-            label: PaynetEasy endpoints
+            label: 'PaynetEasy endpoints'
             type: repeater
-            tab: vsb.pne::lang.settings.endpoint_tab
+            tab: 'vsb.pne::lang.settings.endpoint_tab'
             form:
                 fields:
                     endpoint:
                         label: Endpoint
                         type: text
                     key:
-                        label: Merchant Key
+                        label: 'Merchant Key'
                         type: text
                     login:
-                        label: Merchant Login
+                        label: 'Merchant Login'
                         type: text
                     url:
-                        label: Payment Url
+                        label: 'Payment Url'
                         type: text
+                    version:
+                        label: 'vsb.pne::lang.settings.endpoint.version'
+                        type: dropdown
+                        options:
+                            2: v2
+                            3: v3
         cardregister:
-            label: Card register settings
+            label: 'Card register settings'
             type: repeater
             maxItems: 1
-            tab: vsb.pne::lang.settings.cardregister_tab
+            tab: 'vsb.pne::lang.settings.cardregister_tab'
             form:
                 fields:
+                    current_endpoint:
+                        label: 'vsb.pne::lang.settings.endpoint.current'
+                        type: dropdown
+                        dependsOn: endpoint
                     currency:
-                        label: Auth transaction currency
+                        label: 'Auth transaction currency'
                         type: dropdown
                         options:
                             RUB: RUB
                             EUR: EUR
                             USD: USD
                     amount:
-                        label: Auth transaction amount
+                        label: 'Auth transaction amount'
                         type: text
                         default: 1
+                    page:
+                        label: 'Cardpool page'
+                        type: dropdown
                     response:
-                        label: Response page
+                        label: 'vsb.pne::lang.settings.responsepage'
                         type: dropdown
                     callback:
-                        label: Callback page
+                        label: 'vsb.pne::lang.settings.callbackpage'
                         type: dropdown
                     maxDaily:
-                        label: Max daily amount
+                        label: 'Max daily amount'
                         type: text
                     maxMonthly:
-                        label: Max monthly amount
+                        label: 'Max monthly amount'
                         type: text
+        transfer:
+            label: 'Transfer settings'
+            type: repeater
+            maxItems: 1
+            tab: 'vsb.pne::lang.settings.transfer_tab'
+            form:
+                fields:
+                    current_endpoint:
+                        label: 'vsb.pne::lang.settings.endpoint.current'
+                        type: dropdown
+                        dependsOn: endpoint
+                    response:
+                        label: 'vsb.pne::lang.settings.responsepage'
+                        type: dropdown
+                    callback:
+                        label: 'vsb.pne::lang.settings.callbackpage'
+                        type: dropdown

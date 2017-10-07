@@ -1,5 +1,6 @@
 <?php namespace Vsb\Pne\Components;
 
+use Log;
 use Lang;
 use Request;
 use Redirect;
@@ -19,13 +20,21 @@ use Vsb\Pne\Controllers\CardPoolController;
 
 use Backend\Widgets\Lists;
 
-class CardPool extends ComponentBase
-{
+class CardPool extends ComponentBase{
+    protected $controller;
+    public function onInit(){
+        $this->controller = new CardPoolController();
+    }
     public function onRun(){
+        $this->addJs('/plugins/vsb/pne/assets/js/pne.js');
+        $this->addCss('/plugins/vsb/pne/assets/css/pne.css');
         $this->page['title'] = Lang::get('vsb.pne::lang.cardpool.title');
-        $listRender = new CardPoolController();
-        $listRender->makeLists();
-        $this->page['list'] = $listRender->listRender();
+        $this->controller = new CardPoolController();
+        $this->controller->makeLists();
+        $this->page['list'] = $this->controller->listRender();
+        $this->page['contoller'] = $this->controller;
+        $this->page['cardpool'] = $this->controller->getList();
+        $this->page['cardpool_count'] = count($this->controller->getList());
     }
     public function componentDetails()
     {
@@ -43,52 +52,25 @@ class CardPool extends ComponentBase
     public function getCards(){
         return Card::orderBy('created_at','desc')->get();
     }
+    public function onDelete(){
+        $this->controller = new CardPoolController();
+    }
     public function onAddCard(){
-        $host=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
-        $data = [
-            "data"=>[
-                "client_orderid" => "-1",
-                "order_desc" => "card register",
-                "first_name" => "Kupi",
-                "last_name" => "Crypto",
-                "birthday" => "",
-                "address1" => "Marshala Novikova str., 1",
-                "address2" => "office 1307",
-                "city" => "Moscow",
-                "state" => "",
-                "zip_code" => "123098",
-                "country" => "RU",
-                "phone" => "+79265766710",
-                "cell_phone" => "+79265766710",
-                "amount" => Setting::get('cardregister.0.amount',1),
-                "currency" => Setting::get('cardregister.0.currency',"RUB"),
-                "email" => "reply@kupikriptu.com",
-                "ipaddress" => Request::server('REMOTE_ADDR'),
-                "site_url" => Request::getBaseUrl(),
-                // "redirect_url" => $this->host."/backend/vsb/pnecardregister/cardcontroller/create?done=1",
-                "redirect_url" => $host.Setting::get('cardregister.0.response'),
-                "server_callback_url" =>  $host.Setting::get('cardregister.0.callback'),
-                //"merchant_data" => "VIP customer"
-            ]
-        ];
-
-        $data = array_merge([
-            "url" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.url'),
-            "endpoint" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.endpoint'),
-            "merchant_key" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.key'),
-            "merchant_login" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.login')
-        ],$data);
-
-        $request = new SaleRequest($data);
-        $connector = new Connector();
-        $connector->setRequest($request);
-        $connector->call();
-        $response = $connector->getResponse();
-        $retval = $response->toArray();
-        // $res = $retval;
-        $this->pneRedirectUrl = isset($retval["redirect-url"])?$retval["redirect-url"]:false;
-        return (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
-        // return json_encode($response->toArray());
+        $this->controller = new CardPoolController();
+        $retval = $this->controller->registerCard();
+        return  (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
+    }
+    public function onUpdateCard(){
+        $this->controller = new CardPoolController();
+        $r = $this->controller->updateCard();
+        return $r;
+    }
+    public function onDeleteCard(){
+        $this->controller = new CardPoolController();
+        $retval = $this->controller->removeCard();
+        $this->page['cardpool'] = $this->controller->getList();
+        $this->page['cardpool_count'] = count($this->controller->getList());
+        return;
     }
     // public function onAddItem()
     // {

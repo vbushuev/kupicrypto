@@ -14,7 +14,7 @@ class Parameters{
     }
     public function __get($k){
         if(!in_array($k,$this->_avaliable)){
-            throw new Exception("No parameter [{$k}] allowed. ".\Garan24\Garan24::obj2str($this->_avaliable),403);
+            throw new Exception("No parameter [{$k}] allowed. ".PNE::obj2str($this->_avaliable),403);
         }
         return (isset($this->_params["{$k}"])?$this->_params["{$k}"]:'');
     }

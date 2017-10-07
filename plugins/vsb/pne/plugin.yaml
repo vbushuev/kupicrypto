@@ -10,6 +10,15 @@ permissions:
         label: 'vsb.pne::lang.plugin.manager'
 navigation:
     main-menu-item:
-        label: 'vsb.pne::lang.cardpool.title'
+        label: 'vsb.pne::lang.plugin.name'
         url: vsb/pne/cardpoolcontroller
-        icon: icon-life-ring
+        icon: icon-leaf
+        sideMenu:
+            side-menu-item2:
+                label: 'vsb.pne::lang.cardpool.title'
+                url: vsb/pne/cardpoolcontroller
+                icon: icon-sitemap
+            side-menu-item:
+                label: 'vsb.pne::lang.transaction.title'
+                url: vsb/pne/transactioncontroller
+                icon: icon-list

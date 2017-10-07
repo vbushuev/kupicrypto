@@ -2,6 +2,39 @@ columns:
     id:
         label: 'vsb.pne::lang.transaction.id'
         type: number
+        invisible: true
+        sortable: true
+        width: '2'
     created_at:
         label: 'vsb.pne::lang.transaction.created_at'
         type: datetime
+        sortable: true
+    type:
+        label: 'vsb.pne::lang.transaction.type'
+        type: text
+        searchable: true
+        sortable: true
+    endpoint:
+        label: 'vsb.pne::lang.transaction.endpoint'
+        type: text
+        searchable: true
+        sortable: true
+    amount:
+        label: 'vsb.pne::lang.transaction.amount'
+        type: number
+        searchable: true
+    currency:
+        label: 'vsb.pne::lang.transaction.currency'
+        type: text
+        searchable: true
+    code:
+        label: 'vsb.pne::lang.transaction.code'
+        type: text
+        searchable: false
+    parent_id:
+        label: 'vsb.pne::lang.transaction.parent_id'
+        type: number
+    card_id:
+        label: 'vsb.pne::lang.transaction.card_id'
+        type: text
+        searchable: true

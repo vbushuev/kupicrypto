@@ -3,3 +3,15 @@
 1.0.2:
     - 'Created table vsb_pne_transactions'
     - builder_table_create_vsb_pne_transactions.php
+1.0.3:
+    - 'Updated table vsb_pne_cards'
+    - builder_table_update_vsb_pne_cards.php
+1.0.4:
+    - 'Updated table vsb_pne_transactions'
+    - builder_table_update_vsb_pne_transactions.php
+1.0.5:
+    - 'Updated table vsb_pne_cards'
+    - builder_table_update_vsb_pne_cards_2.php
+1.0.6:
+    - 'Updated table vsb_pne_transactions'
+    - builder_table_update_vsb_pne_transactions_2.php

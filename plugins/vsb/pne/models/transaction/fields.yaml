@@ -1,0 +1,21 @@
+fields:
+    type:
+        label: 'vsb.pne::lang.transaction.type'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    currency:
+        label: 'vsb.pne::lang.transaction.currency'
+        oc.commentPosition: ''
+        options:
+            RUB: RUB
+            EUR: EUR
+            USD: USD
+        span: auto
+        type: dropdown
+    amount:
+        label: 'vsb.pne::lang.transaction.amount'
+        oc.commentPosition: ''
+        span: auto
+        required: 1
+        type: number

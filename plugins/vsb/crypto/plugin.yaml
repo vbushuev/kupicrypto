@@ -1,0 +1,6 @@
+plugin:
+    name: 'vsb.crypto::lang.plugin.name'
+    description: 'vsb.crypto::lang.plugin.description'
+    author: vsb
+    icon: oc-icon-bitcoin
+    homepage: ''

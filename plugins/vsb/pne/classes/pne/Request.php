@@ -43,13 +43,16 @@ class Request extends HTTPRequest{
     protected $_url;
     protected $_operation;
     protected $_control_fields;
+    protected $_client_orderid;
+    protected $_protocol_version = PNE::PROTOCOL_VERSION_2;
+    protected $_hmac_key = "";
     public function __construct($d=[
             "url" => "https://sandbox.ariuspay.ru/paynet/api/v2/",
             "endpoint" => "1144",
             "merchant_key" => "99347351-273F-4D88-84B4-89793AE62D94",
             "merchant_login" => "GARAN24",
             "operation" => "sale-form",
-            "fields" => ["client_orderid","orderid","order_desc",
+            "fields" => ["client_orderid","orderid","order_desc","cardref",
                     "first_name","last_name","ssn","birthday","address1","city","state",
                     "zip_code","country","phone","cell_phone","amount","email",
                     "currency","ipaddress","site_url","credit_card_number",
@@ -58,37 +61,105 @@ class Request extends HTTPRequest{
                     "merchant_control","control","login"],
             "control" => ["endpoint","client_orderid","amount","email","merchant_control"],
             "data" => []
-        ]){
+        ],$v = PNE::PROTOCOL_VERSION_2){
+
         $d["url"] = isset($d["url"])?$d["url"]:"https://sandbox.ariuspay.ru/paynet/api/v2/";
-        parent::__construct(["url"=>$d["url"],"fields"=>$d["fields"],"data"=>$d["data"]]);
+        $d["fields"] = isset($d["fields"])?$d["fields"]:["client_orderid","orderid","order_desc","cardref",
+                "first_name","last_name","ssn","birthday","address1","city","state",
+                "zip_code","country","phone","cell_phone","amount","email",
+                "currency","ipaddress","site_url","credit_card_number",
+                "card_printed_name","expire_month","expire_year","cvv2","purpose",
+                "redirect_url","server_callback_url","merchant_data",
+                "merchant_control","control","login","description"];
+        parent::__construct($d);//["url"=>$d["url"],"fields"=>$d["fields"],"data"=>$d["data"]]);
         $this->_endpoint = isset($d["endpoint"])?$d["endpoint"]:"1144";
         $this->_operation = isset($d["operation"])?$d["operation"]:"";
         $this->_merchant_login = isset($d["merchant_login"])?$d["merchant_login"]:"GARAN24";
         $this->_merchant_key = isset($d["merchant_key"])?$d["merchant_key"]:"99347351-273F-4D88-84B4-89793AE62D94";
+
         $this->_control_fields = $d["control"];
+        $this->_client_orderid = $d["data"]["client_orderid"];
+        $this->_protocol_version = $v;
+        //gmp_init("100000000000000000000000000000000");
+        // $this->_hmac_key = hex2bin(preg_replace('/\-/m','',$this->_merchant_key));
+        $this->_hmac_key = preg_replace('/\-/m','',$this->_merchant_key);
     }
     public function getUrl(){
-        return $this->_url.$this->_operation."/".$this->_endpoint;
+        switch($this->_protocol_version){
+            case PNE::PROTOCOL_VERSION_2:return $this->_url."v2/".$this->_operation."/".$this->_endpoint;
+            case PNE::PROTOCOL_VERSION_3:return $this->_url."v3/".$this->_operation."/".$this->_endpoint."/".$this->_client_orderid;
+        }
     }
+
+    public function headers(){
+        switch($this->_protocol_version){
+            case PNE::PROTOCOL_VERSION_2:return [];
+            case PNE::PROTOCOL_VERSION_3:return [
+                // 'X-Authorization: '.preg_replace("/'/m","\'",$this->_hmac_key) ,
+                'X-Authorization: '.hash_hmac("sha1",$this->build(),hex2bin($this->_hmac_key)),
+                'Content-Type: application/json; charset=utf-8'
+            ];
+        }
+    }
+
     public function build(){
         $query = [];
-        foreach ($this->_avaliable as $k) {
-            switch($k){
-                case "control":
-                    $query["{$k}"]=$this->buildChecksum();
-                    break;
-                case "merchant_control":
-                    $query["{$k}"]=$this->_merchant_key;
-                    break;
-                case "login":
-                    $query["{$k}"]=$this->_merchant_login;
-                    break;
-                default:
-                    if(isset($this->_params["{$k}"]))$query["{$k}"] = $this->_params["{$k}"];
-                    break;
-            }
+
+        switch($this->_protocol_version){
+            case PNE::PROTOCOL_VERSION_2:
+                foreach ($this->_avaliable as $k) {
+                    switch($k){
+                        case "control":
+                            $query["{$k}"]=$this->buildChecksum();
+                            break;
+                        case "merchant_control":
+                            $query["{$k}"]=$this->_merchant_key;
+                            break;
+                        case "login":
+                            $query["{$k}"]=$this->_merchant_login;
+                            break;
+                        default:
+                            if(isset($this->_params["{$k}"]))$query["{$k}"] = $this->_params["{$k}"];
+                            break;
+                    }
+                }
+                return http_build_query($query);
+            case PNE::PROTOCOL_VERSION_3:
+
+                $query = [
+                    "sender"=> [
+                        "address"=> [
+                           "city"=> "Moscow",
+                           "country"=> "RUS",
+                           "postcodeZip"=> "123123",
+                           "street"=> "Red sq, 1"
+                       ],
+                       "firstName"=> "John",
+                       "lastName"=> "Smith",
+                       "ipAddress"=> $this->_params["ipaddress"]
+                    ],
+                    "destinationOfFunds" =>  [
+                        "reference" =>  [
+                            "cardReferenceId" => $this->_params["cardref"]
+                        ]
+                    ],
+                    "order" =>  [
+                        "description" =>  $this->_params["order_desc"],
+                        "siteUrl" =>  $this->_params["site_url"]
+                    ],
+                    "urls" =>  [
+                        "redirectUrl" =>  $this->_params['redirect_url'],
+                        "callbackUrl" =>  $this->_params["server_callback_url"]
+                    ],
+                    "transaction" =>  [
+                        "amountCentis" =>  round($this->_params["amount"],2)*100,//$this->_params["amount"],
+                        "currency" =>  $this->_params["currency"]
+                    ]
+                ];
+                // return hash_hmac("sha1",'{"sender":{"address":{"city":"Moscow","country":"RUS","postcodeZip":"123123","street":"Red sq, 1"},"firstName":"John","lastName":"Smith","ipAddress":"127.0.0.1"},"destinationOfFunds":{"reference":{"cardReferenceId":"135"}},"order":{"description":"","siteUrl":""},"urls":{"redirectUrl":"http://kupikriptu.bs2/pne/transfer/response","callbackUrl":"http://kupikriptu.bs2/pne/callback"},"transaction":{"amountCentis":"12000","currency":"RUB"}}',hex2bin($this->_hmac_key));
+                return json_encode($query);
         }
-        return $query;
+
     }
     public function buildResponse($res){
         $rs = new Response([
@@ -100,7 +171,7 @@ class Request extends HTTPRequest{
             "control" => ["endpoint","client_orderid","amount","email","merchant_control"],
             "request"=>$this,
             "data" => $res
-        ]);
+        ],$this->_protocol_version);
         return $rs;
     }
     protected  function buildChecksum(){
@@ -132,8 +203,72 @@ class Request extends HTTPRequest{
     protected function checksum($str){
         $str = preg_replace("/[\r\n]+/","",$str);
         $res = sha1($str);
-        PNE::debug("Make checksum SHA1:what:[{$str}]:get:[{$res}]");
         return $res;
     }
 }
+/*
+$query_v3 = [
+    "sender" =>  [
+        "address" =>  [
+            "city" =>  "string",
+            "country" =>  "string",
+            "postcodeZip" =>  "string",
+            "state" =>  "string",
+            "street" =>  "string",
+            "street2" =>  "string"
+        ],
+        "firstName" =>  "string",
+        "lastName" =>  "string",
+        "phone" =>  "string",
+        "email" =>  "string",
+        "ipAddress" =>  "string"
+    ],
+    "receiver" =>  [
+        "address" =>  [
+            "city" =>  "string",
+            "country" =>  "string",
+            "postcodeZip" =>  "string",
+            "state" =>  "string",
+            "street" =>  "string",
+            "street2" =>  "string"
+        ],
+        "firstName" =>  "string",
+        "lastName" =>  "string",
+        "phone" =>  "string"
+    ],
+    "sourceOfFunds" =>  [
+        "reference" =>  [
+            "cardReferenceId" =>  "long",
+            "securityCode" =>  "string"
+        ],
+        "cardMapping" =>  [
+            "subscriberId" =>  "string",
+            "subscriberType" =>  "enum",
+            "alias" =>  "string"
+        ]
+    ],
+    "destinationOfFunds" =>  [
+        "reference" =>  [
+          "cardReferenceId" =>  "long"
+        ],
+        "cardMapping" =>  [
+          "subscriberId" =>  "string",
+          "subscriberType" =>  "enum",
+          "alias" =>  "string"
+        ]
+    ],
+    "order" =>  [
+        "description" =>  "string",
+        "siteUrl" =>  "string"
+    ],
+    "urls" =>  [
+        "redirectUrl" =>  "string",
+        "callbackUrl" =>  "string"
+    ],
+    "transaction" =>  [
+        "amountCentis" =>  "long",
+        "currency" =>  "string"
+    ]
+];
+*/
 ?>

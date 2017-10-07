@@ -24,6 +24,6 @@ class Card extends Model
      */
     public $table = 'vsb_pne_cards';
     protected $fillable = [
-        'card_ref','pan','expire','cvv2','daily_balance','monthly_balance'
+        'card_ref','pan','expire','cvv2','daily_balance','monthly_balance','enabled'
     ];
 }

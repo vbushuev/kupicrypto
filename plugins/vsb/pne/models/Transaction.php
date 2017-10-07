@@ -8,7 +8,7 @@ use Model;
 class Transaction extends Model
 {
     use \October\Rain\Database\Traits\Validation;
-    
+
     use \October\Rain\Database\Traits\SoftDelete;
 
     protected $dates = ['deleted_at'];
@@ -23,4 +23,7 @@ class Transaction extends Model
      * @var string The database table used by the model.
      */
     public $table = 'vsb_pne_transactions';
+    protected $fillable = [
+        'endpoint','amount','currency','type','code','card_id','parent_id'
+    ];
 }

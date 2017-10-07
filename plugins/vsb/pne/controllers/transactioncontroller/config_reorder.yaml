@@ -1,0 +1,4 @@
+title: TransactionController
+modelClass: Vsb\Pne\Models\Transaction
+toolbar:
+    buttons: reorder_toolbar

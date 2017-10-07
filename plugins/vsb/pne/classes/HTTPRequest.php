@@ -3,7 +3,7 @@ class HTTPRequest extends Parameters{
     protected $_url;
     public function __construct($d=[
             "url" => "https://sandbox.ariuspay.ru/paynet/api/v2/",
-            "fields" => ["client_orderid","orderid","order_desc",
+            "fields" => ["client_orderid","orderid","order_desc","cardref",
                     "first_name","last_name","ssn","birthday","address1","city","state",
                     "zip_code","country","phone","cell_phone","amount","email",
                     "currency","ipaddress","site_url","credit_card_number",

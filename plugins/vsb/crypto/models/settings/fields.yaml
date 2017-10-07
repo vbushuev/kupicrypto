@@ -1,0 +1,22 @@
+tabs:
+    fields:
+        markets:
+            label: 'vsb.crypto::lang.settings.markets'
+            type: repeater
+            tab: 'vsb.crypto::lang.settings.markets_tab'
+            form:
+                fields:
+                    name:
+                        label: 'vsb.crypto::lang.settings.market.name'
+                        type: text
+                    url:
+                        label: 'vsb.crypto::lang.settings.market.url'
+                        type: text
+                    sell:
+                        label: 'vsb.crypto::lang.settings.market.sell_spread'
+                        type: number
+                        default: 0
+                    buy:
+                        label: 'vsb.crypto::lang.settings.market.buy_spread'
+                        type: number
+                        default: 0

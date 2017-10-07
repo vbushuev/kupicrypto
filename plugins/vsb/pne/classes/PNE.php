@@ -1,6 +1,8 @@
 <?php namespace Vsb\Pne\Classes;
 class PNE{
     protected static $_debug = true;
+    const PROTOCOL_VERSION_2 = 2;
+    const PROTOCOL_VERSION_3 = 3;
     public static $_log_dir = "storage/logs";
     public static $DB = [
         "host"=>"localhost",

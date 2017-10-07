@@ -1,6 +1,20 @@
 fields:
+    enabled:
+        label: 'vsb.pne::lang.cardpool.enabled'
+        span: auto
+        type: switch
     pan:
         label: 'vsb.pne::lang.cardpool.cardname'
         oc.commentPosition: ''
-        span: auto
+        span: full
         type: text
+    daily_limit:
+        label: 'vsb.pne::lang.cardpool.daily'
+        oc.commentPosition: ''
+        span: auto
+        type: number
+    monthly_limit:
+        label: 'vsb.pne::lang.cardpool.monthly'
+        oc.commentPosition: ''
+        span: auto
+        type: number

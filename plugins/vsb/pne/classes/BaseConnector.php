@@ -1,4 +1,5 @@
 <?php namespace Vsb\Pne\Classes;
+use Log;
 class BaseConnector extends PNE{
     protected $_request;
     protected $_response;
@@ -21,13 +22,12 @@ class BaseConnector extends PNE{
      * @return array
      ******************************************************************************/
     public function call(){
-        $response_str = $this->query($this->_request->getUrl(),$this->_request->build());
+        $response_str = $this->query($this->_request->getUrl(),$this->_request->build(),$this->_request->headers());
         $response_arr = [];
         parse_str($response_str,$response_arr);
         $this->_response = $this->_request->buildResponse($response_arr);
-        self::debug($this->_request->__toString());
-        self::debug($this->_response->__toString());
-        //if($this->_response->isRedirect())$this->redirect($this->_response->getRedirectUrl());
+        // Log::debug("request:".$this->_request->__toString());
+        // Log::debug("response:".$this->_response->__toString());
         return $response_arr;
     }
     public function response($data){
@@ -78,18 +78,20 @@ class BaseConnector extends PNE{
      *
      * @return array
      ******************************************************************************/
-    public function query($url,$data = null){
+    public function query($url,$data = null,$headers=[]){
         $curlOptions = [
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => http_build_query($data),
+            CURLOPT_POSTFIELDS => $data,
             CURLOPT_VERBOSE => 0,
             CURLOPT_SSL_VERIFYPEER => false,
-            //CURLOPT_FOLLOWLOCATION => true
+            CURLOPT_HTTPHEADER => $headers
         ];
         $curl = curl_init($url);
         curl_setopt_array($curl, $curlOptions);
         $response = curl_exec($curl);
+        Log::debug("Raw request: ".$url." [headers=".join($headers)."] [data=".$data."]");
+        Log::debug("Raw response: ".$response);
         return $response;
     }
     public function getRequest(){
