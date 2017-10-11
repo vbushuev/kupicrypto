@@ -6,6 +6,8 @@ use Input;
 use Backend\Classes\Controller;
 use BackendMenu;
 
+use Vsb\Crypto\Models\Settings;
+
 class CryptoController extends Controller
 {
     // public $implement = ['Backend\Behaviors\ListController','Backend\Behaviors\FormController','Backend\Behaviors\ReorderController'];
@@ -17,11 +19,29 @@ class CryptoController extends Controller
     public $requiredPermissions = [
         'manager'
     ];
-
+    protected $_crypto=[];
     public function __construct(){
         parent::__construct();
-        // BackendMenu::setContextOwner('October.Backend');
-        // BackendMenu::setContext('Vsb.Pne', 'main-menu-item');
+        $url= Settings::get('markets.0.url').'last_price/BTC/RUB';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $result = curl_exec($ch);
+        $res = json_decode($result);
+
+        $btc = (is_object($res)&&!isset($res->error))?floatval($res->lprice):0;
+        curl_setopt($ch, CURLOPT_URL,  Settings::get('markets.0.url').'last_price/ETH/BTC');
+        $result = curl_exec($ch);
+        $res = json_decode($result);
+        $this->_crypto["btc"]= $btc;
+        $this->_crypto["eth"] = (is_object($res)&&!isset($res->error))?floatval($res->lprice)*$btc:0;
+        curl_close($ch);
+    }
+    public function crypto(){
+        return $this->_crypto;
     }
     public function onGetExchange(){
         $url= Setting::get('markets.0.url');

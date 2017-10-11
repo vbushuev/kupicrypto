@@ -3,7 +3,8 @@ class Parameters{
     protected $_params = [];
     protected $_avaliable = [];
     public function __construct($a,$p=[]){
-        $this->_avaliable = array_change_key_case($a);
+        // $this->_avaliable = array_keys($a);
+        $this->_avaliable = $a;
         $this->Data($p);
     }
     public function __set($k,$v){
@@ -26,7 +27,7 @@ class Parameters{
     }
     public function Data($p=[]){
         foreach ($p as $key => $value) {
-            $k = strtolower(trim($key));
+            $k = $key;//strtolower(trim($key));
             if(in_array($k,$this->_avaliable)){
                 $this->_params["{$k}"] = $p["{$k}"];
             }
@@ -36,7 +37,7 @@ class Parameters{
         return $this->_avaliable;
     }
     public function toJSON(){
-        return json_encode($this->_params,JSON_PRETTY_PRINT|JSON_UNESCAPE_UNICODE);
+        return json_encode($this->_params,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
     }
     public function toArray(){
         return $this->_params;

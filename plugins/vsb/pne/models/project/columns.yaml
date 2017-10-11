@@ -1,0 +1,15 @@
+columns:
+    id:
+        label: 'vsb.pne::lang.plugin.projectt.id'
+        type: number
+        sortable: true
+    name:
+        label: 'vsb.pne::lang.plugin.project'
+        type: text
+        searchable: true
+        sortable: true
+    created_at:
+        label: 'vsb.pne::lang.plugin.created_at'
+        type: date
+        searchable: true
+        sortable: true

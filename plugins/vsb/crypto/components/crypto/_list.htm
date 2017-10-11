@@ -1,0 +1,26 @@
+<table class="ui selectable table">
+    <thead>
+        <tr>
+            <th rowspan="2">Currency</th>
+            <th rowspan="2">Value</th>
+            <th colspan="2">Spread</th>
+        </tr>
+        <tr>
+            <th>Sell</th>
+            <th>Buy</th>
+        </tr>
+    </thead>
+    <tbody data-name="cardpool-list">
+        {% for item in currencies %}
+            <tr>
+                <td>{{item.to}}</td>
+                <td>RUB {{item.value}}</td>
+                <td>{{item.spread.sell}}</td>
+                <td>{{item.spread.buy}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>

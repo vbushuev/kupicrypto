@@ -31,7 +31,7 @@
  * @param string[128]|null	server_callback_url	- 	URL the transaction result will be sent to. Merchant may use this URL for custom processing of the transaction completion, e.g. to collect sales data in Merchant’s database. See more details at Merchant Callbacks
  *******************************************************************************/
 
-
+use Log;
 use Vsb\Pne\Classes\PNE;
 use Vsb\Pne\Classes\HTTPRequest as HTTPRequest;
 use Vsb\Pne\Classes\PNE\Response;
@@ -104,7 +104,6 @@ class Request extends HTTPRequest{
 
     public function build(){
         $query = [];
-
         switch($this->_protocol_version){
             case PNE::PROTOCOL_VERSION_2:
                 foreach ($this->_avaliable as $k) {
@@ -157,11 +156,21 @@ class Request extends HTTPRequest{
                     ]
                 ];
                 // return hash_hmac("sha1",'{"sender":{"address":{"city":"Moscow","country":"RUS","postcodeZip":"123123","street":"Red sq, 1"},"firstName":"John","lastName":"Smith","ipAddress":"127.0.0.1"},"destinationOfFunds":{"reference":{"cardReferenceId":"135"}},"order":{"description":"","siteUrl":""},"urls":{"redirectUrl":"http://kupikriptu.bs2/pne/transfer/response","callbackUrl":"http://kupikriptu.bs2/pne/callback"},"transaction":{"amountCentis":"12000","currency":"RUB"}}',hex2bin($this->_hmac_key));
-                return json_encode($query);
+                return preg_replace('#\\\/#','/',json_encode($query));
         }
 
     }
-    public function buildResponse($res){
+    public function buildResponse($response_str){
+        $res = [];
+        switch($this->_protocol_version){
+            case PNE::PROTOCOL_VERSION_2:
+                parse_str($response_str,$res);
+                break;
+            case PNE::PROTOCOL_VERSION_3:
+                $res = json_decode($response_str,true);
+                break;
+            }
+        // print_r($res);
         $rs = new Response([
             "url"=>$this->_url,
             "endpoint" => $this->_endpoint,

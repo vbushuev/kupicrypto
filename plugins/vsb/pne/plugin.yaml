@@ -14,6 +14,10 @@ navigation:
         url: vsb/pne/cardpoolcontroller
         icon: icon-leaf
         sideMenu:
+            side-menu-item3:
+                label: 'vsb.pne::lang.plugin.project'
+                url: vsb/pne/projectcontrolelr
+                icon: icon-leaf
             side-menu-item2:
                 label: 'vsb.pne::lang.cardpool.title'
                 url: vsb/pne/cardpoolcontroller

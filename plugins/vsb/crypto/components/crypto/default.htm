@@ -1,9 +1,14 @@
-<div class="rightTb">
-
-    <div class="noticeTb">
-        <p class="grey italic">Хотите купить<br> или продать?</p>
-        <p class="noticeTb__text BTC-rated"><span>{{btc}}</span> BTC</p>
-        <p class="noticeTb__text ETH-rated"><span>{{eth}}</span> ETH</p>
+<h3 class="ui header">{{ title }}</h3>
+<div class="ui segments">
+    <div class="ui segment row">
+        <a href="https://cex.io">cex.io</a>
+        <button class="ui button primary" data-request="{{ __SELF__ }}::onRefresh"
+            data-attach-loading>
+            <i class="refresh icon"></i>
+            Refresh
+        </button>
     </div>
-    <p class="grey italic">Резерв обменного ресурса</p>
+    <div class="ui segment row" id="list">
+        {% partial '@_list' %}
+    </div>
 </div>

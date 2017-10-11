@@ -13,20 +13,26 @@ description = "manager's layout"
     <link rel="icon" type="image/png" href="/modules/backend/assets/images/favicon.png">
     <title data-title-template="%s CMS | OctoberCMS">cardpool |  CMS | OctoberCMS</title>
     <link rel="stylesheet" type="text/css" href="{{'assets/semantic/semantic.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/dropdown.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/modal.min.css'|theme}}">
 </head>
 <body>
     <div class="ui menu">
-        <a class="header active item">Cardpool</a>
-        <a class="header item">cex.io</a>
+        <a class="header item" href="/manager/cardpool">Cardpool</a>
+        <a class="header item"  href="/manager/markets">Биржи</a>
     </div>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="{{'assets/semantic/semantic.min.js'|theme}}"></script>
+    <script src="{{'assets/semantic/components/dropdown.min.js'|theme}}"></script>
+    <script src="{{'assets/semantic/components/modal.min.js'|theme}}"></script>
     <div class="ui main container">
         {% page %}
     </div>
     <div class="ui footer">
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="{{'assets/semantic/semantic.min.js'|theme}}"></script>
+
+
     {% framework extras %}
     {% scripts %}
 </body>

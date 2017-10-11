@@ -1,6 +1,6 @@
 name: CardPoolController
-form: $/vsb/pne/models/card/fields.yaml
 modelClass: Vsb\Pne\Models\Card
+form: $/vsb/pne/models/card/fields.yaml
 defaultRedirect: vsb/pne/cardpoolcontroller
 create:
     redirect: 'vsb/pne/cardpoolcontroller/update/:id'
@@ -8,3 +8,4 @@ create:
 update:
     redirect: vsb/pne/cardpoolcontroller
     redirectClose: vsb/pne/cardpoolcontroller
+preview: {  }

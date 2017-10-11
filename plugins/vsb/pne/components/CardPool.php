@@ -9,6 +9,7 @@ use ApplicationException;
 use Vsb\Pne\Models\Card;
 use Vsb\Pne\Models\Transaction;
 use Vsb\Pne\Models\Setting;
+use Vsb\Pne\Models\Project;
 use Vsb\Pne\Classes\Pne\Exception as PneException;
 use Vsb\Pne\Classes\Pne\Connector;
 use Vsb\Pne\Classes\Pne\SaleRequest;
@@ -30,11 +31,13 @@ class CardPool extends ComponentBase{
         $this->addCss('/plugins/vsb/pne/assets/css/pne.css');
         $this->page['title'] = Lang::get('vsb.pne::lang.cardpool.title');
         $this->controller = new CardPoolController();
-        $this->controller->makeLists();
-        $this->page['list'] = $this->controller->listRender();
+        // $this->controller->makeLists();
+        // $this->page['list'] = $this->controller->listRender();
         $this->page['contoller'] = $this->controller;
         $this->page['cardpool'] = $this->controller->getList();
-        $this->page['cardpool_count'] = count($this->controller->getList());
+        $this->page['cardpool_count'] = count($this->page['cardpool']);
+        $this->page['projects'] = Project::all();
+
     }
     public function componentDetails()
     {

@@ -3,10 +3,18 @@
         'name' => 'Платежный модуль',
         'description' => 'Функционал и компонетны платежного модуля.',
         'manager' => 'Управление',
+        'project' => 'Проект',
+        'created_at' => 'Дата создания',
         'cardregister_title' => 'Список карт',
     ],
     'settings' => [
         'endpoint_tab' => 'Мерчанты',
+        'endpoint' => [
+            'current' => 'Current endpoint',
+            'version' => 'Protocol version',
+        ],
+        'responsepage' => 'Page with Response component',
+        'callbackpage' => 'Page with Callback component',
         'cardregister_tab' => 'Регистрация карт',
         'transfer_tab' => 'Натсройки переводов',
     ],
@@ -26,5 +34,12 @@
         'currency' => 'Currency',
         'code' => 'Transaction code',
         'card_id' => 'Card',
+        'id' => 'Transaction ID',
+        'parent_id' => 'Original transaction ID',
+        'created_at' => 'Date',
+        'update_at' => 'Updated',
+    ],
+    'message' => [
+        'total' => 'Total',
     ],
 ];

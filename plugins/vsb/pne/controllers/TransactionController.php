@@ -89,6 +89,7 @@ class TransactionController extends Controller
         $connector->setRequest($request);
         $connector->call();
         $response = $connector->getResponse();
+
         $retval = $response->toArray();
         return $retval;
     }

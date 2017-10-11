@@ -23,6 +23,7 @@ class Transfer extends ComponentBase{
         $this->controller->makeLists();
         $this->page['list'] = $this->controller->listRender();
         $this->page['contoller'] = $this->controller;
+        $this->page['project_id'] = Setting::get('project_id');
     }
     public function componentDetails()
     {
@@ -44,7 +45,7 @@ class Transfer extends ComponentBase{
         }
         $controller = new TransactionController();
         $retval = $controller->transferRequest();
-        return  (!isset($retval["error-code"]) && isset($retval["redirect-url"]))?Redirect::away($retval["redirect-url"]):$retval;
+        return  (!isset($retval["error"]) && isset($retval["redirectUrl"]))?Redirect::away($retval["redirectUrl"]):$retval;
     }
     // public function onAddItem()
     // {

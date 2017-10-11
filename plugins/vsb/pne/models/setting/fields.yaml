@@ -1,5 +1,9 @@
 tabs:
     fields:
+        project_id:
+            label: 'vsb.pne::lang.plugin.project'
+            type: dropdown
+            tab: 'vsb.pne::lang.settings.endpoint_tab'
         endpoint:
             label: 'PaynetEasy endpoints'
             type: repeater

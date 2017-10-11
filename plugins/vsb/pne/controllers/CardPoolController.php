@@ -34,10 +34,12 @@ class CardPoolController extends Controller
     }
     public function getCardFromPool(){
         $amount = post('amount',1);
+        $project = post("project_id",1);
         $card = Card::where('enabled','=','1')
             ->whereNull('deleted_at')
             ->where('daily_limit','>=',$amount)
             ->where('monthly_limit','>=',$amount)
+            ->where('project_id','=',$project)
             ->orderBy('monthly_limit','desc')->orderBy('daily_limit','desc');
         Log::debug($card->toSql());
         return $card->first();
@@ -94,8 +96,8 @@ class CardPoolController extends Controller
         $trx->update(["code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
         return $retval;
     }
-    public function registerCardResponse(){
-        $data = file_get_contents('php://input');
+    public function registerCardResponse($data=false,$project_id="1"){
+        $data = ($data===false)?file_get_contents('php://input'):$data;
         Log::debug($data);
         $dataArr = [];
         parse_str($data,$dataArr);
@@ -169,7 +171,8 @@ class CardPoolController extends Controller
                 $res["cardref"] =  $response->$key;
                 $crd = Card::create([
                     'card_ref'=>$res["cardref"],
-                    'pan' => $res["pan"]
+                    'pan' => $res["pan"],
+                    "project_id" =>$project_id
                 ]);
                 $trx_cardref->update(["card_id"=>$crd->id,"code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
                 $trx_return->update(["card_id"=>$crd->id]);
@@ -186,7 +189,9 @@ class CardPoolController extends Controller
         return (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
     }
     public function getList(){
-        return Card::paginate(20);
+        $res = Card::with(['project']);
+        if(post("project_id",false)!==false)$res=$res->where("project_id","=",post("project_id"));
+        return $res->get();
     }
     public function removeCard(){
         $cs = post("card_id");

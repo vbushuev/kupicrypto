@@ -3,6 +3,8 @@
         'name' => 'Payment module',
         'description' => 'Plugin description.',
         'manager' => 'Manager',
+        'project' => 'Project',
+        'created_at' => 'Creation date',
     ],
     'settings' => [
         'endpoint_tab' => 'Merchants',
@@ -36,7 +38,7 @@
         'created_at' => 'Date',
         'update_at' => 'Updated',
     ],
-    'message'=> [
-        'total' => 'Total'
-    ]
+    'message' => [
+        'total' => 'Total',
+    ],
 ];

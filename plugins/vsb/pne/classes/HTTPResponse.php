@@ -8,7 +8,10 @@ class HTTPResponse extends Parameters{
             "paynet-order-id","merchant-order-id",
             "error-message","error-code",
             "card-printed-name","expire-year","expire-month",
-            "bin","last-four-digits","redirect-url"
+            "bin","last-four-digits","redirect-url",
+            "clientOrderId","paynetOrderId","redirectUrl",
+            "requestSerialNumber","sessionToken",
+            "error"
         ];
         parent::__construct($d["fields"],$d["data"]);
         $this->_url = $d["url"];

@@ -1,2 +1,38 @@
-<script></script>
-Hello
+<div class="ui modal">
+    <i class="close icon"></i>
+    <form
+        data-request="{{ __SELF__ }}::onSubmit"
+        data-request-success="console.debug(data)">
+        <div class="header">
+            Choose a project to add card
+        </div>
+        <div class="image content">
+            <div class="image">
+                An image can appear on left or an icon
+            </div>
+            <div class="description">
+                <select class="ui dropdown" name="project_id">
+                    <option value="">Project</option>
+                    {% for project in projects %}
+                        <option value="{{project.id}}">{{project.name}}</option>
+                    {% endfor %}
+
+                </select>
+                <input type="hidden" name="data" value="{{data}}" />
+                {% flash %}
+                    {{message}}
+                {% endflash %}
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" class="ui button">OK</button>
+        </div>
+    </form>
+</div>
+<script>
+    $(document).ready(function(){
+        console.debug("cardpool response js loaded");
+        $('.ui.modal').modal('show');
+    })
+
+</script>

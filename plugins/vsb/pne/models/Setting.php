@@ -37,6 +37,13 @@ use Cms\Classes\Page;
         }
         return $ret;
     }
+    public function getProjectIdOptions(){
+        $res = [];
+        foreach(Project::all() as $project){
+            $res[$project->id] = $project->name;
+        }
+        return $res;
+    }
     public function getResponseOptions(){
         return Page::sortBy('baseFileName')->lists('baseFileName', 'url');
     }

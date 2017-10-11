@@ -1,0 +1,10 @@
+name: ProjectControlelr
+form: $/vsb/pne/models/project/fields.yaml
+modelClass: Vsb\Pne\Models\Project
+defaultRedirect: vsb/pne/projectcontrolelr
+create:
+    redirect: 'vsb/pne/projectcontrolelr/update/:id'
+    redirectClose: vsb/pne/projectcontrolelr
+update:
+    redirect: vsb/pne/projectcontrolelr
+    redirectClose: vsb/pne/projectcontrolelr

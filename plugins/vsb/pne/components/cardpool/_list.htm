@@ -1,7 +1,7 @@
 <table class="ui selectable table">
     <thead>
         <th><div class="ui checkbox"><input type="checkbox" class="checkall" data-rel="cardpool-list"/><label>&nbsp;</label></div></th>
-        <th>#</th>
+        <th>Project</th>
         <th>Enabled</th>
         <th>Name</th>
         <th>Card reference</th>
@@ -13,7 +13,7 @@
         {% for card in cardpool %}
             <tr>
                 <td><div class="ui checkbox"><input type="checkbox" class="checkable" data-name="id" data-value="{{card.id}}"/><label>&nbsp;</label></div></td>
-                <td>{{card.id}}</td>
+                <td>{{card.project.name}}</td>
                 <td>
                     <div class="ui slider checkbox">
                         <input type="checkbox" {% if card.enabled %} checked="checked" {% endif %} id="check_enabled_{{card.id}}"

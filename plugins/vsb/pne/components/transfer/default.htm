@@ -3,13 +3,13 @@
     data-request-success="console.debug(data)">
     <div class="formTb-wrap">
         <div class="columns-wrap">
-            <div class="large-12 columns">
+            <div class="large-6 columns">
                 <div class="input-wrap">
-                    <p class="bold">Продаете</p>
+                    <p class="bold">Отдаете</p>
                     <input class="dark" type="number" name="amount" placeholder="Введите сумму" min="1000" max="75000" required
                         data-track-input
                         data-request="vsbCrypto::onGetExchange"
-                        data-request-update="'vsbCrypto::_rates': '#cryptoRates'"
+                        data-request-update="'vsbCrypto::_rate': '#cryptoRate'"
                         data-request-success="console.log(data)">
                         <div class="alert alert-danger" data-validate-error>
                             <p data-message></p>
@@ -20,7 +20,7 @@
                     <select class="selectTb dark" name="currency" id="buy_currency"  required
                         data-track-input
                         data-request="vsbCrypto::onGetExchange"
-                        data-request-update="'vsbCrypto::_rates': '#cryptoRates'"
+                        data-request-update="'vsbCrypto::_rate': '#cryptoRate'"
                         data-request-success="console.log(data)">
                         <option>RUB</option>
                         <option>EUR</option>
@@ -28,20 +28,16 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="columns-wrap">
-            <!-- <div class="columns">
-                <p class="bold">Получаете</p>
-                <input type="text" class="center" placeholder="...">
-            </div> -->
-            <div class="large-12 columns">
-
-                <div class="input-wrap">
-                    <p class="bold">Кошелек</p>
-                    <input class="dark" type="text" name="wallet_number" required placeholder="Введите кошелек">
+            <div class="large-6 columns">
+                <div class="input-wrap"  id="cryptoRate">
+                    <p class="bold">Получаете</p>
+                    <input class="center" type="text" name="crypto_get" required placeholder="..." readonly>
                 </div>
                 <div class="select-wrap">
-                    <select class="selectTb dark" name="wallet" id=""  required>
+                    <select class="selectTb dark" name="wallet" id="wallet_currency" required
+                        data-track-input
+                        data-request="vsbCrypto::onGetExchange"
+                        data-request-update="'vsbCrypto::_rate': '#cryptoRate'">
                         <option>BTC</option>
                         <option>ETH</option>
                     </select>
@@ -50,10 +46,14 @@
         </div>
         <div class="columns-wrap">
             <div class="columns">
-                <p class="bold">Номер банковской карты</p>
-                <input type="number" class="dark" placeholder="Введите номер карты">
+                <p class="bold">Кошелек</p>
+                <input class="dark" type="text" name="wallet_number" required placeholder="Введите кошелек">
             </div>
         </div>
+
+            <iframe src="/pne/form" style="border:none;width:100%;"></iframe>
+
+
         <div class="clear"></div>
     </div>
     <div class="checkboxTb">
@@ -66,8 +66,9 @@
         <div data-validate-for="make">{{error.first('make')}}</div>
     </div>
     <input type="hidden" name="type" value="buy" />
+    <input type="hidden" name="project_id" value="{{project_id}}" />
     {% flash %}
         <div>{{ message }}</div>
     {% endflash %}
-    <button type="submit" class="btn" data-attach-loading>Продать</button>
+    <button type="submit" class="btn" data-attach-loading>Купить</button>
 </form>

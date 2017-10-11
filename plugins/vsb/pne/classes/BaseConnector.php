@@ -23,12 +23,8 @@ class BaseConnector extends PNE{
      ******************************************************************************/
     public function call(){
         $response_str = $this->query($this->_request->getUrl(),$this->_request->build(),$this->_request->headers());
-        $response_arr = [];
-        parse_str($response_str,$response_arr);
-        $this->_response = $this->_request->buildResponse($response_arr);
-        // Log::debug("request:".$this->_request->__toString());
-        // Log::debug("response:".$this->_response->__toString());
-        return $response_arr;
+        $this->_response = $this->_request->buildResponse($response_str);
+        return $this->_response->toArray();
     }
     public function response($data){
         self::debug($data);
