@@ -1,0 +1,10 @@
+name: MarketContoller
+form: $/vsb/crypto/models/market/fields.yaml
+modelClass: vsb\Crypto\Models\Market
+defaultRedirect: vsb/crypto/marketcontoller
+create:
+    redirect: 'vsb/crypto/marketcontoller/update/:id'
+    redirectClose: vsb/crypto/marketcontoller
+update:
+    redirect: vsb/crypto/marketcontoller
+    redirectClose: vsb/crypto/marketcontoller

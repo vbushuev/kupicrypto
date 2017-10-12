@@ -78,10 +78,10 @@ class TransactionController extends Controller
         ];
 
         $data = array_merge([
-            "url" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.url'),
-            "endpoint" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.endpoint'),
-            "merchant_key" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.key'),
-            "merchant_login" => Setting::get('endpoint.'.Setting::get('current_endpoint').'.login')
+            "url" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.url'),
+            "endpoint" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.endpoint'),
+            "merchant_key" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.key'),
+            "merchant_login" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.login')
         ],$data);
         // Log::debug($data);
         $request = new TransferRequest($data,Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.version'));

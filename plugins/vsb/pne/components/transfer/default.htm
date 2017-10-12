@@ -1,20 +1,26 @@
-<form class="formTb" action="#"
+<form id="pne_transfer_form" class="formTb" action="#"
     data-request="{{ __SELF__ }}::onTransfer"
+    data-request-update="'@_frame': '#pne_transfer_form'"
     data-request-success="console.debug(data)">
+    <input type="hidden" name="type" value="buy" />
+    <input type="hidden" name="project_id" value="{{project_id}}" />
+    {% flash %}
+        <div>{{ message }}</div>
+    {% endflash %}
     <div class="formTb-wrap">
         <div class="columns-wrap">
             <div class="large-6 columns">
                 <div class="input-wrap">
                     <p class="bold">Отдаете</p>
-                    <input class="dark" type="number" name="amount" placeholder="Введите сумму" min="1000" max="75000" required
+                    <input class="dark" type="number" name="amount" placeholder="Введите сумму" max="75000" required value="{{ form_value('amount') }}"
                         data-track-input
                         data-request="vsbCrypto::onGetExchange"
                         data-request-update="'vsbCrypto::_rate': '#cryptoRate'"
                         data-request-success="console.log(data)">
                         <div class="alert alert-danger" data-validate-error>
-                            <p data-message></p>
+                            {{errors.first('amount')}}
                         </div>
-                        <div data-validate-for="amount">{{error.first('amount')}}</div>
+
                 </div>
                 <div class="select-wrap">
                     <select class="selectTb dark" name="currency" id="buy_currency"  required
@@ -31,7 +37,7 @@
             <div class="large-6 columns">
                 <div class="input-wrap"  id="cryptoRate">
                     <p class="bold">Получаете</p>
-                    <input class="center" type="text" name="crypto_get" required placeholder="..." readonly>
+                    <input class="center" type="text" name="coins" required placeholder="..." readonly value="{{ form_value('coins') }}">
                 </div>
                 <div class="select-wrap">
                     <select class="selectTb dark" name="wallet" id="wallet_currency" required
@@ -47,28 +53,51 @@
         <div class="columns-wrap">
             <div class="columns">
                 <p class="bold">Кошелек</p>
-                <input class="dark" type="text" name="wallet_number" required placeholder="Введите кошелек">
+                <input class="dark" type="text" name="wallet_number" required placeholder="Введите кошелек"  value="{{ form_value('wallet_number') }}">
+                <div class="alert alert-danger" data-validate-error>
+                    {{ errors.first('wallet_number') }}
+                </div>
             </div>
         </div>
-
-            <iframe src="/pne/form" style="border:none;width:100%;"></iframe>
-
-
+        <div class="columns-wrap">
+            <div class="columns">
+                <div class="checkboxTb" style="position:relative;bottom:0;">
+                    <input id="make1" type="checkbox" name="make">
+                    <label for="make1"
+                        onclick="argeementClick()"
+                        data-request-loading
+                        data-request-update="'@_frame': '#pne_transfer_form'"></label>
+                    <p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>
+                    <script>
+                        function argeementClick(){
+                            if(!$('#make1').is(':checked')){
+                                $('#make1').prop('checked',true);
+                                $('#pne_transfer_form button[type=submit]').click();
+                            }
+                        }
+                    </script>
+                    <div class="alert alert-danger" data-validate-error>
+                        <p data-message>{{errors.first('make')}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="columns-wrap" id="pne_frame">
+            <div class="large-12 columns">
+                    <p class="bold">Номер банковской карты</p>
+                    <input type="number" class="dark" placeholder="Введите номер карты" readonly>
+            </div>
+            <div class="large-6 columns">
+                <p class="bold">Срок</p>
+                <input type="number" class="dark" placeholder="Срок действия" readonly>
+            </div>
+            <div class="large-6 columns">
+                <p class="bold">CVV2</p>
+                <input type="number" class="dark" placeholder="CVV2" readonly>
+            </div>
+        </div>
         <div class="clear"></div>
     </div>
-    <div class="checkboxTb">
-        <input id="make1" type="checkbox" name="make">
-        <label for="make1"></label>
-        <p class="checkboxTb__text">Я принимаю условия использования <a href="#">сервиса</a></p>
-        <div class="alert alert-danger" data-validate-error>
-            <p data-message>{{error.first('make')}}</p>
-        </div>
-        <div data-validate-for="make">{{error.first('make')}}</div>
-    </div>
-    <input type="hidden" name="type" value="buy" />
-    <input type="hidden" name="project_id" value="{{project_id}}" />
-    {% flash %}
-        <div>{{ message }}</div>
-    {% endflash %}
     <button type="submit" class="btn" data-attach-loading>Купить</button>
+
 </form>

@@ -1,0 +1,11 @@
+fields:
+    name:
+        label: 'vsb.crypto::lang.market.name'
+        oc.commentPosition: ''
+        span: auto
+        type: text
+    url:
+        label: 'vsb.crypto::lang.market.url'
+        span: auto
+        oc.commentPosition: ''
+        type: text

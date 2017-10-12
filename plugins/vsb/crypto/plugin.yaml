@@ -4,3 +4,13 @@ plugin:
     author: vsb
     icon: oc-icon-bitcoin
     homepage: ''
+navigation:
+    main-menu-item:
+        label: 'vsb.crypto::lang.plugin.name'
+        url: vsb/crypto/marketcontoller
+        icon: icon-life-ring
+        sideMenu:
+            side-menu-item:
+                label: markets
+                url: vsb/crypto/marketcontroller
+                icon: icon-sitemap

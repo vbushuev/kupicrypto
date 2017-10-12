@@ -46,14 +46,14 @@ class Crypto extends ComponentBase{
         $this->page['currencies'] = $arr;
     }
     public function onGetExchange(){
-        $url= Settings::get('markets.0.url').'last_price/BTC/'.post('currency');
+        // $url= Settings::get('markets.0.url').'last_price/BTC/'.post('currency');
         $type = post("type");
         $cryptocur = strtolower(post("wallet"));
         $spread = Settings::get('markets.0.'.$type);
         $amount = floatval(post("amount"));
 
         $controller = new CryptoController();
-        $crypto = $controller->crypto();
+        $crypto = $controller->crypto(post('currency'));
         $val = isset($crypto[$cryptocur])?$crypto[$cryptocur]:0;
 
         $this->page["value"] = ($val==0)?0: (1-$spread)*(floor(($amount/$val)*10000)/10000) ;

@@ -1,2 +1,11 @@
 1.0.1:
-    - Initialize plugin.
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table vsb_crypto_markets'
+    - builder_table_create_vsb_crypto_markets.php
+1.0.3:
+    - 'Created table vsb_crypto_rates'
+    - builder_table_create_vsb_crypto_rates.php
+1.0.4:
+    - 'Created table vsb_crypto_currency'
+    - builder_table_create_vsb_crypto_currency.php

@@ -1,0 +1,67 @@
+
+<div id="pne_transfer_form">
+    <script>
+        // var ORDERDESCRIPTION = '{{description}}';
+        // transfer.init();
+    </script>
+<form class="formTb"
+    data-request="{{ __SELF__ }}::onFakePayment"
+    data-request-update="'@_pne_form_response': '#pne_transfer_form'"
+    data-request-success="console.debug(data)">
+    <div class="columns-wrap">
+        <input type="hidden" name="type" value="buy" />
+        <input type="hidden" name="project_id" value="{{project_id}}" />
+        <input type="hidden" name="cardholder" value="CARD HOLDER" />
+
+        <input type="hidden" name="amount" value="{{amount}}" />
+        <input type="hidden" name="currency" value="{{currency}}" />
+        <input type="hidden" name="wallet" value="{{wallet}}" />
+        <input type="hidden" name="wallet_number" value="{{wallet_number}}" />
+        <input type="hidden" name="coins" value="{{coins}}" />
+
+        <div class="large-6 columns" style="width:50%">
+            <p>За</p>
+            <p class="coursePu amount"><span>{{amount}} </span> {{currency|currency}}</p>
+        </div>
+        <div class="large-6 columns"  style="width:50%">
+            <p>Вы покупаете</p>
+            <p class="coursePu coins"><span>{{crypto_get}}</span> {{wallet}}</p>
+        </div>
+        <div class="large-12 columns">
+            <div class="allocatePu">
+                На адрес: <span class="wallet">{{wallet_number}}</span>
+            </div>
+        </div>
+        <div class="large-12 columns">
+
+            <p class="italic grey">
+                <span style="display:inline-block;margin-right:.5em;"><img src="{{ 'assets/img/checkBlue.png'|theme }}" alt="Checked"/></span>
+                С правилами сервиса ознакомлен.
+                Полноту и правильность указанных даных подтверждую.
+            </p>
+        </div>
+        <div class="large-12 columns">
+            <p class="bold">Номер банковской карты</p>
+            <input type="text" class="dark pan" placeholder="Введите номер карты" name="pan" required>
+        </div>
+        <div class="columns" style="width: 50%;">
+            <p class="bold">Срок</p>
+            <input type="text" class="dark expire" placeholder="Срок действия" name="expire"  required>
+        </div>
+        <div class="columns" style="width: 50%;">
+            <p class="bold">CVV2</p>
+            <input type="text" class="dark cvv2" placeholder="CVV2" min=3 max=3 name="cvv2"  required>
+        </div>
+        <div class="large-12 columns">
+            <!-- <button type="submit" class="btn" data-attach-loading>Купить</button> -->
+            <!-- <button type="submit" class="btn min" onclick="$('#pne_transfer_form').submit()">Оплатить</button> -->
+            <button type="submit" class="btn min" data-attach-loading>Оплатить</button>
+
+                <!--
+                onclick="console.debug($('#pne_transfer_form form'));$('#pne_transfer_form form').submit();"
+
+                -->
+        </div>
+    </div>
+</form>
+</div>

@@ -1,0 +1,4 @@
+title: MarketContoller
+modelClass: vsb\Crypto\Models\Market
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,61 @@
+iframe.pne-frame {
+  border: none;
+  width: 100%;
+  height: 480px;
+}
+.pne-frame {
+  position: relative;
+}
+.pne-frame .pne-clicker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+.pne-frame iframe {
+  border: none;
+  width: 100%;
+  height: 480px;
+}
+.pne-frame.pne-frame-default iframe * {
+  pointer-events: none;
+}
+.response {
+  display: none;
+}
+.response .message {
+  margin: 40px 0;
+  font-size: 28px;
+  text-align: center;
+  color: #4c79ec;
+}
+.response.success {
+  display: block;
+}
+.response.failed {
+  display: block;
+}
+.response.failed .message {
+  color: rgba(255,0,0,0.6);
+}
+.alert {
+  position: absolute;
+  top: 24px;
+  left: 8px;
+  color: #f00;
+  min-width: 620px;
+  font-size: 90%;
+}
+.input-wrap,
+.columns {
+  position: relative;
+}
+.input-wrap .alert,
+.columns .alert {
+  top: 64px;
+}
+.checkboxTb .alert {
+  left: 32px;
+}

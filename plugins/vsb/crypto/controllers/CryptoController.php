@@ -22,7 +22,10 @@ class CryptoController extends Controller
     protected $_crypto=[];
     public function __construct(){
         parent::__construct();
-        $url= Settings::get('markets.0.url').'last_price/BTC/RUB';
+
+    }
+    public function crypto($curr="RUB"){
+        $url= Settings::get('markets.0.url').'last_price/BTC/'.$curr;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_HEADER, false);
@@ -39,12 +42,10 @@ class CryptoController extends Controller
         $this->_crypto["btc"]= $btc;
         $this->_crypto["eth"] = (is_object($res)&&!isset($res->error))?floatval($res->lprice)*$btc:0;
         curl_close($ch);
-    }
-    public function crypto(){
         return $this->_crypto;
     }
     public function onGetExchange(){
-        $url= Setting::get('markets.0.url');
+        $url= Settings::get('markets.0.url');
         $url.= 'last_price/'.post('wallet').'/'.post('currency');
         $res = json_decode(file_get_contents($url));
         return $res;

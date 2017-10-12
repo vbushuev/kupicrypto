@@ -1,0 +1,14 @@
+columns:
+    id:
+        label: 'vsb.crypto::lang.market.id'
+        type: number
+        sortable: true
+    name:
+        label: 'vsb.crypto::lang.market.name'
+        type: text
+        searchable: true
+        sortable: true
+    url:
+        label: 'vsb.crypto::lang.market.url'
+        type: text
+        searchable: true
