@@ -1,29 +1,30 @@
 <h3 class="ui header">{{ title }}</h3>
 <div class="ui segments">
     <div class="ui segment row aligned center">
-        <button class="ui button primary" data-request="{{ __SELF__ }}::onAddCard"
-            data-request-success="console.debug(data)"
-            data-attach-loading>
-            <i class="plus icon"></i>
-            Register
-        </button>
-        <button class="ui button disabled vertical animated removeall" style="display:none;">
-            <div class="hidden content">Remove selected</div>
-            <div class="visible content">
-                <i class="trash icon"></i>
-                Remove
-            </div>
-        </button>
-        <select class="ui dropdown" name="project_id"
-            data-track-input
-            data-request="{{__SELF__}}::onRun"
-            data-request-update="'@_list': '#list'">
-            <option value="">Project</option>
-            {% for project in projects %}
-                <option value="{{project.id}}">{{project.name}}</option>
-            {% endfor %}
-        </select>
-
+        <form
+            data-request="{{ __SELF__ }}::onAddCard"
+            data-request-success="console.debug(data)">
+            <select class="ui dropdown" name="project_id"
+                data-track-input
+                data-request="{{__SELF__}}::onRun"
+                data-request-update="'@_list': '#list'">
+                <option value="">Project</option>
+                {% for project in projects %}
+                    <option value="{{project.id}}">{{project.name}}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" class="ui button primary" data-attach-loading>
+                <i class="plus icon"></i>
+                Register
+            </button>
+            <button class="ui button disabled vertical animated removeall" style="display:none;">
+                <div class="hidden content">Remove selected</div>
+                <div class="visible content">
+                    <i class="trash icon"></i>
+                    Remove
+                </div>
+            </button>
+        </form>
     </div>
     <div class="ui segment row" id="list">
         {% partial '@_list' %}

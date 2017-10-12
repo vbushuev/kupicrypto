@@ -46,12 +46,19 @@ class CardPoolController extends Controller
     }
     public function registerCard(){
         $host=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
+        $project_id = post('project_id');
+        $crd = Card::create([
+            'card_ref'=>'',
+            'pan' => '',
+            "project_id" =>$project_id
+        ]);
         $trx = Transaction::create([
             'endpoint'=> Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
             'amount'=>Setting::get('cardregister.0.amount',1),
             'currency'=>Setting::get('cardregister.0.currency','RUB'),
             'type'=>'sale',
-            'code'=>'404'
+            'code'=>'404',
+            'card_id' => $crd->id
         ]);
         $data = [
             "data"=>[
@@ -169,11 +176,8 @@ class CardPoolController extends Controller
 
                 $key = "card-ref-id";
                 $res["cardref"] =  $response->$key;
-                $crd = Card::create([
-                    'card_ref'=>$res["cardref"],
-                    'pan' => $res["pan"],
-                    "project_id" =>$project_id
-                ]);
+                $crd = Card::find($trx->card_id);
+                $crd->update(['card_ref'=>$res["cardref"],'pan' => $res["pan"]]);
                 $trx_cardref->update(["card_id"=>$crd->id,"code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
                 $trx_return->update(["card_id"=>$crd->id]);
                 $trx->update(["card_id"=>$crd->id]);

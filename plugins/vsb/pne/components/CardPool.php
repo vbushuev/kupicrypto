@@ -61,6 +61,7 @@ class CardPool extends ComponentBase{
     public function onAddCard(){
         $this->controller = new CardPoolController();
         $retval = $this->controller->registerCard();
+
         return  (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
     }
     public function onUpdateCard(){

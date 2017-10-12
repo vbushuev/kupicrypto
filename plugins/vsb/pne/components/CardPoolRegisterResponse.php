@@ -28,16 +28,21 @@ class CardPoolRegisterResponse extends ComponentBase
         ];
     }
     public function onRun(){
-        $this->addJs('/plugins/vsb/pne/assets/js/pne.js');
-        $this->addCss('/plugins/vsb/pne/assets/css/pne.css');
-        $data = file_get_contents('php://input');
-        $this->page["data"] = $data;
-        $this->page["projects"] = Project::all();
-        // Flash::success('Flash message<input type="hidden" name="data" value="'.$data.'" />');
-    }
-    public function onSubmit(){
         $cpc = new CardPoolController();
-        $cpc->registerCardResponse(post("data"),post("project_id"));
+        $cpc->registerCardResponse();
         return Redirect::to('/manager/cardpool');
     }
+    // public function onRun(){
+    //     $this->addJs('/plugins/vsb/pne/assets/js/pne.js');
+    //     $this->addCss('/plugins/vsb/pne/assets/css/pne.css');
+    //     $data = file_get_contents('php://input');
+    //     $this->page["data"] = $data;
+    //     $this->page["projects"] = Project::all();
+    //     // Flash::success('Flash message<input type="hidden" name="data" value="'.$data.'" />');
+    // }
+    // public function onSubmit(){
+    //     $cpc = new CardPoolController();
+    //     $cpc->registerCardResponse(post("data"),post("project_id"));
+    //     return Redirect::to('/manager/cardpool');
+    // }
 }
