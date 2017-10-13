@@ -28,18 +28,31 @@
                 <td>{{card.daily_limit}}</td>
                 <td>{{card.monthly_limit}}</td>
                 <td>
-                    <button class="ui vertical animated button remove" data-id="{{card.id}}" tabindex="0"
-                        data-request="{{ __SELF__ }}::onDeleteCard"
-                        data-request-success="pne.init();"
-                        data-request-data="card_id:{{card.id}}"
-                        data-request-update="'@_list': '#list'"
-                        data-request-confirm="Are you sure?"
-                        data-attach-loading>
-                        <div class="hidden content">{{'Remove'|_}}</div>
-                        <div class="visible content">
-                            <i class="trash icon"></i>
-                        </div>
-                    </button>
+                    <div class="ui buttons">
+                        <button class="ui vertical animated button remove" data-id="{{card.id}}" tabindex="0"
+                            data-request="{{ __SELF__ }}::onEditCard"
+                            data-request-success="pne.init();"
+                            data-request-data="card_id:{{card.id}}"
+                            data-request-update="'@_update': '#modals'"
+                            data-attach-loading>
+                            <div class="hidden content">{{'Edit'|_}}</div>
+                            <div class="visible content">
+                                <i class="edit icon"></i>
+                            </div>
+                        </button>
+                        <button class="ui vertical animated button remove" data-id="{{card.id}}" tabindex="0"
+                            data-request="{{ __SELF__ }}::onDeleteCard"
+                            data-request-success="pne.init();"
+                            data-request-data="card_id:{{card.id}}"
+                            data-request-update="'@_list': '#list'"
+                            data-request-confirm="Are you sure?"
+                            data-attach-loading>
+                            <div class="hidden content">{{'Remove'|_}}</div>
+                            <div class="visible content">
+                                <i class="trash icon"></i>
+                            </div>
+                        </button>
+                    </div>
                 </td>
             </tr>
         {% endfor %}

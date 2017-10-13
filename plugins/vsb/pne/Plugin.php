@@ -45,7 +45,9 @@ class Plugin extends PluginBase{
                 // 'plural' => 'str_plural',
 
                 // A local method, i.e $this->makeTextAllCaps()
-                'currency' => [$this, 'makeTextCurrency']
+                'currency' => [$this, 'makeTextCurrency'],
+                'visa' => function($text){ return substr($text,0,1) == '4';},
+                'mastercard' => function($text){ return substr($text,0,1) == '5';},
             ],
             // 'functions' => [
             //     // A static method call, i.e Form::open()

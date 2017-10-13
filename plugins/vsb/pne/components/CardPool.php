@@ -64,10 +64,16 @@ class CardPool extends ComponentBase{
 
         return  (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
     }
+    public function onEditCard(){
+        $this->page['projects'] = Project::all();
+        $this->page['card'] = Card::find(post("card_id"));
+    }
     public function onUpdateCard(){
         $this->controller = new CardPoolController();
         $r = $this->controller->updateCard();
-        return $r;
+        $this->page['cardpool'] = $this->controller->getList();
+        $this->page['cardpool_count'] = count($this->controller->getList());
+        // return;
     }
     public function onDeleteCard(){
         $this->controller = new CardPoolController();

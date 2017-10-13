@@ -27,6 +27,17 @@ var LuhnCheck = (function(){
     }
 })();
 var transfer ={
+    valid:function(){
+        var expire = $('#expire').val(),expireArr=expire.split('/');
+        $('#expiremonth').val(expireArr[0]);
+        $('#expireyear').val('20'+expireArr[1]);
+        //lunh check
+        var r=$('#cardnumber').val().replace(/\s/g,''),n=r.length;
+        if(n>19||13>n)return!1;
+        for(i=0,s=0,m=1,l=n;i<l;i++)d=parseInt(r.substring(l-i-1,l-i),10)*m,s+=d>=10?d%10+1:d,1==m?m++:m--;
+        console.debug($('#expiremonth').val(),$('#expireyear').val(),r,s);return false;
+        return s%10==0?!0:!1;
+    },
     init:(function(){
         return function(){
             $(".pan").mask("9999 9999 9999 9999? 999");

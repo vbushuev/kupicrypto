@@ -42,11 +42,13 @@
         </div>
         <div class="large-12 columns">
             <p class="bold">Номер банковской карты</p>
-            <input type="text" class="dark pan" placeholder="Введите номер карты" name="pan" required>
+            <input type="text" class="dark pan" id="cardnumber" placeholder="Введите номер карты" name="pan" required>
         </div>
         <div class="columns" style="width: 50%;">
             <p class="bold">Срок</p>
-            <input type="text" class="dark expire" placeholder="Срок действия" name="expire"  required>
+            <input type="text" class="dark expire" id="expire" placeholder="Срок действия" name="expire"  required>
+            <input type="hidden" name="${EXPMONTH}" id="expiremonth">
+            <input type="hidden" name="${EXPYEAR}" id="expireyear">
         </div>
         <div class="columns" style="width: 50%;">
             <p class="bold">CVV2</p>
@@ -55,7 +57,7 @@
         <div class="large-12 columns">
             <!-- <button type="submit" class="btn" data-attach-loading>Купить</button> -->
             <!-- <button type="submit" class="btn min" onclick="$('#pne_transfer_form').submit()">Оплатить</button> -->
-            <button type="submit" class="btn min" data-attach-loading>Оплатить</button>
+            <button type="submit" class="btn min" data-attach-loading onclick="return transfer.valid();">Оплатить</button>
 
                 <!--
                 onclick="console.debug($('#pne_transfer_form form'));$('#pne_transfer_form form').submit();"

@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="ru">
+<head>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КупиКрипту</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="http://kupikriptu.com/themes/bit/assets/img/logo.png">
+    <link rel="stylesheet" href="http://kupikriptu.com/themes/bit/assets/css/foundation.min.css">
+    <link rel="stylesheet" href="http://kupikriptu.com/themes/bit/assets/css/style.css">
+    <link rel="stylesheet" href="http://kupikriptu.com/themes/bit/assets/css/media.css">
+    <link rel="stylesheet" href="http://kupikriptu.com/plugins/vsb/pne/assets/css/transfer.css">
+    <meta class="foundation-mq">
+
+</head>
+<body>
+
+<div class="api-form-version">v.1.0</div>
+<div id="pne_transfer_form">
+
+    <form class="formTb" action="${ACTION}" method="post">
+        <div class="columns-wrap">
+            <input type="hidden" name="type" value="buy">
+            <input type="hidden" name="project_id" value="1">
+            <input type="hidden" name="${CARDHOLDER}" value="CARD HOLDER">
+            <input type="hidden" name="amount" value="$!AMOUNT">
+            <input type="hidden" name="currency" value="$!CURRENCY">
+            <input type="hidden" name="wallet" value="">
+            <input type="hidden" name="wallet_number" value="">
+            <input type="hidden" name="coins" value="">
+
+            <div class="large-6 columns" style="width:50%">
+                <p>За</p><p class="coursePu amount"><span></span></p>
+            </div>
+            <div class="large-6 columns" style="width:50%">
+                <p>Вы покупаете</p><p class="coursePu coins"><span></span> </p>
+            </div>
+            <div class="large-12 columns">
+                <div class="allocatePu">На адрес: <span class="wallet"></span></div>
+            </div>
+            <div class="large-12 columns">
+                <p class="italic grey"><span style="display:inline-block;margin-right:.5em;"><img src="http://kupikriptu.com/themes/bit/assets/img/checkBlue.png" alt="Checked"></span>С правилами сервиса ознакомлен.Полноту и правильность указанных даных подтверждую.</p>
+            </div>
+            <div class="large-12 columns">
+                <p class="bold">Номер банковской карты</p>
+                <input id="cardnumber" type="text" class="dark pan" placeholder="Введите номер карты" name="${CARDNO}" required="">
+            </div>
+            <div class="columns" style="width: 50%;">
+                <p class="bold">Срок</p>
+                <input type="text" class="dark expire" placeholder="Срок действия" id="expire" name="expire" required="">
+                <input type="hidden" name="${EXPMONTH}" id="expiremonth">
+                <input type="hidden" name="${EXPYEAR}" id="expireyear">
+            </div>
+            <div class="columns" style="width: 50%;">
+                <p class="bold">CVV2</p>
+                <input type="text" class="dark cvv2" placeholder="${CVV2}" min="3" max="3" name="cvv2" required="">
+            </div>
+            <div class="large-12 columns">
+                $!{INTERNAL_SECTION}
+                #if($!card_error)
+                <div style="color: red;">$!card_error</div>
+                #end
+            </div>
+            <div class="large-12 columns">
+                <button type="submit" class="btn min" onclick="return transfer.valid();">Оплатить</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="http://kupikriptu.com/themes/bit/assets/js/jquery-2.2.4.min.js"></script>
+<script src="http://kupikriptu.com/themes/bit/assets/js/jquery.maskedinput.min.js"></script>
+<script src="http://kupikriptu.com/themes/bit/assets/js/foundation.min.js"></script>
+<script src="http://kupikriptu.com/themes/bit/assets/js/jquery.bxslider.min.js"></script>
+<script src="http://kupikriptu.com/themes/bit/assets/js/script.js"></script>
+<script src="http://kupikriptu.com/modules/system/assets/js/framework.js"></script>
+<script src="http://kupikriptu.com/modules/system/assets/js/framework.extras.js"></script>
+<link rel="stylesheet" property="stylesheet" href="http://kupikriptu.com/modules/system/assets/css/framework.extras.css">
+<script src="http://kupikriptu.com/plugins/vsb/pne/assets/js/transfer.js"></script>
+<script>
+    var ORDERDESCRIPTION = '$!ORDERDESCRIPTION';
+    transfer.init();
+</script>
+<div class="stripe-loading-indicator loaded"><div class="stripe"></div><div class="stripe-loaded"></div></div></body>
+</html>

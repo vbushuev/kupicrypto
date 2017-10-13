@@ -46,11 +46,12 @@ class CardPoolController extends Controller
     }
     public function registerCard(){
         $host=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
-        $project_id = post('project_id');
+        $project_id = post('project_id',0);
         $crd = Card::create([
             'card_ref'=>'',
             'pan' => '',
-            "project_id" =>$project_id
+            "project_id" =>$project_id,
+            'enabled' => '0'
         ]);
         $trx = Transaction::create([
             'endpoint'=> Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
@@ -132,7 +133,8 @@ class CardPoolController extends Controller
                     'currency'=>Setting::get('cardregister.0.currency','RUB'),
                     'type'=>'return',
                     'code'=>'404',
-                    'parent_id'=>$trx->id
+                    'parent_id'=>$trx->id,
+                    "card_id"=>$crd->id
                 ]);
                 $connector = new Connector();
                 $request = new ReturnRequest(array_merge([
@@ -157,7 +159,8 @@ class CardPoolController extends Controller
                     'currency'=>Setting::get('cardregister.0.currency','RUB'),
                     'type'=>'cardref',
                     'code'=>'404',
-                    'parent_id'=>$trx->id
+                    'parent_id'=>$trx->id,
+                    "card_id"=>$crd->id
                 ]);
                 $res = array_merge($res,["return"=>$response->toArray()]);
                 $request = new CreateCardRefRequest( array_merge([
@@ -177,10 +180,10 @@ class CardPoolController extends Controller
                 $key = "card-ref-id";
                 $res["cardref"] =  $response->$key;
                 $crd = Card::find($trx->card_id);
-                $crd->update(['card_ref'=>$res["cardref"],'pan' => $res["pan"]]);
-                $trx_cardref->update(["card_id"=>$crd->id,"code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
-                $trx_return->update(["card_id"=>$crd->id]);
-                $trx->update(["card_id"=>$crd->id]);
+                $crd->update(['card_ref'=>$res["cardref"],'pan' => $res["pan"],'enabled' => '1']);
+                $trx_cardref->update(["code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
+                // $trx_return->update([]);
+                // $trx->update(["card_id"=>$crd->id]);
             }
 
         }catch(\Exception $e){
@@ -205,7 +208,8 @@ class CardPoolController extends Controller
         $cs = post("card_id");
         $card = Card::find($cs);
         $d = Input::all();
-        $card->update($d);
+        if(isset($d['enabled'])) $d['enabled']= ( $d['enabled']=="On" )? "1":"0";
+        if(count($d)&&!is_null($card))$card->update($d);
         return $card;
     }
 
