@@ -1,0 +1,10 @@
+name: UserProjectController
+form: $/vsb/pne/models/userproject/fields.yaml
+modelClass: Vsb\Pne\Models\UserProject
+defaultRedirect: vsb/pne/userprojectcontroller
+create:
+    redirect: 'vsb/pne/userprojectcontroller/update/:id'
+    redirectClose: vsb/pne/userprojectcontroller
+update:
+    redirect: vsb/pne/userprojectcontroller
+    redirectClose: vsb/pne/userprojectcontroller

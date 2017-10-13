@@ -24,8 +24,18 @@ class Card extends Model
      */
     public $table = 'vsb_pne_cards';
     protected $fillable = [
-        'card_ref','pan','expire','cvv2','daily_balance','monthly_balance','enabled','project_id'
+        'card_ref','pan','expire','cvv2','daily_limit','monthly_limit','enabled','project_id'
     ];
+    public function limits($amt){
+        $this->daily_limit -= floatval($amt);
+        $this->monthly_limit -= floatval($amt);
+        $this->save();
+    }
+    public function rollback($amt){
+        $this->daily_limit += floatval($amt);
+        $this->monthly_limit += floatval($amt);
+        $this->save();
+    }
     public function getProjectIdOptions(){
         $projects = Project::all();$ret=[];
         foreach($projects as $project){

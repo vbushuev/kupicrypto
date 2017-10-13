@@ -26,3 +26,7 @@ navigation:
                 label: 'vsb.pne::lang.transaction.title'
                 url: vsb/pne/transactioncontroller
                 icon: icon-list
+            side-menu-item4:
+                label: 'Users project'
+                url: vsb/pne/userprojectcontroller
+                icon: icon-users

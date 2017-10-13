@@ -1,0 +1,11 @@
+fields:
+    user_id:
+        label: user
+        oc.commentPosition: ''
+        span: auto
+        type: dropdown
+    project_id:
+        label: 'vsb.pne::lang.plugin.project'
+        span: auto
+        oc.commentPosition: ''
+        type: dropdown

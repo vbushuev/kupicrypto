@@ -1,0 +1,4 @@
+title: UserProjectController
+modelClass: Vsb\Pne\Models\UserProject
+toolbar:
+    buttons: reorder_toolbar

@@ -1,0 +1,9 @@
+columns:
+    user_id:
+        label: 'User id'
+        type: number
+        sortable: true
+    project_id:
+        label: 'vsb.pne::lang.plugin.project'
+        type: number
+        sortable: true
