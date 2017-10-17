@@ -1,0 +1,6 @@
+plugin:
+    name: 'vsb.user::lang.plugin.name'
+    description: 'vsb.user::lang.plugin.description'
+    author: vsb
+    icon: oc-icon-user-secret
+    homepage: ''

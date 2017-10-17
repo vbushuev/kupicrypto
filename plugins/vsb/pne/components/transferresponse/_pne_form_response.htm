@@ -1,0 +1,46 @@
+
+<form id="pne_transfer_form" class="formTb"
+    data-request="{{ __SELF__ }}::onEmail"
+    data-request-update="'@_pne_form_mail': '#pne_transfer_form'"
+    data-request-success="console.debug(data)">
+    <script>
+        // var ORDERDESCRIPTION = '{{description}}';
+        // transfer.init();
+    </script>
+    <div class="columns-wrap">
+        <div class="response">
+            <div class="columns message">
+                ОПЕРАЦИЯ прошла успешно!
+            </div>
+            <div class="large-6 columns" style="width:50%">
+                <p>За</p>
+                <p class="coursePu amount"><span>{{amount}} </span> {{currency|currency}}</p>
+            </div>
+            <div class="large-6 columns"  style="width:50%">
+                <p>Вы купили</p>
+                <p class="coursePu coins"><span>{{crypto_get}}</span> {{wallet}}</p>
+            </div>
+            <div class="large-12 columns">
+                <div class="allocatePu">
+                    На адрес: <span class="wallet">{{wallet_number}}</span>
+                </div>
+            </div>
+            <div class="columns" style="width: 50%;">
+                <p>Введите Ваш email, мы отправим чек об операции</p>
+                <p class="bold">EMAIL</p>
+                <input type="email" class="dark email" placeholder="email" name="email">
+            </div>
+            <div class="columns" style="width: 50%;">
+                <div class="checkboxTb" style="display:block;position:relative;margin-top:56px;">
+                    <input id="make1" type="checkbox">
+                    <label for="make1"></label>
+                    <p class="checkboxTb__text">Сохранить карту для быстрой оплаты в далнейшем. <a href="#">Положения о безопасности хранения личных данных</a></p>
+                </div>
+            </div>
+            <div class="large-12 columns sendMail" style="display:none;">
+                <!-- <button type="submit" class="btn" data-attach-loading>Купить</button> -->
+                <button class="btn min buyClose">Ок</button>
+            </div>
+        </div>
+    </div>
+</form>

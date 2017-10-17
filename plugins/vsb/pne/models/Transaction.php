@@ -24,6 +24,6 @@ class Transaction extends Model
      */
     public $table = 'vsb_pne_transactions';
     protected $fillable = [
-        'endpoint','amount','currency','type','code','card_id','parent_id'
+        'endpoint','amount','currency','type','code','card_id','parent_id','description'
     ];
 }

@@ -4,6 +4,23 @@ layout = "manager"
 description = "Card pool component"
 is_hidden = 1
 
+[session]
+security = "user"
+redirect = "manager"
 [cardPool]
+
 ==
-{% component 'cardPool' %}
+
+<div class="ui menu">
+    <a class="header item" href="/manager/cardpool">Cardpool</a>
+    <a class="header item"  href="/manager/markets">Биржи</a>
+    {% if user %}
+    <a class="header item right" data-request="onLogout" data-request-data="redirect: '/manager/account'">Выход</a>
+    {% endif %}
+</div>
+<div class="ui main container">
+    {% component 'cardPool' %}
+
+</div>
+<div class="ui footer">
+</div>

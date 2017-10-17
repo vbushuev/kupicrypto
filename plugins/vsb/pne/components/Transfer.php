@@ -70,9 +70,9 @@ class Transfer extends ComponentBase{
         $this->page["description"] = http_build_query($data);
         $controller = new TransactionController();
         $retval = $controller->transferRequest();
-        $this->page["redirectUrl"] = "/pne/form_first?".$this->page["description"];
+        // $this->page["redirectUrl"] = "/pne/form_first?".$this->page["description"];
         $this->renderPartial('@_pne_form.htm');
-        // $this->page["redirectUrl"] = (!isset($retval["error"]) && isset($retval["redirectUrl"]))?$retval["redirectUrl"]:Redirect::back();
+        $this->page["redirectUrl"] = (!isset($retval["error"]) && isset($retval["redirectUrl"]))?$retval["redirectUrl"]:"/pne/form_first?".$this->page["description"];
         return $retval;
     }
     public function onFakePayment(){

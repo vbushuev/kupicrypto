@@ -39,6 +39,7 @@ class TransactionController extends Controller
         $card = $cardpool->getCardFromPool();
         Log::debug("Found card from cardpool: ".$card->__toString());
         if($card==false || is_null($card))return ; //need Exception maybe
+        $description = http_build_query(post());
         $host=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
         $trx = Transaction::create([
             'endpoint'=> Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.endpoint'),
@@ -46,12 +47,13 @@ class TransactionController extends Controller
             'currency'=>$currency,
             'type'=>'transfer',
             'code'=>'404',
-            'card_id'=>$card->id
+            'card_id'=>$card->id,
+            'description' => $description
         ]);
         $data = [
             "data"=>[
                 "client_orderid" => $trx->id,
-                "order_desc" => "Buy crypto",
+                "order_desc" => $description,
                 "first_name" => "Kupi",
                 "last_name" => "Crypto",
                 "birthday" => "",
@@ -95,33 +97,39 @@ class TransactionController extends Controller
     }
     public function transferResponse(){
         $data = file_get_contents('php://input');
-        Log::debug($data);
-        $dataArr = [];
-        parse_str($data,$dataArr);
         $res=[];
-        $res['response'] = '['.join($dataArr,'],[').']';
         $r = [
             "url" => isset($_SERVER["HTTP_ORIGIN"])?$_SERVER["HTTP_ORIGIN"]:$_SERVER["HTTP_HOST"],
-            "data" => $dataArr
+            "data" => $data
         ];
         $redirect_url = "";
+        $dataArr = [];
         try{
+            // $obj = new CallbackResponse($data,function($d){},Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.version'));
             $obj = new CallbackResponse($r,function($d){});
+            $dataArr=$obj->toArray();
+            Log::debug("transferResponse(dataArr):",$dataArr);
             $trx = Transaction::find($obj->client_orderid);
+            $res["trx"] = $trx;
             if($obj->accept()){
                 $card = Card::find($trx->card_id);
                 $trx->update(["code"=>"0"]);
-                $card->daily_limit-=$amount;
-                $card->monthly_limit-=$amount;
+                $card->daily_limit-=$trx->amount;
+                $card->monthly_limit-=$trx->amount;
                 $card->save();
             }else{
-                $trx->update(["code"=>$retval["error-code"]]);
+                $trx->update(["code"=>$dataArr["error-code"]]);
             }
 
         }catch(\Exception $e){
-            $res['error'] = isset($dataArr['error_code'])?$dataArr['error_code']:'1005';
-            $res['message'] = isset($dataArr['error_message'])?$dataArr['error_message']:'error message';
+            $res["error"]="500";
+            $res["message"] = $e->getMessage();
+            // $res['error'] = isset($dataArr['error_code'])?$dataArr['error_code']:'1005';
+            // $res['message'] = isset($dataArr['error_message'])?$dataArr['error_message']:'error message';
         }
+        $res['response'] = $data;
+        Log::debug("transferResponse:",$res);
+        return $res;
     }
 }
 /*

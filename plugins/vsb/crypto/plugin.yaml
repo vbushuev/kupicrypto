@@ -14,3 +14,7 @@ navigation:
                 label: markets
                 url: vsb/crypto/marketcontroller
                 icon: icon-sitemap
+permissions:
+    crypto_markets:
+        tab: 'vsb.crypto::lang.plugin.crypto_markets'
+        label: 'vsb.crypto::lang.plugin.name'

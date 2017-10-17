@@ -1,12 +1,17 @@
 <?php namespace Vsb\Pne;
 
+use Log;
+use User;
+use Event;
 use Backend;
+use Redirect;
 use System\Classes\PluginBase;
 
 use Vsb\Pne\Models\Card;
 use Vsb\Pne\Models\Setting;
 
 class Plugin extends PluginBase{
+    public $elevated=true;
     public function registerComponents()
     {
         return [
@@ -65,5 +70,19 @@ class Plugin extends PluginBase{
             case "EUR": return "Eur";
         }
         return strtoupper($text);
+    }
+    public function boot(){
+        Event::listen('backend.user.login', function($user) {
+            Log::debug('backend.user.login event fired.');
+            Log::debug($user);
+            if ($user->hasPermission([
+                'cardpool'
+            ])) {
+                Log::debug('backend.user has cardpool permision');
+                Redirect::to("manager/cardpool");
+                // dd(Event::firing());
+            }
+
+        });
     }
 }

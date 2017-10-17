@@ -1,7 +1,7 @@
 <?php namespace Vsb\Pne\Controllers;
 
 use Log;
-use Backend\Models\User;
+use RainLab\User\Models\User;
 use Request;
 use Response;
 use Input;
@@ -21,7 +21,9 @@ use Vsb\Pne\Classes\Pne\ReturnRequest;
 use Vsb\Pne\Classes\Pne\CallbackResponse;
 
 class CardPoolApiController extends Controller{
-    public function __construct(){}
+    public function __construct(){
+
+    }
     protected function checkUser($data){
         // check user
         $user = isset($data->token)?$data->token:false;
@@ -38,6 +40,33 @@ class CardPoolApiController extends Controller{
         if(is_null($project))throw new Exception("Not accepteble to project",403);
         // end check user
         return [$user,$project];
+    }
+    public function getAuth(){
+        $res = [];
+        try{
+            $rawData = file_get_contents('php://input');
+            $data = json_decode($rawData);
+
+            
+            $res = [
+                "error"=>"0",
+                "message"=>"Ok",
+                "response" => $cards
+            ];
+        }
+        catch(Exception $e){
+            $res = [
+                "error"=>$e->getCode(),
+                "message"=>$e->getMessage()
+            ];
+        }
+        catch(\Exception $e){
+            $res = [
+                "error"=>"500",
+                "message"=>$e->getMessage()
+            ];
+        }
+        return Response::json($res);
     }
     public function getProjects(){
         $res = [];

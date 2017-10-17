@@ -5,7 +5,10 @@ use Request;
 use Input;
 use Backend\Classes\Controller;
 use BackendMenu;
+use BackendAuth;
+use Auth;
 use Vsb\Pne\Models\Card;
+use Vsb\Pne\Models\UserProject;
 use Vsb\Pne\Models\Transaction;
 use Vsb\Pne\Models\Setting;
 use Vsb\Pne\Classes\Pne\Exception as PneException;
@@ -101,23 +104,25 @@ class CardPoolController extends Controller
         $connector->call();
         $response = $connector->getResponse();
         $retval = $response->toArray();
-        $trx->update(["code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
+        $trx->update(["code"=>(!isset($retval["error-code"]))?"200":$retval["error-code"]]);
         return $retval;
     }
     public function registerCardResponse($data=false,$project_id="1"){
         $data = ($data===false)?file_get_contents('php://input'):$data;
-        Log::debug($data);
-        $dataArr = [];
-        parse_str($data,$dataArr);
+        // $dataArr = [];
+        // parse_str($data,$dataArr);
         $res=[];
-        $res['response'] = '['.join($dataArr,'],[').']';
+        $res['response'] = $data;
         $r = [
             "url" => isset($_SERVER["HTTP_ORIGIN"])?$_SERVER["HTTP_ORIGIN"]:$_SERVER["HTTP_HOST"],
-            "data" => $dataArr
+            // "data" => $dataArr
+            "data" => $data
         ];
+        Log::debug("RAW response: ".$data);
         $redirect_url = "";
         try{
-            $obj = new CallbackResponse($r,function($d){});
+            $obj = new CallbackResponse($r,function($d){},Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.version'));
+            $dataArr=$obj->toArray();
             if($obj->accept()){
                 $trx = Transaction::find($obj->client_orderid);
                 // $trx = Transaction::find($dataArr['merchant_order']);
@@ -126,7 +131,8 @@ class CardPoolController extends Controller
                 $res['pan'] = $dataArr['bin']."******".$dataArr['last-four-digits'];
                 // $res['panto'] = $dataArr['dest-bin']."******".$dataArr['dest-last-four-digits'];
                 $res['date'] = date('d.m.Y H:i');
-                $res['order_id'] = $dataArr['orderid'];
+                $res['order_id'] = $obj->orderid;
+                $res['client_orderid'] = $obj->client_orderid;
                 $trx_return = Transaction::create([
                     'endpoint'=> Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
                     'amount'=>Setting::get('cardregister.0.amount',1),
@@ -134,7 +140,7 @@ class CardPoolController extends Controller
                     'type'=>'return',
                     'code'=>'404',
                     'parent_id'=>$trx->id,
-                    "card_id"=>$crd->id
+                    "card_id"=>$trx->card_id
                 ]);
                 $connector = new Connector();
                 $request = new ReturnRequest(array_merge([
@@ -147,12 +153,12 @@ class CardPoolController extends Controller
                         "orderid"=>$obj->orderid,
                         "amount"=>Setting::get('cardregister.0.amount',1),"currency"=>Setting::get('cardregister.0.currency','RUB'),"comment"=>"Checking card only, no sale need"
                     ]]));
-
+                // Log::debug("ReturnRequest:",$request);
                 $connector->setRequest($request);
                 $connector->call();
                 $response = $connector->getResponse();
                 $retval = $response->toArray();
-                $trx_return->update(["code"=>(!isset($retval["error-code"]))?"0":$retval["error-code"]]);
+                $trx_return->update(["code"=>(!isset($retval["error-code"]))?"200":$retval["error-code"]]);
                 $trx_cardref = Transaction::create([
                     'endpoint'=> Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
                     'amount'=>'0',
@@ -160,9 +166,10 @@ class CardPoolController extends Controller
                     'type'=>'cardref',
                     'code'=>'404',
                     'parent_id'=>$trx->id,
-                    "card_id"=>$crd->id
+                    "card_id"=>$trx->card_id
                 ]);
                 $res = array_merge($res,["return"=>$response->toArray()]);
+
                 $request = new CreateCardRefRequest( array_merge([
                         "url" => Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.url'),
                         "endpoint" => Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
@@ -172,6 +179,7 @@ class CardPoolController extends Controller
                         'client_orderid' => $obj->client_orderid,
                         'orderid' => $obj->orderid
                     ]]));
+                // Log::debug("CreateCardRefRequest:",$request);
                 $connector->setRequest($request);
                 $connector->call();
                 $response = $connector->getResponse();
@@ -187,17 +195,23 @@ class CardPoolController extends Controller
             }
 
         }catch(\Exception $e){
-            $res['error'] = isset($dataArr['error_code'])?$dataArr['error_code']:'1005';
-            $res['message'] = isset($dataArr['error_message'])?$dataArr['error_message']:'error message';
+            // Log::error($e);
+            $res['error'] = isset($dataArr['error_code'])?$dataArr['error_code']:$e->getCode();
+            $res['message'] = isset($dataArr['error_message'])?$dataArr['error_message']:$e->getMessage();
         }
+        Log::debug("res:",$res);
+        return $res;
     }
     public function onAddCard(){
         $retval = $this->registerCard();
         return (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
     }
     public function getList(){
-        $res = Card::with(['project']);
-        if(post("project_id",false)!==false)$res=$res->where("project_id","=",post("project_id"));
+        $user = Auth::getUser();
+        $projects = UserProject::where('user_id','=',$user->id)->lists('project_id');
+        $res = Card::with(['project'])->whereIn('project_id',$projects);
+        $project_id =post("project_id","false");
+        if($project_id!=="false")$res=$res->where("project_id","=",post("project_id"));
         return $res->get();
     }
     public function removeCard(){

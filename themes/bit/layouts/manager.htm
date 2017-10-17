@@ -1,4 +1,6 @@
 description = "manager's layout"
+[session]
+security = "all"
 ==
 <html>
 
@@ -15,22 +17,34 @@ description = "manager's layout"
     <link rel="stylesheet" type="text/css" href="{{'assets/semantic/semantic.min.css'|theme}}">
     <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/dropdown.min.css'|theme}}">
     <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/modal.min.css'|theme}}">
+
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/reset.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/site.min.css'|theme}}">
+
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/container.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/grid.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/header.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/image.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/menu.min.css'|theme}}">
+
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/divider.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/segment.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/form.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/input.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/button.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/list.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/message.min.css'|theme}}">
+    <link rel="stylesheet" type="text/css" href="{{'assets/semantic/components/icon.min.css'|theme}}">
+
     {% styles %}
 </head>
 <body>
-    <div class="ui menu">
-        <a class="header item" href="/manager/cardpool">Cardpool</a>
-        <a class="header item"  href="/manager/markets">Биржи</a>
-    </div>
+        {% page %}
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="{{'assets/semantic/semantic.min.js'|theme}}"></script>
     <script src="{{'assets/semantic/components/dropdown.min.js'|theme}}"></script>
     <script src="{{'assets/semantic/components/modal.min.js'|theme}}"></script>
-    <div class="ui main container">
-        {% page %}
-    </div>
-    <div class="ui footer">
-    </div>
+
 
 
 

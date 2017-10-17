@@ -8,6 +8,9 @@ permissions:
     manager:
         tab: 'vsb.pne::lang.plugin.manager'
         label: 'vsb.pne::lang.plugin.manager'
+    vsb.pne.cardpool:
+        tab: 'vsb.pne::lang.plugin.manager.cardpool'
+        label: 'vsb.pne::lang.plugin.manager.cardpool'
 navigation:
     main-menu-item:
         label: 'vsb.pne::lang.plugin.name'

@@ -8,7 +8,7 @@
                 data-track-input
                 data-request="{{__SELF__}}::onRun"
                 data-request-update="'@_list': '#list'">
-                <option value="">Project</option>
+                <option value="false">Все проекты</option>
                 {% for project in projects %}
                     <option value="{{project.id}}">{{project.name}}</option>
                 {% endfor %}

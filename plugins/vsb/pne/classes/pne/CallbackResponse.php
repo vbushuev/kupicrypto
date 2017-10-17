@@ -1,4 +1,6 @@
 <?php namespace Vsb\Pne\Classes\Pne;
+
+use Log;
 use Vsb\Pne\Classes\PNE;
 use Vsb\Pne\Classes\Pne\Response as Response;
 use Vsb\Pne\Classes\Pne\Request as Request;
@@ -20,7 +22,17 @@ class CallbackResponse extends Response{
             ],
             "control" => ["endpoint","client_orderid","amount","email","merchant_control"],
             "data" => []
-        ],$callback=false){
+        ],$callback=false,$version=PNE::PROTOCOL_VERSION_2){
+        $arr = [];
+        switch($version){
+            case PNE::PROTOCOL_VERSION_2:
+                parse_str($d["data"],$arr);
+                break;
+            case PNE::PROTOCOL_VERSION_3:
+                $arr = json_decode($d["data"],true);
+                break;
+            }
+        Log::debug("Version:".$version, $arr);
         parent::__construct([
             "url" => $d["url"],
             "request" => false,
@@ -30,8 +42,8 @@ class CallbackResponse extends Response{
                 "type","card-type","phone","last-four-digits","card-holder-name","status"
             ],
             "control" => [],
-            "data" => $d["data"]
-        ]);
+            "data" => $arr
+        ],$version);
         $this->_callback =$callback;
     }
     public function accept(){

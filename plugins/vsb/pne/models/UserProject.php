@@ -1,7 +1,8 @@
 <?php namespace Vsb\Pne\Models;
 
 use Model;
-use Backend\Models\User;
+// use Backend\Models\User;
+use RainLab\User\Models\User;
 /**
  * Model
  */
