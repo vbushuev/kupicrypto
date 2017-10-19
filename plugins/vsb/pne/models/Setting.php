@@ -2,6 +2,7 @@
 
 use Model;
 use Cms\Classes\Page;
+use RainLab\User\Models\UserGroup;
 
 /**
  * Model
@@ -52,5 +53,12 @@ use Cms\Classes\Page;
     }
     public function getPageOptions(){
         return Page::sortBy('baseFileName')->lists('baseFileName', 'url');
+    }
+    public function getSupergroupOptions(){
+        $res = [];
+        foreach (UserGroup::all() as $group) {
+            $res[$group->code]=$group->name;
+        }
+        return $res;
     }
  }

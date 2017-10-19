@@ -18,6 +18,23 @@ columns:
     id:
         label: 'vsb.pne::lang.transaction.card_id'
         type: text
-    project_id:
+    user:
+        label: 'vsb.pne::lang.plugin.user'
+        type: text
+        searchable: true
+        sortable: true
+        select: email
+        relation: user
+    project:
         label: 'vsb.pne::lang.plugin.project'
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: project
+    user_id:
+        label: 'vsb.pne::lang.plugin.user_id'
+        type: text
+    project_id:
+        label: 'vsb.pne::lang.plugin.project_id'
         type: text

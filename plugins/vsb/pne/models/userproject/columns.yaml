@@ -1,9 +1,22 @@
 columns:
-    user_id:
-        label: 'User id'
-        type: number
-        sortable: true
-    project_id:
+    project:
         label: 'vsb.pne::lang.plugin.project'
-        type: number
+        type: text
+        searchable: true
         sortable: true
+        select: name
+        relation: project
+    user:
+        label: 'vsb.pne::lang.plugin.user'
+        type: text
+        searchable: true
+        sortable: true
+        select: email
+        relation: user
+    userName:
+        label: 'vsb.pne::lang.plugin.user'
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: user

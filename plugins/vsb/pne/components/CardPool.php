@@ -31,10 +31,8 @@ class CardPool extends ComponentBase{
         $this->controller = new CardPoolController();
     }
     protected function getProjects(){
-        $user = Auth::getUser();
-        $prs = Project::whereIn('id',UserProject::where('user_id','=',$user->id)->lists('project_id'))->get();
-        $this->page['projects'] = $prs;
-        return $prs;
+        $controller = new CardPoolController();
+        $this->page['projects'] = $controller->getProjectList();
     }
     public function onRun(){
 
@@ -45,6 +43,7 @@ class CardPool extends ComponentBase{
         // $this->controller->makeLists();
         // $this->page['list'] = $this->controller->listRender();
 
+        $this->page['superuser'] = $this->controller->checkSuperUser();
         $this->page['contoller'] = $this->controller;
         $this->page['cardpool'] = $this->controller->getList();
         $this->page['cardpool_count'] = count($this->page['cardpool']);

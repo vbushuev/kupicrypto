@@ -1,29 +1,31 @@
 
 
-<div class="ui two column centered stackable grid internally celled container">
+<div class="ui segment centered stackable container">
 {% if not user %}
-    <div class="column wide">
+    <div class="ui top attached tabular menu">
+        <a class="item active" data-tab="signin">Вход</a>
+        <a class="item" data-tab="signup">Регистрация</a>
+    </div>
+    <!-- <div class="ui bottom attached tab segment">
+    </div> -->
+    <div class=" ui bottom active wide attached  tab"  data-tab="signin">
         <h2 class="ui teal image header">
             <!-- <img src="assets/images/logo.png" class="image"> -->
-            <div class="content">
-                Вход в систему
-            </div>
+            <!-- <div class="content">Вход в систему</div> -->
         </h2>
         {% partial __SELF__ ~ '::signin' %}
 
     </div>
-    <div class="column">
+    <div class=" ui bottom attached tab " data-tab="signup">
         <h2 class="ui teal image header">
             <!-- <img src="assets/images/logo.png" class="image"> -->
-            <div class="content">
-                Новичек? <b>Зарегистрируйся</b>
-            </div>
+            <!-- <div class="content">Новичек? <b>Зарегистрируйся</b></div> -->
         </h2>
         {% partial __SELF__ ~ '::register' %}
 
     </div>
 {% else %}
-
+    {{user}}
     {% partial __SELF__ ~ '::activation_check' %}
 
     {% partial __SELF__ ~ '::update' %}

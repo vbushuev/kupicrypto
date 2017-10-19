@@ -23,3 +23,8 @@ fields:
         span: auto
         oc.commentPosition: ''
         type: dropdown
+    user_id:
+        label: 'vsb.pne::lang.plugin.user'
+        span: auto
+        oc.commentPosition: ''
+        type: dropdown

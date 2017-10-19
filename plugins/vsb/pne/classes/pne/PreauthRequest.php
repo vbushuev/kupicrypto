@@ -7,11 +7,11 @@
  *******************************************************************************/
 use Vsb\Pne\Classes\Pne\Request;
 class PreauthRequest extends Request{
-    public function __construct($d){
+    public function __construct($d,$v){
         $d["operation"] = "preauth-form";
         $d["fields"] = ["client_orderid","order_desc","card_printed_name","first_name","last_name","ssn","birthday","address1","city","state","zip_code","country","phone","cell_phone","email","amount","currency","credit_card_number","expire_month","expire_year","cvv2","ipaddress","site_url","purpose","control","redirect_url","server_callback_url"];
         $d["control"] = ["endpoint","client_orderid","amount","email","merchant_control"];
-        parent::__construct($d);
+        parent::__construct($d,$v);
     }
 }
 ?>

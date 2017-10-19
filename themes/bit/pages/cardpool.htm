@@ -2,7 +2,7 @@ title = "cardpool"
 url = "/manager/cardpool"
 layout = "manager"
 description = "Card pool component"
-is_hidden = 1
+is_hidden = 0
 
 [session]
 security = "user"
@@ -11,11 +11,17 @@ redirect = "manager"
 
 ==
 
-<div class="ui menu">
-    <a class="header item" href="/manager/cardpool">Cardpool</a>
+<div class="ui pointing secondary menu">
+    <a class="header teal item" href="/manager/cardpool">
+        Cardpool
+        {% partial 'cardPool::_count' %}
+    </a>
     <a class="header item"  href="/manager/markets">Биржи</a>
     {% if user %}
-    <a class="header item right" data-request="onLogout" data-request-data="redirect: '/manager/account'">Выход</a>
+    <a class="header item right" data-request="onLogout" data-request-data="redirect: '/manager/account'">
+        <i class="sign out icon"></i>
+        Выход
+    </a>
     {% endif %}
 </div>
 <div class="ui main container">

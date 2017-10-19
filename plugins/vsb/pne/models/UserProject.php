@@ -41,6 +41,9 @@ class UserProject extends Model
     public $belongsTo = [
         'project' => [
             'Vsb\Pne\Models\Project'
+        ],
+        'user' =>[
+            'RainLab\User\Models\User'
         ]
     ];
 }

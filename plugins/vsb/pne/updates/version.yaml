@@ -24,3 +24,6 @@
 1.0.9:
     - 'Created table vsb_pne_project_user'
     - builder_table_create_vsb_pne_project_user.php
+1.0.10:
+    - 'Updated table vsb_pne_cards'
+    - builder_table_update_vsb_pne_cards_4.php

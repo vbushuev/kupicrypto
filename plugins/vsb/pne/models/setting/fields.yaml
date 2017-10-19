@@ -35,6 +35,9 @@ tabs:
             tab: 'vsb.pne::lang.settings.cardregister_tab'
             form:
                 fields:
+                    supergroup:
+                        label: 'vsb.pne::lang.settings.supergroup'
+                        type: dropdown
                     current_endpoint:
                         label: 'vsb.pne::lang.settings.endpoint.current'
                         type: dropdown

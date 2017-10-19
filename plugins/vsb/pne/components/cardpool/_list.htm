@@ -7,6 +7,9 @@
         <th>Card reference</th>
         <th>Daily limit</th>
         <th>Monthly limit</th>
+        {% if superuser %}
+        <th>User</th>
+        {% endif %}
         <th>&nbsp;</th>
     </thead>
     <tbody data-name="cardpool-list">
@@ -27,6 +30,9 @@
                 <td>{{card.card_ref}}</td>
                 <td>{{card.daily_limit}}</td>
                 <td>{{card.monthly_limit}}</td>
+                {% if superuser %}
+                    <td>{{card.user.email}}</td>
+                {% endif %}
                 <td>
                     <div class="ui buttons">
                         <button class="ui vertical animated button remove" data-id="{{card.id}}" tabindex="0"

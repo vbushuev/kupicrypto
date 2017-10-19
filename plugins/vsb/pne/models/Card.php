@@ -2,6 +2,7 @@
 
 use Model;
 use Vsb\Pne\Models\Project;
+use RainLab\User\Models\User;
 /**
  * Model
  */
@@ -24,7 +25,7 @@ class Card extends Model
      */
     public $table = 'vsb_pne_cards';
     protected $fillable = [
-        'card_ref','pan','expire','cvv2','daily_limit','monthly_limit','enabled','project_id'
+        'card_ref','pan','expire','cvv2','daily_limit','monthly_limit','enabled','project_id','user_id'
     ];
     public function limits($amt){
         $this->daily_limit -= floatval($amt);
@@ -43,9 +44,19 @@ class Card extends Model
         }
         return $ret;
     }
+    public function getUserIdOptions(){
+        $projects = User::all();$ret=[];
+        foreach($projects as $project){
+            $ret[$project->id]=$project->email;
+        }
+        return $ret;
+    }
     public $belongsTo = [
         'project' => [
             'Vsb\Pne\Models\Project'
-        ]
+        ],
+        'user' => [
+            'RainLab\User\Models\User'
+        ],
     ];
 }

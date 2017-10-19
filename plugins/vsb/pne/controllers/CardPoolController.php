@@ -7,12 +7,15 @@ use Backend\Classes\Controller;
 use BackendMenu;
 use BackendAuth;
 use Auth;
+use RainLab\User\Models\UserGroup;
 use Vsb\Pne\Models\Card;
 use Vsb\Pne\Models\UserProject;
+use Vsb\Pne\Models\Project;
 use Vsb\Pne\Models\Transaction;
 use Vsb\Pne\Models\Setting;
 use Vsb\Pne\Classes\Pne\Exception as PneException;
 use Vsb\Pne\Classes\Pne\Connector;
+use Vsb\Pne\Classes\Pne\PreauthRequest;
 use Vsb\Pne\Classes\Pne\SaleRequest;
 use Vsb\Pne\Classes\Pne\CreateCardRefRequest;
 use Vsb\Pne\Classes\Pne\ReturnRequest;
@@ -48,19 +51,21 @@ class CardPoolController extends Controller
         return $card->first();
     }
     public function registerCard(){
+        $user = Auth::getUser();
         $host=$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'];
         $project_id = post('project_id',0);
         $crd = Card::create([
             'card_ref'=>'',
             'pan' => '',
             "project_id" =>$project_id,
-            'enabled' => '0'
+            'enabled' => '0',
+            'user_id' => $user->id
         ]);
         $trx = Transaction::create([
             'endpoint'=> Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.endpoint'),
             'amount'=>Setting::get('cardregister.0.amount',1),
             'currency'=>Setting::get('cardregister.0.currency','RUB'),
-            'type'=>'sale',
+            'type'=>'preauth',
             'code'=>'404',
             'card_id' => $crd->id
         ]);
@@ -98,7 +103,8 @@ class CardPoolController extends Controller
             "merchant_login" => Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.login')
         ],$data);
         Log::debug($data);
-        $request = new SaleRequest($data,Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.version'));
+        // $request = new SaleRequest($data,Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.version'));
+        $request = new PreauthRequest($data,Setting::get('endpoint.'.Setting::get('cardregister.0.current_endpoint').'.version'));
         $connector = new Connector();
         $connector->setRequest($request);
         $connector->call();
@@ -206,13 +212,27 @@ class CardPoolController extends Controller
         $retval = $this->registerCard();
         return (!isset($retval["error-code"]))?Redirect::away($retval["redirect-url"]):$retval;
     }
+    public function getProjectList(){
+        $user = Auth::getUser();
+        $prs = ($this->checkSuperUser($user))
+            ?Project::all()
+            :Project::whereIn('id',UserProject::where('user_id','=',$user->id)->lists('project_id'))->get();
+        return $prs;
+    }
     public function getList(){
         $user = Auth::getUser();
-        $projects = UserProject::where('user_id','=',$user->id)->lists('project_id');
-        $res = Card::with(['project'])->whereIn('project_id',$projects);
+        $res=null;
+        if($this->checkSuperUser($user)){
+            $res = Card::with(['project','user']);
+        }
+        else {
+            $projects = UserProject::where('user_id','=',$user->id)->lists('project_id');
+            $res = Card::with(['project'])->whereIn('project_id',$projects)->orWhere('user_id',$user->id);
+        }
         $project_id =post("project_id","false");
         if($project_id!=="false")$res=$res->where("project_id","=",post("project_id"));
-        return $res->get();
+        Log::debug("cards:".$res->toSql());
+        return $res->orderBy('id','desc')->get();
     }
     public function removeCard(){
         $cs = post("card_id");
@@ -222,9 +242,21 @@ class CardPoolController extends Controller
         $cs = post("card_id");
         $card = Card::find($cs);
         $d = Input::all();
-        if(isset($d['enabled'])) $d['enabled']= ( $d['enabled']=="On" )? "1":"0";
+        if(isset($d['enabled'])) $d['enabled']= ( $d['enabled']=="On" || $d['enabled']=="1")? "1":"0";
         if(count($d)&&!is_null($card))$card->update($d);
         return $card;
     }
-
+    public function checkSuperUser($user=false){
+        if($user===false)$user = Auth::getUser();
+        $ug = UserGroup::with(['users'])
+            // ->where('code','superusers')
+            ->where('code',Setting::get('cardregister.0.supergroup'))
+            ->first();
+        if(!is_null($ug)){
+            foreach($ug->users as $u){
+                if($user->id == $u->id)return true;
+            }
+        }
+        return false;
+    }
 }
