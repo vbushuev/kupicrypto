@@ -32,23 +32,18 @@ class CardPool extends ComponentBase{
     }
     protected function getProjects(){
         $controller = new CardPoolController();
+        $this->page['superuser'] = $controller->checkSuperUser();
         $this->page['projects'] = $controller->getProjectList();
+        $this->page['contoller'] = $controller;
+        $this->page['cardpool'] = $controller->getList();
+        $this->page['cardpool_count'] = count($this->page['cardpool']);
     }
     public function onRun(){
 
         $this->addJs('/plugins/vsb/pne/assets/js/pne.js');
         $this->addCss('/plugins/vsb/pne/assets/css/pne.css');
         $this->page['title'] = Lang::get('vsb.pne::lang.cardpool.title');
-        $this->controller = new CardPoolController();
-        // $this->controller->makeLists();
-        // $this->page['list'] = $this->controller->listRender();
-
-        $this->page['superuser'] = $this->controller->checkSuperUser();
-        $this->page['contoller'] = $this->controller;
-        $this->page['cardpool'] = $this->controller->getList();
-        $this->page['cardpool_count'] = count($this->page['cardpool']);
         $this->getProjects();
-
 
     }
     public function componentDetails()
@@ -63,12 +58,12 @@ class CardPool extends ComponentBase{
     // {
     //     return [];
     // }
-
-    public function getCards(){
-        return Card::orderBy('created_at','desc')->get();
-    }
+    // 
+    // public function getCards(){
+    //     return Card::orderBy('created_at','desc')->get();
+    // }
     public function onDelete(){
-        $this->controller = new CardPoolController();
+        $this->getProjects();
     }
     public function onAddCard(){
         $this->controller = new CardPoolController();
@@ -83,15 +78,13 @@ class CardPool extends ComponentBase{
     public function onUpdateCard(){
         $this->controller = new CardPoolController();
         $r = $this->controller->updateCard();
-        $this->page['cardpool'] = $this->controller->getList();
-        $this->page['cardpool_count'] = count($this->controller->getList());
+        $this->getProjects();
         // return;
     }
     public function onDeleteCard(){
-        $this->controller = new CardPoolController();
-        $retval = $this->controller->removeCard();
-        $this->page['cardpool'] = $this->controller->getList();
-        $this->page['cardpool_count'] = count($this->controller->getList());
+        $controller = new CardPoolController();
+        $retval = $controller->removeCard();
+        $this->getProjects();
         return;
     }
     // public function onAddItem()

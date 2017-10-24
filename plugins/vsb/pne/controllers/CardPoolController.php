@@ -221,13 +221,12 @@ class CardPoolController extends Controller
     }
     public function getList(){
         $user = Auth::getUser();
-        $res=null;
-        if($this->checkSuperUser($user)){
-            $res = Card::with(['project','user']);
-        }
-        else {
+        $res=Card::with(['project','user'])->whereNull('deleted_at');
+        if(!$this->checkSuperUser($user)){
             $projects = UserProject::where('user_id','=',$user->id)->lists('project_id');
-            $res = Card::with(['project'])->whereIn('project_id',$projects)->orWhere('user_id',$user->id);
+            $res = $res->whereIn('project_id',$projects)->orWhere(function($query)use($user){
+                $query->where('user_id',$user->id)->whereNull('deleted_at');
+            });
         }
         $project_id =post("project_id","false");
         if($project_id!=="false")$res=$res->where("project_id","=",post("project_id"));
@@ -236,7 +235,8 @@ class CardPoolController extends Controller
     }
     public function removeCard(){
         $cs = post("card_id");
-        Card::find($cs)->delete();
+        $card = Card::find($cs);
+        if(!is_null($card))$card->delete();
     }
     public function updateCard(){
         $cs = post("card_id");

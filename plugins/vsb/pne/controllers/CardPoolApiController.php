@@ -24,7 +24,7 @@ class CardPoolApiController extends Controller{
     public function __construct(){
 
     }
-    protected function checkUser($data){
+    protected function checkUser($data,$checkProjects=true){
         // check user
         $user = isset($data->token)?$data->token:false;
         if($user == false) throw new Exception("Authenticate error. Wrong token in request",403);
@@ -33,7 +33,7 @@ class CardPoolApiController extends Controller{
         $project = isset($data->project)?$data->project:false;
         if($project===false){
             $project = UserProject::where("user_id","=",$user->id);
-            if(count($project->get()->toArray())>1)throw new Exception("Should specify project",403);
+            if(count($project->get()->toArray())>1)if($checkProjects)throw new Exception("Should specify project",403);
             else $project = $project->first();
         }
         else $project = UserProject::where("user_id","=",$user->id)->where('project_id','=',$project)->first();
@@ -47,7 +47,7 @@ class CardPoolApiController extends Controller{
             $rawData = file_get_contents('php://input');
             $data = json_decode($rawData);
 
-            
+
             $res = [
                 "error"=>"0",
                 "message"=>"Ok",
@@ -73,7 +73,7 @@ class CardPoolApiController extends Controller{
         try{
             $rawData = file_get_contents('php://input');
             $data = json_decode($rawData);
-            list($user,$project) = $this->checkUser($data);
+            list($user,$project) = $this->checkUser($data,false);
             $projects=UserProject::where('user_id','=',$user->id)->lists('project_id');
             $projects = Project::whereIn('id',$projects)->get();
             $res = [
