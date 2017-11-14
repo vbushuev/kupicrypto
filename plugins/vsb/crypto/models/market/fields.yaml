@@ -9,3 +9,7 @@ fields:
         span: auto
         oc.commentPosition: ''
         type: text
+    enabled:
+        label: 'vsb.crypto::lang.plugin.enabled'
+        span: auto
+        type: switch

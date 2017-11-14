@@ -1,0 +1,4 @@
+title: RateController
+modelClass: vsb\Crypto\Models\Rate
+toolbar:
+    buttons: reorder_toolbar

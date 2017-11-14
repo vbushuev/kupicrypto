@@ -18,4 +18,7 @@ return array(
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     'f0906e6318348a765ffb6eb24e0d0938' => $vendorDir . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
     '58571171fd5812e6e447dce228f52f4d' => $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
+    '18571171fd5812e6e447dce228f52f4d' => $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
+    '28571171fd5812e6e447dce228f52f4d' => $vendorDir . '/guzzlehttp/psr7/src/functions_include.php',
+    '38571171fd5812e6e447dce228f52f4d' => $vendorDir . '/guzzlehttp/promises/src/functions_include.php',
 );

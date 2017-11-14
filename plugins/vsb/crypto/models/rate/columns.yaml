@@ -1,0 +1,24 @@
+columns:
+    market:
+        label: 'vsb.crypto::lang.plugin.market'
+        type: text
+        searchable: true
+        sortable: true
+        select: name
+        relation: market
+    from:
+        label: 'vsb.crypto::lang.plugin.currency.from'
+        type: text
+        searchable: true
+        sortable: true
+    to:
+        label: 'vsb.crypto::lang.plugin.currency.to'
+        type: text
+        searchable: true
+        sortable: true
+    price:
+        label: 'vsb.crypto::lang.plugin.currency.rate'
+        type: number
+    updated_at:
+        label: 'vsb.crypto::lang.plugin.updated'
+        type: datetime

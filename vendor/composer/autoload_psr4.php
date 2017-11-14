@@ -45,4 +45,13 @@ return array(
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Backend\\' => array($baseDir . '/modules/backend'),
+    "Coinbase\\Wallet\\" => array($vendorDir. "/coinbase/coinbase/src/"),
+    "GuzzleHttp\\"=> array($vendorDir. "/guzzlehttp/guzzle/src/"),
+    "GuzzleHttp\\Psr7\\"=> array($vendorDir. "/guzzlehttp/psr7/src/"),
+    "GuzzleHttp\\Promise\\"=> array($vendorDir. "/guzzlehttp/promises/src/"),
+    "Psr\\Http\\Message\\"=> array($vendorDir. "/psr/psr/http-message/src/"),
+    "Psr\\Log\\"=> array($vendorDir. "/psr/psr/log/Psr/Log/"),
+    "Psr\\Container\\"=> array($vendorDir. "/psr/psr/container/src/"),
+    "Psr\\SimpleCache\\"=> array($vendorDir. "/psr/psr/simple-cache/src/"),
+
 );

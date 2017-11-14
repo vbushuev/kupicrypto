@@ -12,3 +12,7 @@ columns:
         label: 'vsb.crypto::lang.market.url'
         type: text
         searchable: true
+    enabled:
+        label: 'vsb.crypto::lang.plugin.enabled'
+        type: switch
+        sortable: true

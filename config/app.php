@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => 'https://kupicrypto.bs2/',
+    'url' => 'http://kupikriptu.bs2/',
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => '1g79DcGZs9mMjGz1iwgHpkhr0pC8y765',
+    'key' => 'oI1isXLJnZ95y9b9hi0rQBgJtCye7olq',
 
     'cipher' => 'AES-256-CBC',
 

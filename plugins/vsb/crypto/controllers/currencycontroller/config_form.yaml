@@ -1,0 +1,10 @@
+name: CurrencyController
+form: $/vsb/crypto/models/currency/fields.yaml
+modelClass: vsb\Crypto\Models\Currency
+defaultRedirect: vsb/crypto/currencycontroller
+create:
+    redirect: 'vsb/crypto/currencycontroller/update/:id'
+    redirectClose: vsb/crypto/currencycontroller
+update:
+    redirect: vsb/crypto/currencycontroller
+    redirectClose: vsb/crypto/currencycontroller

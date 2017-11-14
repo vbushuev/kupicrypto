@@ -1,14 +1,39 @@
 <h3 class="ui header">{{ title }}</h3>
 <div class="ui segments">
-    <div class="ui segment row">
-        <a href="https://cex.io">cex.io</a>
+    <div class="ui segment row header">
+        <!-- <a href="https://cex.io">cex.io</a> -->
+        Rates
         <button class="ui button primary" data-request="{{ __SELF__ }}::onRefresh"
             data-attach-loading>
             <i class="refresh icon"></i>
             Refresh
         </button>
     </div>
-    <div class="ui segment row" id="list">
+    <div class="ui segment row" id="rate_list">
         {% partial '@_list' %}
     </div>
 </div>
+
+<div class="ui segments">
+    <div class="ui segment row header">
+        Wallets
+    </div>
+    <div class="ui segment row"  id="account_list">
+        {% partial '@_wallets' %}
+    </div>
+</div>
+<!-- <div class="ui segments">
+    <form id="crypto_transfer_form" class="formTb" action="#"
+        data-request="{{ __SELF__ }}::onFund"
+        data-request-success="console.debug(data)">
+        <input type="hidden" name="amount" value="0.001" />
+        <input type="hidden" name="wallet_number" value="C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi" />
+        <input type="hidden" name="wallet_number" value="1PkmWrgwCAheX47W8AJWVbrgHF2U9mJMpw" />
+        <input type="hidden" name="wallet" value="BTC" />
+        <button type="submit" class="ui button default" data-attach-loading>
+            <i class="bitcoin icon"></i>
+            Send.Test
+        </button>
+    </form>
+</div> -->
+<div id="modals"></div>

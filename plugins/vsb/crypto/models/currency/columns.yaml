@@ -1,0 +1,11 @@
+columns:
+    name:
+        label: 'vsb.crypto::lang.plugin.currency.name'
+        type: text
+        searchable: true
+        sortable: true
+    code:
+        label: 'vsb.crypto::lang.plugin.currency.code'
+        type: text
+        searchable: true
+        sortable: true

@@ -1,0 +1,528 @@
+.====================================================================.
+                                                                      
+ .d8888b.   .o8888b.   db  .d8888b.  d8888b. d88888b d8888b.  .d888b. 
+.8P    Y8. d8P    Y8   88 .8P    Y8. 88  `8D 88'     88  `8D .8P , Y8.
+88      88 8P      oooo88 88      88 88oooY' 88oooo  88oobY' 88  |  88
+88      88 8b      ~~~~88 88      88 88~~~b. 88~~~~  88`8b   88  |/ 88
+`8b    d8' Y8b    d8   88 `8b    d8' 88   8D 88.     88 `88. `8b | d8'
+ `Y8888P'   `Y8888P'   YP  `Y8888P'  Y8888P' Y88888P 88   YD  `Y888P' 
+                                                                      
+`========================== INSTALLATION LOG ========================'
+
+[2017/11/10 11:19:16] Host: Darwin MacBook-Pro.local 16.7.0 Darwin Kernel Version 16.7.0: Thu Jun 15 17:36:27 PDT 2017; root:xnu-3789.70.16~2/RELEASE_X86_64 x86_64
+[2017/11/10 11:19:16] PHP version: 7.0.6
+[2017/11/10 11:19:16] Server software: Apache/2.4.20 (Unix) PHP/7.0.6 mod_wsgi/3.5 Python/3.5.1 OpenSSL/1.0.1p
+[2017/11/10 11:19:16] Operating system: Darwin
+[2017/11/10 11:19:16] Memory limit: 128M
+[2017/11/10 11:19:16] Max execution time: 3600
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:17] Postback payload: Array
+(
+    [code] => phpVersion
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:17] System check: phpVersion
+[2017/11/10 11:19:17] Requirement phpVersion +OK
+[2017/11/10 11:19:17] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:17] Postback payload: Array
+(
+    [code] => curlLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:17] System check: curlLibrary
+[2017/11/10 11:19:17] Requirement curlLibrary +OK
+[2017/11/10 11:19:17] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:18] Postback payload: Array
+(
+    [code] => liveConnection
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:18] System check: liveConnection
+[2017/11/10 11:19:19] Server request: ping
+[2017/11/10 11:19:19] Request information: Array
+(
+    [url] => http://octobercms.com/api/ping
+    [content_type] => application/json
+    [http_code] => 200
+    [header_size] => 773
+    [request_size] => 171
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 1.039862
+    [namelookup_time] => 0.438726
+    [connect_time] => 0.525235
+    [pretransfer_time] => 0.525416
+    [size_upload] => 40
+    [size_download] => 14
+    [speed_download] => 13
+    [speed_upload] => 38
+    [download_content_length] => 14
+    [upload_content_length] => 40
+    [starttransfer_time] => 1.03974
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.24.113.12
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 80
+    [local_ip] => 172.20.10.3
+    [local_port] => 57217
+)
+
+[2017/11/10 11:19:19] Requirement liveConnection +OK
+[2017/11/10 11:19:19] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:20] Postback payload: Array
+(
+    [code] => writePermission
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:20] System check: writePermission
+[2017/11/10 11:19:20] Requirement writePermission +OK
+[2017/11/10 11:19:20] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:21] Postback payload: Array
+(
+    [code] => pdoLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:21] System check: pdoLibrary
+[2017/11/10 11:19:21] Requirement pdoLibrary +OK
+[2017/11/10 11:19:21] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:22] Postback payload: Array
+(
+    [code] => mbstringLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:22] System check: mbstringLibrary
+[2017/11/10 11:19:22] Requirement mbstringLibrary +OK
+[2017/11/10 11:19:22] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:23] Postback payload: Array
+(
+    [code] => fileinfoLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:23] System check: fileinfoLibrary
+[2017/11/10 11:19:23] Requirement fileinfoLibrary +OK
+[2017/11/10 11:19:23] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:24] Postback payload: Array
+(
+    [code] => sslLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:24] System check: sslLibrary
+[2017/11/10 11:19:24] Requirement sslLibrary +OK
+[2017/11/10 11:19:24] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:25] Postback payload: Array
+(
+    [code] => zipLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:25] System check: zipLibrary
+[2017/11/10 11:19:25] Requirement zipLibrary +OK
+[2017/11/10 11:19:25] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:19:25] Postback payload: Array
+(
+    [code] => gdLibrary
+    [handler] => onCheckRequirement
+)
+
+[2017/11/10 11:19:25] System check: gdLibrary
+[2017/11/10 11:19:25] Requirement gdLibrary +OK
+[2017/11/10 11:19:25] Execute handler (onCheckRequirement): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:20:20] Postback payload: Array
+(
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupicrypto
+    [db_user] => kupicrypto
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onValidateDatabase
+)
+
+[2017/11/10 11:20:20] Handler error (onValidateDatabase): Database "kupicrypto" is not empty. Please empty the database or specify another database.
+[2017/11/10 11:20:20] Trace log:
+#0 /Applications/AMPPS/www/kupicrypto/install_files/php/Installer.php(48): Installer->onValidateDatabase()
+#1 /Applications/AMPPS/www/kupicrypto/install_files/php/boot.php(74): Installer->__construct()
+#2 /Applications/AMPPS/www/kupicrypto/install.php(1): include('/Applications/A...')
+#3 {main}
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:11] Postback payload: Array
+(
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupikriptu
+    [db_user] => kupikriptu
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onValidateDatabase
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:11] Postback payload: Array
+(
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupikriptu
+    [db_user] => kupikriptu
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onValidateAdminAccount
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:11] Postback payload: Array
+(
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupikriptu
+    [db_user] => kupikriptu
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onValidateAdvancedConfig
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:15] Postback payload: Array
+(
+    [step] => getMetaData
+    [meta] => 
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:15] Install step: getMetaData
+[2017/11/10 11:21:17] Server request: core/install
+[2017/11/10 11:21:17] Request information: Array
+(
+    [url] => http://octobercms.com/api/core/install
+    [content_type] => application/json
+    [http_code] => 200
+    [header_size] => 776
+    [request_size] => 179
+    [filetime] => -1
+    [ssl_verify_result] => 0
+    [redirect_count] => 0
+    [total_time] => 1.673056
+    [namelookup_time] => 0.001216
+    [connect_time] => 1.040926
+    [pretransfer_time] => 1.041172
+    [size_upload] => 40
+    [size_download] => 134
+    [speed_download] => 80
+    [speed_upload] => 23
+    [download_content_length] => 134
+    [upload_content_length] => 40
+    [starttransfer_time] => 1.672868
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.24.113.12
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 80
+    [local_ip] => 172.20.10.3
+    [local_port] => 57716
+)
+
+[2017/11/10 11:21:17] Step getMetaData +OK
+[2017/11/10 11:21:17] Execute handler (onInstallStep): Array
+(
+    [result] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+            [plugins] => Array
+                (
+                )
+
+            [themes] => Array
+                (
+                )
+
+        )
+
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:17] Postback payload: Array
+(
+    [step] => downloadCore
+    [meta] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+        )
+
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:17] Install step: downloadCore
+[2017/11/10 11:21:22] Saving to file (core): /Applications/AMPPS/www/kupicrypto/install_files/temp/a74ad8dfacd4f985eb3977517615ce25.arc
+[2017/11/10 11:21:22] Step downloadCore +OK
+[2017/11/10 11:21:22] Execute handler (onInstallStep): Array
+(
+    [result] => 
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:23] Postback payload: Array
+(
+    [step] => extractCore
+    [meta] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+        )
+
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:23] Install step: extractCore
+[2017/11/10 11:21:23] Extracting file (core): a74ad8dfacd4f985eb3977517615ce25.arc
+[2017/11/10 11:21:29] Step extractCore +OK
+[2017/11/10 11:21:29] Execute handler (onInstallStep): Array
+(
+    [result] => 1
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:30] Postback payload: Array
+(
+    [step] => setupConfig
+    [meta] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+        )
+
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupikriptu
+    [db_user] => kupikriptu
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:30] Install step: setupConfig
+[2017/11/10 11:21:30] Step setupConfig +OK
+[2017/11/10 11:21:30] Execute handler (onInstallStep): Array
+(
+    [result] => 
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:31] Postback payload: Array
+(
+    [step] => createAdmin
+    [meta] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+        )
+
+    [db_type] => mysql
+    [db_host] => localhost
+    [db_port] => 
+    [db_name] => kupikriptu
+    [db_user] => kupikriptu
+    [db_pass] => *******
+    [admin_first_name] => Admin
+    [admin_last_name] => Person
+    [admin_email] => *******@*****.com
+    [admin_login] => admin
+    [admin_password] => *******
+    [admin_confirm_password] => *******
+    [backend_uri] => /backend
+    [encryption_code] => *******
+    [file_mask] => 777
+    [folder_mask] => 777
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:31] Install step: createAdmin
+[2017/11/10 11:21:55] Step createAdmin +OK
+[2017/11/10 11:21:55] Execute handler (onInstallStep): Array
+(
+    [result] => 
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:56] Postback payload: Array
+(
+    [disableLog] => 1
+)
+
+[2017/11/10 11:21:56] Install step: setupProject
+[2017/11/10 11:21:56] Step setupProject +OK
+[2017/11/10 11:21:56] Execute handler (onInstallStep): Array
+(
+    [result] => 
+)
+
+.============================ POST REQUEST ==========================.
+[2017/11/10 11:21:57] Postback payload: Array
+(
+    [step] => finishInstall
+    [meta] => Array
+        (
+            [core] => Array
+                (
+                    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+                    [build] => 419
+                    [uhash] => 386846ebe3802c4f192625743abb3f06
+                )
+
+        )
+
+    [hash] => 1fc4f2016fbeaac8d8ab1e772812e978
+    [build] => 419
+    [uhash] => 386846ebe3802c4f192625743abb3f06
+    [handler] => onInstallStep
+)
+
+[2017/11/10 11:21:57] Install step: finishInstall
+[2017/11/10 11:21:57] Cleaning up file: a74ad8dfacd4f985eb3977517615ce25.arc
+[2017/11/10 11:21:57] Step finishInstall +OK
+[2017/11/10 11:21:57] Execute handler (onInstallStep): Array
+(
+    [result] => 
+)
+

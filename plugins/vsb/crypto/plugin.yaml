@@ -12,8 +12,16 @@ navigation:
         sideMenu:
             side-menu-item:
                 label: markets
-                url: vsb/crypto/marketcontroller
+                url: vsb/crypto/marketcontoller
                 icon: icon-sitemap
+            side-menu-item2:
+                label: 'vsb.crypto::lang.plugin.currency.rate'
+                url: vsb/crypto/ratecontroller
+                icon: icon-exchange
+            side-menu-item3:
+                label: 'vsb.crypto::lang.plugin.currencies'
+                url: vsb/crypto/currencycontroller
+                icon: icon-bitcoin
 permissions:
     crypto_markets:
         tab: 'vsb.crypto::lang.plugin.crypto_markets'

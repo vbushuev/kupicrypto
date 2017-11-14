@@ -9,3 +9,9 @@
 1.0.4:
     - 'Created table vsb_crypto_currency'
     - builder_table_create_vsb_crypto_currency.php
+1.0.5:
+    - 'Updated table vsb_crypto_markets'
+    - builder_table_update_vsb_crypto_markets.php
+1.0.6:
+    - 'Updated table vsb_crypto_rates'
+    - builder_table_update_vsb_crypto_rates.php

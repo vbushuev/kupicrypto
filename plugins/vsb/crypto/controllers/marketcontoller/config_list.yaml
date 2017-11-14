@@ -1,6 +1,7 @@
-list: $/vsb/crypto/models/market/columns.yaml
-modelClass: vsb\Crypto\Models\Market
 title: MarketContoller
+modelClass: vsb\Crypto\Models\Market
+list: $/vsb/crypto/models/market/columns.yaml
+recordUrl: 'vsb/crypto/marketcontoller/update/:id'
 noRecordsMessage: 'backend::lang.list.no_records'
 showSetup: true
 showCheckboxes: true
@@ -8,4 +9,3 @@ toolbar:
     buttons: list_toolbar
     search:
         prompt: 'backend::lang.list.search_prompt'
-recordUrl: 'vsb/crypto/marketcontoller/update/:id'

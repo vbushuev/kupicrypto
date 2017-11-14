@@ -1,0 +1,4 @@
+title: CurrencyController
+modelClass: vsb\Crypto\Models\Currency
+toolbar:
+    buttons: reorder_toolbar
