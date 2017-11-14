@@ -1,22 +1,38 @@
 <table class="ui selectable table">
     <thead>
         <tr>
+            <th rowspan="2">Market</th>
             <th rowspan="2">Currency</th>
             <th rowspan="2">Value</th>
+            <th rowspan="2">Date</th>
             <th colspan="2">Spread</th>
+            <th rowspan="2">is Default</th>
         </tr>
         <tr>
-            <th>Sell</th>
-            <th>Buy</th>
+            <th>Sell - {{spread.sell*100}}%</th>
+            <th>Buy -  {{spread.buy*100}}%</th>
         </tr>
     </thead>
     <tbody data-name="cardpool-list">
-        {% for item in currencies %}
+        {% for item in rates %}
             <tr>
-                <td>{{item.to}}</td>
-                <td>RUB {{item.value}}</td>
-                <td>{{item.spread.sell}}</td>
-                <td>{{item.spread.buy}}</td>
+                <td>{{item.market.name}}</td>
+                <td>{{item.from}}</td>
+                <td style="text-align:right">{{item.price|currency('RUB')}}</td>
+                <td>{{item.updated_at}}</td>
+                <td style="text-align:right">{{(item.price - spread.sell*item.price) |currency('RUB')}} </td>
+                <td style="text-align:right">{{(item.price + spread.buy*item.price) |currency('RUB')}} </td>
+                <td>
+                    <div class="ui slider checkbox">
+                        <input type="checkbox" {% if item.isdefault %} checked="checked" {% endif %} id="check_enabled_{{item.id}}"
+                            data-request="{{ __SELF__ }}::onSetDefault"
+                            data-request-update="'@_list': '#rate_list'"
+                            data-request-success="document.location.reload();"
+                            data-request-data="item_id:{{item.id}}, default:$('#check_enabled_{{item.id}}').is(':checked')?1:0"
+                        >
+                        <label>&nbsp;</label>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
     </tbody>

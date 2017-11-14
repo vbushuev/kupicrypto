@@ -1,0 +1,33 @@
+<div class="ui modal" id="account_request_{{account.id}}">
+    <i class="close icon"></i>
+    <div class="header">
+        {{'Account request'|_}}
+        <b style="margin-left:10em;font-size:120%;">{{account.name}}</b>
+    </div>
+    <div class="ui content center" style="text-align:center;">
+            <div id="qr_{{account.id}}"></div>
+
+
+            <input type="text" readonly="true"  style="margin-top:20px;line-height:40px; height:40px;font-size:28px;width:600px;border:none;" id="address_input" value="{{request.address}}" />
+            <button class="ui button primary" onclick="copy(this)">
+                <i class="copy icon"></i>
+            </button>
+        </div>
+    </div>
+
+
+</div>
+<script>
+    function copy(t){
+        var copyText = document.getElementById("address_input");
+        copyText.select();
+        var exec = document.execCommand("copy");
+        console.debug(exec);
+        $(t).html(exec?'Copied':'failed');
+    }
+    $(document).ready(function(){
+        console.debug("account request js loaded");
+        $('#account_request_{{account.id}}').modal('show');
+        $('#qr_{{account.id}}').qrcode($('#address').text());
+    })
+</script>

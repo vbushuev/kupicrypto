@@ -4,6 +4,29 @@ layout = "manager"
 description = "Crypto"
 is_hidden = 1
 
+[session]
+security = "user"
+redirect = "manager"
+[cardPool]
 [vsbCrypto]
 ==
-{% component 'vsbCrypto' %}
+
+<div class="ui pointing secondary menu">
+    <a class="header teal item" href="/manager/cardpool">
+        Cardpool
+        {% partial 'cardPool::_count' %}
+    </a>
+    <a class="header item active"  href="/manager/markets">Крипта</a>
+    {% if user %}
+    <a class="header item right" data-request="onLogout" data-request-data="redirect: '/manager/account'">
+        <i class="sign out icon"></i>
+        Выход
+    </a>
+    {% endif %}
+</div>
+<div class="ui main container">
+    {% component 'vsbCrypto' %}
+
+</div>
+<div class="ui footer">
+</div>

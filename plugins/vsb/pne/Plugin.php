@@ -63,13 +63,15 @@ class Plugin extends PluginBase{
             // ]
         ];
     }
-    public function makeTextCurrency($text){
+    public function makeTextCurrency($number,$text){
+        $cur = $text;
         switch($text){
-            case "RUB": return "Руб.";
-            case "USD": return "$";
-            case "EUR": return "Eur";
+            case "RUB": $cur= "&#8381;";break;
+            case "USD": $cur= "$";break;
+            case "EUR": $cur= "&euro;";break;
         }
-        return strtoupper($text);
+        return number_format ( floatval($number) , 2, "." , " ") . $cur;
+        // return strtoupper($text);
     }
     public function boot(){
         Event::listen('backend.user.login', function($user) {

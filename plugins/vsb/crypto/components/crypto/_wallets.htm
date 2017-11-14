@@ -1,0 +1,38 @@
+<table class="ui selectable table">
+    <thead>
+        <tr>
+            <th rowspan="1">Name</th>
+            <th rowspan="1">Currency</th>
+            <th rowspan="1">Balance</th>
+            <th rowspan="1">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody data-name="cardpool-list">
+        {% for item in accounts %}
+            <tr>
+                <td>{{item.name}}</td>
+                <td>{{item.currency}}</td>
+                <td>{{item.balance}}</td>
+                <td>
+                    <div class="ui buttons">
+                        <button class="ui vertical animated button remove" data-id="{{item.id}}" tabindex="0"
+                            data-request="{{ __SELF__ }}::onMakeRequest"
+
+                            data-request-data="account_id:'{{item.id}}',amount:0.0001"
+                            data-request-update="'@_request': '#modals'"
+                            data-attach-loading>
+                            <div class="hidden content">{{'Request'|_}}</div>
+                            <div class="visible content">
+                                <i class="qrcode icon"></i>
+                            </div>
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
