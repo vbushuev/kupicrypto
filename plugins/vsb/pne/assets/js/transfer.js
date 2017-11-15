@@ -80,7 +80,7 @@ var transfer ={
                 $('[name=currency]').val(currency);
             }
             if(coins!=undefined && wallet!=undefined){
-                $(".coins").html('<span>'+parseFloat(coins).toLocaleString()+'</span> '+wallet.toUpperCase());
+                $(".coins").html('<span>'+parseFloat(coins)+'</span> '+wallet.toUpperCase());
                 $('[name=coins]').val(coins);
                 $('[name=wallet]').val(wallet);
             }

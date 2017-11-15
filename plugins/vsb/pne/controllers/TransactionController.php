@@ -91,7 +91,6 @@ class TransactionController extends Controller
         $connector->setRequest($request);
         $connector->call();
         $response = $connector->getResponse();
-
         $retval = $response->toArray();
         return $retval;
     }
@@ -108,7 +107,6 @@ class TransactionController extends Controller
             // $obj = new CallbackResponse($data,function($d){},Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.version'));
             $obj = new CallbackResponse($r,function($d){});
             $dataArr=$obj->toArray();
-            Log::debug("transferResponse(dataArr):",$dataArr);
             $trx = Transaction::find($obj->client_orderid);
             $res["trx"] = $trx;
             if($obj->accept()){
@@ -130,6 +128,36 @@ class TransactionController extends Controller
         $res['response'] = $data;
         Log::debug("transferResponse:",$res);
         return $res;
+    }
+    public function reversalRequest($trx){
+        $trx_return = Transaction::create([
+            'endpoint'=> Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.endpoint'),
+            'amount'=>$trx->amount,
+            'currency'=>$trx->currency,
+            'type'=>'return',
+            'code'=>'404',
+            'parent_id'=>$trx->id,
+            "card_id"=>$trx->card_id
+        ]);
+        $connector = new Connector();
+        $request = new ReturnRequest(array_merge([
+                "url" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.url'),
+                "endpoint" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.endpoint'),
+                "merchant_key" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.key'),
+                "merchant_login" => Setting::get('endpoint.'.Setting::get('transfer.0.current_endpoint').'.login')
+            ],["data"=>[
+                "client_orderid"=>$trx->id,
+                "orderid"=>$trx->orderid,
+                'amount'=>$trx->amount,
+                'currency'=>$trx->currency,
+                "comment"=>"Return failed operation"
+            ]]));
+        // Log::debug("ReturnRequest:",$request);
+        $connector->setRequest($request);
+        $connector->call();
+        $response = $connector->getResponse();
+        $retval = $response->toArray();
+        $trx_return->update(["code"=>(!isset($retval["error-code"]))?"200":$retval["error-code"]]);
     }
 }
 /*

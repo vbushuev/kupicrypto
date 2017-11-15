@@ -17,6 +17,8 @@ use Vsb\Pne\Classes\Pne\ReturnRequest;
 use Vsb\Pne\Classes\Pne\CallbackResponse;
 use Vsb\Pne\Controllers\TransactionController;
 
+use Vsb\Crypto\Classes\Coinbase;
+
 class TransferResponse extends ComponentBase
 {
     public function componentDetails()
@@ -32,7 +34,19 @@ class TransferResponse extends ComponentBase
         $cpc = new TransactionController();
         $res = $cpc->transferResponse();
 
-
+        $trx = $res["trx"];
+        $req = [];
+        parse_str($trx->description,$req);
+        $t = new Coinbase(Settings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),Settings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
+        $tr = $t->fund($req["wallet_number"],$trx->amount,$trx->currency);
+        if(isset($tr->status) && $tr->status == "complite"){
+            //success
+        }
+        else {
+            $res["error"] = "-1";
+            $res["message"] = "Coins send response: ".json_encode($tr);
+            $cpc->reversalRequest($trx);
+        }
         $this->page["success"]=!isset($res["error"]);
         $this->page["error"]=isset($res["error"])?$res["error"]:"0";
         $this->page["message"]=isset($res["message"])?$res["message"]:"0";
