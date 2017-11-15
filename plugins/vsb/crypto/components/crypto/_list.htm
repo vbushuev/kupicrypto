@@ -9,8 +9,15 @@
             <th rowspan="2">is Default</th>
         </tr>
         <tr>
-            <th>Sell - {{spread.sell*100}}%</th>
-            <th>Buy -  {{spread.buy*100}}%</th>
+            <th>Sell - <a href="jsvascript:0;" class="ui sell"
+                    data-request="{{ __SELF__ }}::onSpreadEdit"
+                    data-request-update="'@_spread': '#modals'"
+                    data-attach-loading>
+                    {{spread.sell*100}}%</a></th>
+            <th>Buy - <a href="jsvascript:0;" class="ui sell"
+                data-request="{{ __SELF__ }}::onSpreadEdit"
+                data-request-update="'@_spread': '#modals'"
+                data-attach-loading>{{spread.buy*100}}%</a></th>
         </tr>
     </thead>
     <tbody data-name="cardpool-list">

@@ -1,0 +1,46 @@
+<table class="ui selectable table">
+    <thead>
+        <tr>
+            <th>
+                Date
+            </th>
+        </tr>
+    </thead>
+    <tbody data-name="cardpool-list">
+        {% for item in transactions %}
+            <tr>
+                <td>{{item.created}}</td>
+                <!-- <td>{{item.id}}</td> -->
+                <td>{{item.amount}} {{item.currency}}</td>
+                <!-- <td>{{item.fee}}</td> -->
+                <td>{{item.type}}</td>
+                <!-- <td>{{item.updated}}</td> -->
+                <td>{{item.status}}</td>
+                <!-- <td>{{item.from.getAddress()}}</td> -->
+                <!-- <td>{{item.to.getAddress()}}</td> -->
+                <!-- <td>{{item.buy}}</td> -->
+                <!-- <td>{{item.sell}}</td> -->
+                <!-- <td>{{item.description}}</td> -->
+                <!-- <td>{{item.network.getHash()}}</td> -->
+                <!-- <td>{{item.address}}</td> -->
+                <!-- <td>{{item.application}}</td> -->
+                <!-- <td>
+                    <div class="ui buttons">
+                        <button class="ui button address" data-id="{{item.id}}" tabindex="0"
+                            data-request="{{ __SELF__ }}::onMakeRequest"
+
+                            data-request-data="account_id:'{{item.id}}',amount:0.0001"
+                            data-request-update="'@_request': '#modals'"
+                            data-attach-loading>
+                            <i class="qrcode icon"></i>{{'Get address'|_}}
+                        </button>
+
+                    </div>
+                </td> -->
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>

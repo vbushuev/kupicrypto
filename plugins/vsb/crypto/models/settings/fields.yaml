@@ -6,12 +6,14 @@ tabs:
             tab: 'vsb.crypto::lang.settings.markets_tab'
             form:
                 fields:
-                    name:
-                        label: 'vsb.crypto::lang.settings.market.name'
+                    wallet_api:
+                        label: 'vsb.crypto::lang.settings.market.wallet_api'
                         type: text
-                    url:
-                        label: 'vsb.crypto::lang.settings.market.url'
+                        default: gmWkAaXVi1ImmBDu
+                    wallet_secret:
+                        label: 'vsb.crypto::lang.settings.market.wallet_secret'
                         type: text
+                        default: 2boLOndVO6ccmjleAozDaIZrYZXOu8V3
                     sell:
                         label: 'vsb.crypto::lang.settings.market.sell_spread'
                         type: number

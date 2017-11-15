@@ -15,16 +15,13 @@
                 <td>{{item.balance}}</td>
                 <td>
                     <div class="ui buttons">
-                        <button class="ui vertical animated button remove" data-id="{{item.id}}" tabindex="0"
+                        <button class="ui button address" data-id="{{item.id}}" tabindex="0"
                             data-request="{{ __SELF__ }}::onMakeRequest"
 
                             data-request-data="account_id:'{{item.id}}',amount:0.0001"
                             data-request-update="'@_request': '#modals'"
                             data-attach-loading>
-                            <div class="hidden content">{{'Request'|_}}</div>
-                            <div class="visible content">
-                                <i class="qrcode icon"></i>
-                            </div>
+                            <i class="qrcode icon"></i>{{'Get address'|_}}
                         </button>
 
                     </div>

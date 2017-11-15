@@ -26,6 +26,8 @@
             'url' => 'API url',
             'sell_spread' => 'Sell spread',
             'buy_spread' => 'Buy spread',
+            'wallet_secret' => 'Wallet secret',
+            'wallet_api' => 'Wallet API key',
         ],
     ],
 ];

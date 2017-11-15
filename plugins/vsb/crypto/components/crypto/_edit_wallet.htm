@@ -1,0 +1,45 @@
+<div class="ui modal" id="edit_wallet">
+    <i class="close icon"></i>
+    <div class="header">
+        {{'Common spreads'|_}}
+    </div>
+    <div class="ui content">
+        <form id="update_wallet_form" class="ui fliud form"
+            data-request="{{ __SELF__ }}::onWalletEdit"
+            data-request-update="'@_wallets': '#account_list'"
+            data-request-success="$('#edit_wallet').modal('hide');">
+            <div class="field">
+                <div class="ui left action input">
+                    <button class="ui teal labeled icon button">
+                        <i class="icon lock"></i>
+                        {{'API key'|_}}
+                    </button>
+                    <input type="text" name="api" value="{{wallet.api}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left action input">
+                    <button class="ui teal labeled icon button">
+                        <i class="icon lock"></i>
+                        {{'Secret'|_}}
+                    </button>
+                    <input type="text" name="secret" value="{{wallet.secret}}">
+                </div>
+            </div>
+
+            {% flash %}
+                {{message}}
+            {% endflash %}
+        </form>
+    </div>
+    <div class="ui actions">
+        <button type="submit" class="ui button" onclick="$('#update_wallet_form').submit();">OK</button>
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function(){
+        $('#edit_wallet').modal('show');
+    })
+</script>

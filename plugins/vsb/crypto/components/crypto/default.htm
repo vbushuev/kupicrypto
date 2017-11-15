@@ -3,11 +3,11 @@
     <div class="ui segment row header">
         <!-- <a href="https://cex.io">cex.io</a> -->
         Rates
-        <button class="ui button primary" data-request="{{ __SELF__ }}::onRefresh"
+        <!-- <button class="ui button primary" data-request="{{ __SELF__ }}::onRefresh"
             data-attach-loading>
             <i class="refresh icon"></i>
             Refresh
-        </button>
+        </button> -->
     </div>
     <div class="ui segment row" id="rate_list">
         {% partial '@_list' %}
@@ -17,9 +17,21 @@
 <div class="ui segments">
     <div class="ui segment row header">
         Wallets
+        <a href="jsvascript:0;" class="ui wallet"
+            data-request="{{ __SELF__ }}::onWallet"
+            data-request-update="'@_edit_wallet': '#modals'"
+            data-attach-loading>{{'Edit'|_}}</a>
     </div>
     <div class="ui segment row"  id="account_list">
         {% partial '@_wallets' %}
+    </div>
+</div>
+<div class="ui segment">
+    <div class="ui segment row header">
+        Wallet transactions
+    </div>
+    <div class="ui segment row"  id="transaction_list">
+        {% partial '@_transactions' %}
     </div>
 </div>
 <!-- <div class="ui segments">

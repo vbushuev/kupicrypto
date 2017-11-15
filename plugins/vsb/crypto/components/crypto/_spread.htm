@@ -1,0 +1,46 @@
+<div class="ui modal" id="spread_edit">
+    <i class="close icon"></i>
+    <div class="header">
+        {{'Common spreads'|_}}
+    </div>
+    <div class="ui content">
+        <form id="updateform" class="ui fliud form"
+            data-request="{{ __SELF__ }}::onSpreadSave"
+            data-request-update="'@_list': '#list'"
+            data-request-success="$('#spread_edit').modal('hide');">
+            <div class="field">
+                <div class="ui left action input">
+                    <button class="ui teal labeled icon button">
+                        <i class="icon arrow down"></i>
+                        {{'Sell'|_}}
+                    </button>
+                    <input type="text" name="sell" value="{{spread.sell}}">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left action input">
+                    <button class="ui teal labeled icon button">
+                        <i class="icon arrow up"></i>
+                        {{'Buy'|_}}
+                    </button>
+                    <input type="text" name="buy" value="{{spread.buy}}">
+                </div>
+            </div>
+
+            {% flash %}
+                {{message}}
+            {% endflash %}
+        </form>
+    </div>
+    <div class="ui actions">
+        <button type="submit" class="ui button" onclick="$('#updateform').submit();">OK</button>
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function(){
+
+        $('#spread_edit').modal('show');
+    })
+</script>

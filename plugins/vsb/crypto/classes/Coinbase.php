@@ -36,6 +36,32 @@ class Coinbase{
             // 'amount'=>$account->getAmount()
         ];
     }
+    public function transactions(){
+        $account = $this->_client->getPrimaryAccount();
+        $transactions = $this->_client->getAccountTransactions($account);
+        $ret = [];
+        foreach($transactions as $trx){
+            $ret[]=[
+                'id' => $trx->getId(),
+                'type' => $trx->isSend()?'send':($trx->isRequest()?'request':'transfer'),
+                'created' => $trx->getCreatedAt()->format('Y-m-d H:i:s'),
+                'updated' => $trx->getUpdatedAt()->format('Y-m-d H:i:s'),
+                'status' => $trx->getStatus(),
+                'currency' => $trx->getAmount()->getCurrency(),
+                'amount' => $trx->getAmount()->getAmount(),
+                'from' => $trx->getFrom(),
+                'to' => $trx->getTo(),
+                'buy' => $trx->getBuy(),
+                'sell' => $trx->getSell(),
+                'fee' => $trx->getFee(),
+                'description' => $trx->getDescription(),
+                'network' => $trx->getNetwork(),
+                'address' => $trx->getAddress(),
+                'application' => $trx->getApplication()
+            ];
+        }
+        return $ret;
+    }
     public function checkBalance($amt){
         $account = $this->_client->getPrimaryAccount();
 
