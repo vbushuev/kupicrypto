@@ -1,0 +1,31 @@
+<div class="flexBox" id="current_course">
+    <div class="course-h desNone">
+        <!--                <p>Курс:</p>-->
+        <div class="course-wrap">
+            <div class="flexBox">
+                <div class="course-item">
+                    <div class="bit-icon"></div>
+                    1 BTC <span class="bold">=</span> <span class="courseBit heavy">{{currency.btc|currency('RUB')}}Р</span></div>
+                <div class="course-item">
+                    <div class="eth-icon"></div>
+                    1 ETH <span class="bold">=</span> <span class="courseEth heavy">{{currency.eth|currency('RUB')}} Р</span></div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="logo-h"></a>
+    <div class="course-h mobileNone">
+        <p>Курс:</p>
+        <div class="course-wrap">
+            <div class="course-item">
+                <div class="bit-icon"></div>
+                1 BTC <span class="bold">=</span> <span class="courseBit heavy">{{currency.btc|currency('RUB')}}</span></div>
+            <div class="course-item">
+                <div class="eth-icon"></div>
+                1 ETH <span class="bold">=</span> <span class="courseEth heavy">{{currency.eth|currency('RUB')}}</span></div>
+        </div>
+    </div>
+    <div class="contact-h">
+        <p>Техподдержка:</p>
+        <p class="phone">{{settings.phone}}</p>
+    </div>
+</div>

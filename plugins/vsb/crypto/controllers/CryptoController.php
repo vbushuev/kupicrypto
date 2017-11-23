@@ -46,4 +46,9 @@ class CryptoController extends Controller
         $amount = floatval(post("amount"));
         $bc->send($address,$amount);
     }
+    public function CoinbaseNotification(){
+        $data = post();
+        Log::debug('CoinbaseNotification',$data);
+        return Response::json(['ok']);
+    }
 }

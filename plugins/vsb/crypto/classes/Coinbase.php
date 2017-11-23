@@ -9,8 +9,6 @@ use \Coinbase\Wallet\Resource\Address;
 use \Coinbase\Wallet\Value\Money;
 use \Coinbase\Wallet\Enum\CurrencyCode;
 /*
-API Key: gmWkAaXVi1ImmBDu
-API Secret: 2boLOndVO6ccmjleAozDaIZrYZXOu8V3
 */
 class Coinbase{
     protected $_client;
@@ -62,9 +60,21 @@ class Coinbase{
         }
         return $ret;
     }
-    public function checkBalance($amt){
-        $account = $this->_client->getPrimaryAccount();
-
+    public function getBalance($wallet){
+        $accs = $this->accounts();
+        foreach ($accs as $key => $value) {
+            if($value["currency"] == $wallet) return $value["balance"];
+        }
+        return 0;
+    }
+    public function checkBalance($amt,$wallet){
+        $accs = $this->accounts();
+        $acc = null;
+        foreach ($accs as $key => $value) {
+            if($value["currency"] == $wallet) $acc = $value;
+        }
+        if(is_null($acc) )return false;
+        return ($acc["balance"]>$amt);
     }
     public function request($id,$amount){
         $account = $this->_client->getAccount($id);

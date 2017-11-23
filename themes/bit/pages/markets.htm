@@ -2,13 +2,13 @@ title = "markets"
 url = "/manager/markets"
 layout = "manager"
 description = "Crypto"
-is_hidden = 1
 
 [session]
 security = "user"
 redirect = "manager"
 [cardPool]
 [vsbCrypto]
+[transactions]
 ==
 
 <div class="ui pointing secondary menu">
@@ -17,6 +17,10 @@ redirect = "manager"
         {% partial 'cardPool::_count' %}
     </a>
     <a class="header item active"  href="/manager/markets">Крипта</a>
+    <a class="header teal item" href="/manager/transactions">
+        Transaction
+        {% partial 'transactions::_count' %}
+    </a>
     {% if user %}
     <a class="header item right" data-request="onLogout" data-request-data="redirect: '/manager/account'">
         <i class="sign out icon"></i>

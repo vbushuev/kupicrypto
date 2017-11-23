@@ -19,6 +19,7 @@ class Plugin extends PluginBase{
             '\Vsb\Pne\Components\CardPoolRegisterResponse' => 'cardPoolRegisterResponse',
             '\Vsb\Pne\Components\Transfer' => 'transferRequest',
             '\Vsb\Pne\Components\TransferResponse' => 'transferResponse',
+            '\Vsb\Pne\Components\Transactions' => 'transactions',
         ];
     }
 
@@ -37,10 +38,10 @@ class Plugin extends PluginBase{
     }
     public function registerSchedule($schedule){
         $schedule->call(function () {
-            $cards = Card::update(['daily_limit'=>Setting::get('cardregister.0.maxDaily')]);
+            $cards = Card::whereNull('deleted_at')->update(['daily_limit'=>Setting::get('cardregister.0.maxDaily')]);
         })->dailyAt('03:00'); // every day at 3:00
         $schedule->call(function () {
-            $cards = Card::update(['monthly_limit'=>Setting::get('cardregister.0.maxMonthly')]);
+            $cards = Card::whereNull('deleted_at')->update(['monthly_limit'=>Setting::get('cardregister.0.maxMonthly')]);
         })->cron('0 3 1 * *'); //first day of month at 3:00
     }
     public function registerMarkupTags(){

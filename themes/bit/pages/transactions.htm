@@ -1,7 +1,7 @@
 title = "cardpool"
-url = "/manager/cardpool"
+url = "/manager/transactions"
 layout = "manager"
-description = "Card pool component"
+description = "Transactions component"
 is_hidden = 0
 
 [session]
@@ -13,12 +13,12 @@ redirect = "manager"
 ==
 
 <div class="ui pointing secondary menu">
-    <a class="header teal item active" href="/manager/cardpool">
+    <a class="header teal item" href="/manager/cardpool">
         Cardpool
         {% partial 'cardPool::_count' %}
     </a>
     <a class="header item"  href="/manager/markets">Биржи</a>
-    <a class="header teal item" href="/manager/transactions">
+    <a class="header teal item active" href="/manager/transactions">
         Transaction
         {% partial 'transactions::_count' %}
     </a>
@@ -30,8 +30,7 @@ redirect = "manager"
     {% endif %}
 </div>
 <div class="ui main container">
-    {% component 'cardPool' %}
-
+    {% component 'transactions' %}
 </div>
 <div class="ui footer">
 </div>

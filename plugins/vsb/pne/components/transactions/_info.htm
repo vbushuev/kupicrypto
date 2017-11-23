@@ -1,0 +1,85 @@
+<div class="ui modal" id="transaction_info_{{transaction.id}}">
+    <i class="close icon"></i>
+    <div class="header">
+        {{'Edit card'|_}}
+        <b style="margin-left:10em;font-size:120%;">{{transaction.pan}}</b>
+    </div>
+    <div class="ui image content">
+        <div class="image">
+            <!-- <img src="mastertransaction.png" alt="MasterCard"/> -->
+            {% if transaction.pan|mastercard %}
+            <i class="mastercard icon"></i>
+            {% elseif transaction.pan|visa %}
+            <i class="visa icon"></i>
+            {% endif %}
+        </div>
+        <div class="ui description">
+            <form id="updateform" class="ui fliud form"
+                data-request="{{ __SELF__ }}::onUpdateCard"
+                data-request-update="'@_list': '#list'"
+                data-request-success="$('#card_update_{{transaction.id}}').modal('hide');">
+                <div class="field">
+                    <div class="ui left action input">
+                        <button class="ui teal labeled icon button">
+                            <i class="icon pin"></i>
+                            {{'Transaction ID'|_}}
+                        </button>
+                        <input type="text" readonly name="card_id" value="{{transaction.id}}">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left action input">
+                        <button class="ui teal labeled icon button">
+                            <i class="icon pin"></i>
+                            {{'Card Ref'|_}}
+                        </button>
+                        <input type="text" readonly value="{{transaction.card_ref}}">
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="field">
+                    <div class="ui slider checkbox">
+                        <input type="checkbox" name="enabled" {% if transaction.enabled %} checked="checked" {% endif %} id="check_enabled_{{transaction.id}}"
+                            data-request="{{ __SELF__ }}::onUpdateCard"
+                            data-request-data="card_id:{{transaction.id}}, enabled:$('#check_enabled_{{transaction.id}}').is(':checked')?1:0"
+                        >
+                        <label>{{'Enabled'|_}}</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left action input">
+                        <button class="ui teal labeled icon button">
+                            <i class="icon pin"></i>
+                            {{'Project'|_}}
+                        </button>
+                        <select class="ui dropdown" name="project_id" id="project_id_{{transaction.id}}"
+                                data-request="{{ __SELF__ }}::onUpdateCard"
+                                data-request-data="card_id:{{transaction.id}}, project_id:$('#project_id_{{transaction.id}}').val()">
+                            <option value="">Project</option>
+                            {% for project in projects %}
+                                <option value="{{project.id}}" {% if(transaction.project_id == project.id) %} selected="selected" {% endif %}>{{project.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="field">
+                    <!-- <button type="submit" onclick="$('#card_update_{{transaction.id}}').modal('hide');" class="ui button close">OK</button> -->
+                    <!-- <button type="submit" class="ui button">OK</button> -->
+                </div>
+                {% flash %}
+                    {{message}}
+                {% endflash %}
+            </form>
+        </div>
+    </div>
+    <div class="ui actions">
+        <button type="submit" class="ui button" onclick="$('#updateform').submit();">OK</button>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function(){
+        console.debug("cardpool response js loaded");
+        $('#card_update_{{transaction.id}}').modal('show');
+    })
+</script>

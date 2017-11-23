@@ -7,14 +7,13 @@
         </tr>
     </thead>
     <tbody data-name="cardpool-list">
-        {% for item in transactions %}
+        {% for item in wallet_trxs %}
             <tr>
                 <td>{{item.created}}</td>
                 <!-- <td>{{item.id}}</td> -->
                 <td>{{item.amount}} {{item.currency}}</td>
                 <!-- <td>{{item.fee}}</td> -->
                 <td>{{item.type}}</td>
-                <!-- <td>{{item.updated}}</td> -->
                 <td>{{item.status}}</td>
                 <!-- <td>{{item.from.getAddress()}}</td> -->
                 <!-- <td>{{item.to.getAddress()}}</td> -->

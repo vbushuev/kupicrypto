@@ -1,5 +1,6 @@
 [Site]
 [Calls]
+[vsbCrypto]
 ==
 <html class="no-js" lang="en">
 
@@ -16,47 +17,17 @@
 </head>
 <body>
 <div class="btn-group">
-    <button class="btnG btn1">вернуть</button>
+    <!-- <button class="btnG btn1">вернуть</button>
     <button class="btnG btn2">занять 2</button>
     <button class="btnG btn3">занять</button>
     <button class="btnG btn4">продать 2</button>
     <button class="btnG btn5">продать</button>
-    <button class="btnG btn6">купить</button>
+    <button class="btnG btn6">купить</button> -->
 </div>
 
 <header>
     <div class="header-wrap">
-        <div class="flexBox">
-            <div class="course-h desNone">
-                <!--                <p>Курс:</p>-->
-                <div class="course-wrap">
-                    <div class="flexBox">
-                        <div class="course-item">
-                            <div class="bit-icon"></div>
-                            1 BTC <span class="bold">=</span> <span class="courseBit heavy">154 934 Р</span></div>
-                        <div class="course-item">
-                            <div class="eth-icon"></div>
-                            1 ETH <span class="bold">=</span> <span class="courseEth heavy">12 562 Р</span></div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="logo-h"></a>
-            <div class="course-h mobileNone">
-                <p>Курс:</p>
-                <div class="course-wrap">
-                    <div class="course-item">
-                        <div class="bit-icon"></div>
-                        1 BTC <span class="bold">=</span> <span class="courseBit heavy">154 934 Р</span></div>
-                    <div class="course-item">
-                        <div class="eth-icon"></div>
-                        1 ETH <span class="bold">=</span> <span class="courseEth heavy">12 562 Р</span></div>
-                </div>
-            </div>
-            <div class="contact-h">
-                <p>Техподдержка:</p>
-                <p class="phone">{{settings.phone}}</p>
-            </div>
-        </div>
+        {% partial 'vsbCrypto::current_currency'%}
     </div>
 </header>
 

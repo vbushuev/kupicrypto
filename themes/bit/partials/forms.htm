@@ -1,4 +1,5 @@
 [transferRequest]
+[vsbCrypto]
 ==
 <div class="tabBox">
     <input checked="checked" id="check1" type="radio" name="tabCheck">
@@ -248,14 +249,7 @@
 
         </div>
 
-        <div class="rightTb" >
-            <div class="noticeTb" id="cryptoRates">
-                <p class="grey italic">Вы покупаете<br></p>
-                <p class="noticeTb__text BTC-rated"><span>0.0005</span> BTC</p>
-                <p class="noticeTb__text ETH-rated"><span>0.0025</span> ETH</p>
-            </div>
-            <p class="grey italic">Резерв обменного ресурса</p>
-        </div>
+        {% partial 'vsbCrypto::current_reserve'%}
 
         <!--<div class="checkboxTb mobileNone">-->
             <!--<input id="make " type="checkbox" name="make">-->

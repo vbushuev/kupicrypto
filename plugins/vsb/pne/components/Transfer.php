@@ -10,9 +10,12 @@ use ValidationException;
 use Cms\Classes\ComponentBase;
 use ApplicationException;
 
+use Vsb\Crypto\Classes\Coinbase;
 use Vsb\Pne\Controllers\CardPoolController;
 use Vsb\Pne\Controllers\TransactionController;
 use Vsb\Pne\Models\Setting;
+use Vsb\Crypto\Models\Settings as CryptoSettings;
+use Vsb\Crypto\Models\Rate;
 
 
 use Backend\Widgets\Lists;
@@ -36,16 +39,20 @@ class Transfer extends ComponentBase{
         ];
     }
     public function onTransfer(){
+        $t = new Coinbase(CryptoSettings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),CryptoSettings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
+
         $rules = [
             'amount' => 'required|numeric|max:'.Setting::get('cardregister.0.maxDaily'),
             'make' => 'required|accepted',
             'wallet_number' => 'required',
+            'coins' => 'max:'.$t->getBalance(post("wallet"))
         ];
         $validation = Validator::make(post(), $rules, [
             'amount.required'=>'Поле Сумма обязательное.',
             'amount.max'=>'Сумма не может быть больше 75 000руб.',
             'make.required'=>'Для совершения операции необходимо принять соглашение',
-            'wallet_number.required'=>'Введите номер кошелька, куда переводить криптовалюту'
+            'wallet_number.required'=>'Введите номер кошелька, куда переводить криптовалюту',
+            'coins.max'=>'На данный момент данная сумма не доступна'
         ]);
         $validation->sometimes(['maxAmount'],'max',function($input){
             switch($input->currency){
@@ -53,7 +60,9 @@ class Transfer extends ComponentBase{
                 case "EUR": return $input->amount<=1500;
                 case "USD": return $input->amount<=2000;
             }
+
         });
+
         if ($validation->fails()) {
             // print_r($validation);
             return Redirect::back()->withErrors($validation)->withInput();

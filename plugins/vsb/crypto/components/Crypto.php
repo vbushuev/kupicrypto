@@ -20,12 +20,20 @@ class Crypto extends ComponentBase{
         $this->onRefresh();
         $this->page['markets'] = Market::get();
         $this->page['rates'] = Rate::with(['market'])->get();
-        $t = new Coinbase(Settings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),Settings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
-        $this->page['accounts'] = $t->accounts();
-        $this->page['transactions'] = $t->transactions();
+        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+        $accounts = $t->accounts();
+        $this->page['accounts'] = $accounts;
+        $this->page['currency'] = [
+            'btc'=>Rate::where('from','BTC')->where('isdefault','1')->first()->price,
+            'eth'=>Rate::where('from','ETH')->where('isdefault','1')->first()->price
+        ];
+        $bals=[];
+        foreach($accounts as $acc ) $bals[strtolower($acc['currency'])]=$acc["balance"];
+        $this->page['balance'] = $bals;
+        $this->page['wallet_trxs'] = $t->transactions();
     }
     public function onMakeRequest(){
-        $t = new Coinbase(Settings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),Settings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
+        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
         $this->page["account"] = $t->account(post('account_id'));
         // $this->page["request"] = '';
         $this->page["request"] = $t->request(post('account_id'),post('amount'));
@@ -76,7 +84,7 @@ class Crypto extends ComponentBase{
         $currency = post('wallet');
         $amount = post('amount');
         $accountTo=null;
-        $t = new Coinbase(Settings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),Settings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
+        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
         $res = $t->fund($address,$amount,$currency);
         print_r($res);
         // foreach($t->accounts() as $account){
@@ -96,15 +104,18 @@ class Crypto extends ComponentBase{
         $cryptocur = strtolower(post("wallet"));
         $spread = Settings::get('markets.0.'.$type);
         $amount = floatval(post("amount"));
+
+        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+
+
         $rate = Rate::where('from',$cryptocur)->where('to',post('currency'))->where('isdefault','1')->first();
-        // $controller = new CryptoController();
-        // $crypto = $controller->crypto(post('currency'));
         $val = isset($rate->price)?$rate->price:0;
 
         $this->page["value"] = ($val==0)?0: (1-$spread)*(floor(($amount/$val)*10000)/10000) ;
         return [
             "request"=>post(),
-            "currencies" =>$rate
+            "currencies" =>$rate,
+            "cansale" => $t->checkBalance($this->page["value"],strtoupper(post("wallet")))
         ];
     }
     public function onSpreadEdit(){
@@ -119,8 +130,8 @@ class Crypto extends ComponentBase{
     }
     public function onWallet(){
         $this->page['wallet'] = [
-            "api"=>Settings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),
-            "secret"=>Settings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3')
+            "api"=>Settings::get('markets.0.wallet_api'),
+            "secret"=>Settings::get('markets.0.wallet_secret')
         ];
     }
     public function onWalletEdit(){

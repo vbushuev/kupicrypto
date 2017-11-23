@@ -18,7 +18,9 @@ class Transaction extends Model
      */
     public $rules = [
     ];
-
+    protected $casts = [
+        'raw' => 'array',
+    ];
     /**
      * @var string The database table used by the model.
      */
@@ -26,4 +28,14 @@ class Transaction extends Model
     protected $fillable = [
         'endpoint','amount','currency','type','code','card_id','parent_id','description'
     ];
+    public $belongsTo = [
+        'card' => [
+            'Vsb\Pne\Models\Card'
+        ]
+    ];
+    public function getRawAttribute(){
+        $res = [];
+        parse_str($this->description,$res);
+        return $res;
+    }
 }

@@ -38,6 +38,9 @@
                 <div class="input-wrap"  id="cryptoRate">
                     <p class="bold">Получаете</p>
                     <input class="center" type="text" name="coins" required placeholder="..." readonly value="{{ form_value('coins') }}">
+                    <div class="alert alert-danger" data-validate-error>
+                        {{errors.first('coins')}}
+                    </div>
                 </div>
                 <div class="select-wrap">
                     <select class="selectTb dark" name="wallet" id="wallet_currency" required

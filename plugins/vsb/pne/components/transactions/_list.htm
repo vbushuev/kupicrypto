@@ -1,0 +1,58 @@
+<table class="ui selectable table">
+    <thead>
+        <th><div class="ui checkbox"><input type="checkbox" class="checkall" data-rel="transaction-list"/><label>&nbsp;</label></div></th>
+        <!-- 'endpoint','amount','currency','type','code','card_id','parent_id','description' -->
+        <th>#</th>
+        <th>Endpoint</th>
+        <th>Time/Amount</th>
+        <th>Type</th>
+        <th>Code</th>
+        <th>Card reference</th>
+        <th>Parent</th>
+        <th>Description</th>
+        <th>&nbsp;</th>
+    </thead>
+    <tbody data-name="cardpool-list">
+        {% for trx in transactions %}
+            <tr>
+                <td><div class="ui checkbox"><input type="checkbox" class="checkable" data-name="id" data-value="{{trx.id}}"/><label>&nbsp;</label></div></td>
+                <td>{{trx.id}}</td>
+                <td>{{trx.endpoint}}</td>
+                <td>{{trx.amount|currency(trx.currency)}}<br />
+                    {{trx.created_at}}
+                </td>
+                <td>{{trx.type}}</td>
+                <td>{{trx.code}}</td>
+                <td>{{trx.card_id}}</td>
+                <td>{{trx.parent_id}}</td>
+                <td>{{trx.raw['type']}} <br />
+                    {{trx.raw['coins']}} {{trx.raw['wallet']}} <br />
+                    {{trx.raw['wallet_number']}}
+                </td>
+                <!-- <td>
+                    <button class="ui vertical animated button remove" data-id="{{trx.id}}" tabindex="0"
+                            data-request="{{ __SELF__ }}::onTransactionInfo"
+                            data-request-data="transaction_id:{{trx.id}}"
+                            data-request-update="'@_info': '#modals'"
+                            data-attach-loading>
+                        <div class="hidden content">{{'View'|_}}</div>
+                        <div class="visible content">
+                            <i class="eye icon"></i>
+                        </div>
+                    </button>
+                </td> -->
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <th colspan=8 class="ui center aligned">
+            {{transactions.render|raw}}
+            <div class="ui icon direction buttons">
+                <div class="ui button" data-animation="flip" data-direction="left" title="Flip Left"><i class="left long arrow icon"></i></div>
+                <div class="ui button" data-animation="flip" data-direction="up" title="Flip Up">1</div>
+                <div class="ui button" data-animation="flip" data-direction="right" title="Flip Right"><i class="right long arrow icon"></i></div>
+            </div>
+        </th>
+        <th> <?= echo e(trans('vsb.pne::lang.message.total')) ?>  Total: {{ transaction_count }}</th>
+    </tfoot>
+</table>

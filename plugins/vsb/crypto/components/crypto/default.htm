@@ -2,12 +2,12 @@
 <div class="ui segments">
     <div class="ui segment row header">
         <!-- <a href="https://cex.io">cex.io</a> -->
-        Rates
-        <!-- <button class="ui button primary" data-request="{{ __SELF__ }}::onRefresh"
+        Rates&nbsp;&nbsp;
+        <button class="ui pull right button primary" data-request="{{ __SELF__ }}::onRun"
             data-attach-loading>
             <i class="refresh icon"></i>
             Refresh
-        </button> -->
+        </button>
     </div>
     <div class="ui segment row" id="rate_list">
         {% partial '@_list' %}
@@ -38,13 +38,12 @@
     <form id="crypto_transfer_form" class="formTb" action="#"
         data-request="{{ __SELF__ }}::onFund"
         data-request-success="console.debug(data)">
-        <input type="hidden" name="amount" value="0.001" />
-        <input type="hidden" name="wallet_number" value="C4MYFr4EAdqEeUKxTnPUF3d3whWcPMz1Fi" />
+        <input type="hidden" name="amount" value="0.0001" />
         <input type="hidden" name="wallet_number" value="1PkmWrgwCAheX47W8AJWVbrgHF2U9mJMpw" />
         <input type="hidden" name="wallet" value="BTC" />
         <button type="submit" class="ui button default" data-attach-loading>
             <i class="bitcoin icon"></i>
-            Send.Test
+            Send.Test 0.0001BTC
         </button>
     </form>
 </div> -->
