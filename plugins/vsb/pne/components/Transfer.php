@@ -39,13 +39,18 @@ class Transfer extends ComponentBase{
         ];
     }
     public function onTransfer(){
-        $t = new Coinbase(CryptoSettings::get('markets.0.wallet_api','gmWkAaXVi1ImmBDu'),CryptoSettings::get('markets.0.wallet_secret','2boLOndVO6ccmjleAozDaIZrYZXOu8V3'));
+        $wbal = 0;
+        try{
+            $t = new Coinbase(CryptoSettings::get('markets.0.wallet_api'),CryptoSettings::get('markets.0.wallet_secret'));
+            $wbal = $t->getBalance(post("wallet"));
+        }
+        catch(\Exception $e){}
 
         $rules = [
             'amount' => 'required|numeric|max:'.Setting::get('cardregister.0.maxDaily'),
             'make' => 'required|accepted',
             'wallet_number' => 'required',
-            'coins' => 'max:'.$t->getBalance(post("wallet"))
+            'coins' => 'max:'.$wbal
         ];
         $validation = Validator::make(post(), $rules, [
             'amount.required'=>'Поле Сумма обязательное.',

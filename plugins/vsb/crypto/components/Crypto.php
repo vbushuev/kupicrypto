@@ -20,23 +20,39 @@ class Crypto extends ComponentBase{
         $this->onRefresh();
         $this->page['markets'] = Market::get();
         $this->page['rates'] = Rate::with(['market'])->get();
-        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
-        $accounts = $t->accounts();
-        $this->page['accounts'] = $accounts;
+        $this->page['accounts'] = [];
+        $this->page['balance'] = [];
+        $this->page['wallet_trxs'] = [];
+        try{
+            $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+            $accounts = $t->accounts();
+            $this->page['accounts'] = $accounts;
+            $bals=[];
+            foreach($accounts as $acc ) $bals[strtolower($acc['currency'])]=$acc["balance"];
+            $this->page['balance'] = $bals;
+            $this->page['wallet_trxs'] = $t->transactions();
+        }
+        catch(\Exception $e){
+
+        }
         $this->page['currency'] = [
             'btc'=>Rate::where('from','BTC')->where('isdefault','1')->first()->price,
             'eth'=>Rate::where('from','ETH')->where('isdefault','1')->first()->price
         ];
-        $bals=[];
-        foreach($accounts as $acc ) $bals[strtolower($acc['currency'])]=$acc["balance"];
-        $this->page['balance'] = $bals;
-        $this->page['wallet_trxs'] = $t->transactions();
+
     }
     public function onMakeRequest(){
-        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
-        $this->page["account"] = $t->account(post('account_id'));
-        // $this->page["request"] = '';
-        $this->page["request"] = $t->request(post('account_id'),post('amount'));
+        $this->page["account"]="";
+        $this->page["request"]=[];
+        try{
+            $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+            $this->page["account"] = $t->account(post('account_id'));
+            // $this->page["request"] = '';
+            $this->page["request"] = $t->request(post('account_id'),post('amount'));
+        }
+        catch(\Exception $e){
+
+        }
     }
     public function componentDetails()
     {
@@ -84,9 +100,13 @@ class Crypto extends ComponentBase{
         $currency = post('wallet');
         $amount = post('amount');
         $accountTo=null;
-        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
-        $res = $t->fund($address,$amount,$currency);
-        print_r($res);
+        try{
+            $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+            $res = $t->fund($address,$amount,$currency);
+            print_r($res);
+        }
+        catch(\Exception $e){}
+
         // foreach($t->accounts() as $account){
         //     if($account->getType()==$wallet){$accountTo = $account;break;}
         // }
@@ -104,9 +124,12 @@ class Crypto extends ComponentBase{
         $cryptocur = strtolower(post("wallet"));
         $spread = Settings::get('markets.0.'.$type);
         $amount = floatval(post("amount"));
-
-        $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
-
+        $wbal=true;
+        try{
+            $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
+            $wbal = $t->checkBalance($this->page["value"],strtoupper(post("wallet")));
+        }
+        catch(\Exception $e){}
 
         $rate = Rate::where('from',$cryptocur)->where('to',post('currency'))->where('isdefault','1')->first();
         $val = isset($rate->price)?$rate->price:0;
@@ -115,7 +138,7 @@ class Crypto extends ComponentBase{
         return [
             "request"=>post(),
             "currencies" =>$rate,
-            "cansale" => $t->checkBalance($this->page["value"],strtoupper(post("wallet")))
+            "cansale" => $wbal
         ];
     }
     public function onSpreadEdit(){
