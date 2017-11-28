@@ -33,7 +33,7 @@ class Crypto extends ComponentBase{
             $this->page['wallet_trxs'] = $t->transactions();
         }
         catch(\Exception $e){
-
+            Log::debug($e);
         }
         $this->page['currency'] = [
             'btc'=>Rate::where('from','BTC')->where('isdefault','1')->first()->price,
@@ -51,7 +51,7 @@ class Crypto extends ComponentBase{
             $this->page["request"] = $t->request(post('account_id'),post('amount'));
         }
         catch(\Exception $e){
-
+            Log::debug($e);
         }
     }
     public function componentDetails()
@@ -105,7 +105,7 @@ class Crypto extends ComponentBase{
             $res = $t->fund($address,$amount,$currency);
             print_r($res);
         }
-        catch(\Exception $e){}
+        catch(\Exception $e){Log::debug($e);}
 
         // foreach($t->accounts() as $account){
         //     if($account->getType()==$wallet){$accountTo = $account;break;}
@@ -129,7 +129,7 @@ class Crypto extends ComponentBase{
             $t = new Coinbase(Settings::get('markets.0.wallet_api'),Settings::get('markets.0.wallet_secret'));
             $wbal = $t->checkBalance($this->page["value"],strtoupper(post("wallet")));
         }
-        catch(\Exception $e){}
+        catch(\Exception $e){Log::debug($e);}
 
         $rate = Rate::where('from',$cryptocur)->where('to',post('currency'))->where('isdefault','1')->first();
         $val = isset($rate->price)?$rate->price:0;

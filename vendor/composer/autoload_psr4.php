@@ -53,5 +53,5 @@ return array(
     "Psr\\Log\\"=> array($vendorDir. "/psr/psr/log/Psr/Log/"),
     "Psr\\Container\\"=> array($vendorDir. "/psr/psr/container/src/"),
     "Psr\\SimpleCache\\"=> array($vendorDir. "/psr/psr/simple-cache/src/"),
-
+    'Blockchain\\' => array($vendorDir . '/blockchain/src'),
 );
